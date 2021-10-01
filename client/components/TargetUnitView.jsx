@@ -1,7 +1,7 @@
 import React from 'react';
 import unitStats from './unitStats.jsx';
 
-const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, offSaveReq, rollResult, rollToHit }) => {
+const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, offSaveReq, rollResult, rollToHit, usingMortarMechanics, usingGrenade, isCriticalHit }) => {
   const handleSaveAugChange = (event, value) => {
     if (event.target.checked) {
       setTargetUnitSaveAug(targetUnitSaveAug + value);
@@ -11,20 +11,19 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   };
 
   const rollToSave = () => {
-    console.log(rollResult)
-    if (rollResult
-      && (targetUnitSaveAug ? targetUnitSaveAug : 0) + offSaveReq + Number(rollResult) <= 20
+    if (((rollResult
+      && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
       && rollResult >= rollToHit
-      && rollResult < 20) {
+      && !isCriticalHit) || usingMortarMechanics) && rollResult > 1) {
       return <h3 style={{ display: 'flex', justifyContent: "center" }}>
-        Roll {Number(rollResult) + targetUnitSaveAug + offSaveReq} to save.
+        Roll of {Number(rollResult) + targetUnitSaveAug + offSaveReq}+ required to save.
       </h3>
-    } else if (rollResult
-      && ((targetUnitSaveAug ? targetUnitSaveAug : 0) + offSaveReq + Number(rollResult) >= 20 || rollResult === '20')) {
+    } else if (((rollResult
+      && ((targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) >= 20 || isCriticalHit)) || usingMortarMechanics) && rollResult > 1) {
       return <h3 style={{ display: 'flex', justifyContent: "center" }}>
-        {rollResult <= 20 ? 'Critical: ' : ''}Unable to Save.
+        {isCriticalHit ? 'Critical: ' : ''}Unable to Save.
       </h3>
-    }
+    } 
   };
 
 
@@ -35,9 +34,9 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
         <span> {unitStats[targetUnit]["Save Requirement"] || 0}</span>
       </div>
-      {playerUnit ? playerUnit["Offensive Save Requirement"] ? <div className="row">
+      {playerUnit ? playerUnit["Offensive Save Requirement"] || usingGrenade ? <div className="row">
         <span className="info-point">Attacker's Offensive Save Requirement Augmentation: </span>
-        <span> {playerUnit["Offensive Save Requirement"]}</span>
+        <span> {playerUnit["Offensive Save Requirement"] || playerUnit["Grenade OSR"]}</span>
       </div>
         : null : null}
       {targetUnit !== 'Captain'

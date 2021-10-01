@@ -32,7 +32,7 @@ const unitStats = {
     "Mortar Inches To Roll": 0.8,
     "Sidearm Inches To Roll": 1,
     "Save Requirement": -1,
-    "Offensive Save Requirement": +3,
+    "Offensive Save Requirement": 3,
     "Template": 2,
     "Minimum Range": 15,
     "Unit Class": "Heavy Weapons",
@@ -48,7 +48,7 @@ const unitStats = {
     "Inches To Roll vs Vehicle/Structure": 0.8,
     "Sidearm Inches To Roll": 1,
     "Save Requirement": -1,
-    "Offensive Save Requirement": +2,
+    "Offensive Save Requirement": 2,
     "Template": 3,
     "Unit Class": "Heavy Weapons",
     "Minimum Range": 10,
@@ -62,7 +62,7 @@ const unitStats = {
     "Save Requirement": -1,
     "Unit Class": "Infantry",
     "Recon": "Passive boost for units within template #2: -1 to RTH for all types.",
-    "Spotter": "Using both (2) actions during a turn, the Recon Scout may grant -3 RTH to a single unit within template #3 for it's upcoming turn. (This bonus does not stack with the Recon Scout's passive RTH boost)."
+    "Spotter": "Using 2 actions, the Recon Scout may grant -3 RTH to a single unit within template #3 for its upcoming turn. (This bonus does not stack with the Recon Scout's passive RTH boost)."
   },
   "Engineer": {
     "name": "Engineer",
@@ -81,9 +81,10 @@ const unitStats = {
     "name": "Standing Rifleman",
     "Movement Range": 10,
     "Inches To Roll": 0.8,
-    "Grenade Inches To Roll": 0.8,
+    "Grenade Inches To Roll": 1,
+    "Grenade OSR": 2, 
     "Unit Class": "Infantry",
-    "Grenade": "Instead of firing, may  throw a grenade [ITR: 1.0].  Grenades use template #1, and have +1-2 OSR depending on distance from blast point(see template).",
+    "Grenade": "Instead of firing, may  throw a grenade [ITR: 1.0].  Grenades use template #1, and has +2 Offensive Save Requirement.", 
     "Grenade Usage": "When throwing a grenade , each point short of a DH is equal to one point off target up to 5in.  Direction off target determined by D12 roll interpreted as position on a clock, with the Grenade thrower at 6 o’ clock.",
     "Uphill Explosive": "If throwing a grenade at target on lower elevation, measure horizontally to airspace above target to determine range, if throwing at target on higher elevation measure directly(diagonally) to determine range."
   },

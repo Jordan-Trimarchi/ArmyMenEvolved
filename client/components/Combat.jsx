@@ -16,7 +16,10 @@ const Combat = () => {
   const [elevation, setElevation] = useState('0');
   const [currentITR, setCurrentITR] = useState(null);
   const [rollResult, setRollResult] = useState(0);
-  const [offSaveReq, SetOffSaveReq] = useState(0);
+  const [offSaveReq, setOffSaveReq] = useState(0);
+  const [usingMortarMechanics, setUsingMortarMechanics] = useState(false);
+  const [usingGrenade, setUsingGrenade] = useState(false);
+  const [isCriticalHit, setIsCriticalHit] = useState(false);
 
   const handleRollToHitAugChange = (event, value) => {
     if (event.target.checked) {
@@ -41,9 +44,9 @@ const Combat = () => {
 
   useEffect(() => {
     if (playerUnit && playerUnit["Offensive Save Requirement"]) {
-      SetOffSaveReq(playerUnit["Offensive Save Requirement"]);
+      setOffSaveReq(playerUnit["Offensive Save Requirement"]);
     } else {
-      SetOffSaveReq(0);
+      setOffSaveReq(0);
     }
     setRollResult(0);
   }, [playerUnit]);
@@ -106,6 +109,13 @@ const Combat = () => {
               setCurrentITR={setCurrentITR}
               rollResult={rollResult}
               setRollResult={setRollResult}
+              setOffSaveReq={setOffSaveReq}
+              usingMortarMechanics={usingMortarMechanics}
+              setUsingMortarMechanics={setUsingMortarMechanics}
+              usingGrenade={usingGrenade}
+              setUsingGrenade={setUsingGrenade}
+              isCriticalHit={isCriticalHit}
+              setIsCriticalHit={setIsCriticalHit}
             />
             : null}
         </div>
@@ -125,6 +135,9 @@ const Combat = () => {
               rollResult={rollResult}
               rollToHit={rollToHit}
               offSaveReq={offSaveReq}
+              usingMortarMechanics={usingMortarMechanics}
+              usingGrenade={usingGrenade}
+              isCriticalHit={isCriticalHit}
             />
             : targetUnit === 'barrier-vehicle'
               ?
