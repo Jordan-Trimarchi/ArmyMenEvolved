@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, setCurrentITR, rollResult, setRollResult, setOffSaveReq, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, isCriticalHit, setIsCriticalHit }) => {
+const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, setCurrentITR, rollResult, setRollResult, setOffSaveReq, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, setIsCriticalHit }) => {
   const [spotted, setSpotted] = useState(false);
   const [isInRecon, setIsInRecon] = useState(false);
   const [isNearCaptain, setIsNearCaptain] = useState(false);
@@ -27,6 +27,22 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
     setIsMounted(false);
     setUsingGrenade(false);
   };
+
+  useEffect(() => {
+    setUsingGrenade(false);
+    setIsMounted(false);
+    setIsSneaky(false);
+    setIsNearCaptain(false);
+    setIsNearSergeant(false);
+    setIsInPartialCover(false);
+    setSpotted(false);
+    setIsInRecon(false);
+    setCrossedMines('');
+    setCanCrossMines(true);
+    setD12Result(0);
+    setRollToHitAug(0);
+    setUsingSideArm(false);
+  }, [playerUnit]);
 
   const handleSidearm = (event) => {
     event.target.checked ? setUsingSideArm(true) : setUsingSideArm(false);
@@ -70,9 +86,13 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
     setIsSneaky(false);
     setIsNearCaptain(false);
     setIsNearSergeant(false);
+    setIsInPartialCover(false);
+    setSpotted(false);
+    setIsInRecon(false);
     setCrossedMines('');
     setCanCrossMines(true);
     setD12Result(0);
+    setRollToHitAug(0);
   }, [playerUnit]);
 
   useEffect(() => {
@@ -179,7 +199,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           {spotted ? null :
             <div className="row">
               <span className="info-point">{`Template #2: ${playerUnit.name} is within 'Recon' radius of ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
-              <input type="checkbox" onChange={(event) => {
+              <input type="checkbox" checked={isInRecon} onChange={(event) => {
                 handleRollToHitAugChange(event, -1);
                 if (event.target.checked) {
                   setIsInRecon(true);
@@ -215,7 +235,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                           }
                         }} type="button" />
                       </div>
-                      : <div>⏳</div>}
+                      : <div>&#10710;</div>}
                     {usingMortarMechanics && rollResult !== '1' ?
                       <div>
                         {canRoll12 ? <input value='Roll D12' onClick={
@@ -227,7 +247,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                                 setCanRoll12(true);
                               }, 10000);
                             }
-                          }} type="button" /> : <div>⏳</div>}
+                          }} type="button" /> : <div>&#10710;</div>}
                       </div>
                       : null}
                   </div>
@@ -259,7 +279,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             setCanCrossMines(true);
           }, 5000);
         }}
-        /> : <div>⏳</div>}
+        /> : <div>&#10710;</div>}
         <span className="info-point">{crossedMines}</span>
       </div>
       <div>

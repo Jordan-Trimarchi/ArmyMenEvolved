@@ -12,10 +12,10 @@ const Combat = () => {
   const [isNearCaptain, setIsNearCaptain] = useState(false);
   const [isNearSergeant, setIsNearSergeant] = useState(false);
   const [rollToHit, setRollToHit] = useState('');
-  const [distance, setDistance] = useState(0);
-  const [elevation, setElevation] = useState('0');
+  const [distance, setDistance] = useState('');
+  const [elevation, setElevation] = useState('');
   const [currentITR, setCurrentITR] = useState(null);
-  const [rollResult, setRollResult] = useState(0);
+  const [rollResult, setRollResult] = useState('');
   const [offSaveReq, setOffSaveReq] = useState(0);
   const [usingMortarMechanics, setUsingMortarMechanics] = useState(false);
   const [usingGrenade, setUsingGrenade] = useState(false);
@@ -48,7 +48,7 @@ const Combat = () => {
     } else {
       setOffSaveReq(0);
     }
-    setRollResult(0);
+    setRollResult('');
   }, [playerUnit]);
 
   useEffect(() => {
