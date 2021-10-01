@@ -11,6 +11,8 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   const [isMounted, setIsMounted] = useState(false);
   const [isSneaky, setIsSneaky] = useState(false);
   const [d12Result, setD12Result] = useState(0);
+  const [crossedMines, setCrossedMines] = useState('');
+  const [canCrossMines, setCanCrossMines] = useState(true);
 
   const handleClear = () => {
     setRollToHit(0);
@@ -222,28 +224,37 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                         }
                       }} type="button" /> : <div>⏳</div>}
                   </div> : null}
-                  {crossingMines ? <div>
-                    {rollResult !== '1' ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
-                      {rollResult >= rollToHit ? 'Hit' : rollResult > 0 ? 'Miss' : null}
-                    </h3> : null}
+                  {rollResult !== '1' ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+                    {rollResult >= rollToHit ? 'Hit' : rollResult > 0 ? 'Miss' : null}
+                  </h3> : null}
 
-                    {usingMortarMechanics && rollResult !== '1'
-                      ? <h3 style={{ display: 'flex', justifyContent: 'center' }}> Off by {rollToHit - Number(rollResult) <= 8
-                        ? rollToHit - Number(rollResult)
-                        : 8} inches{d12Result ? ` toward ${d12Result} o'clock` : '. Roll D12'}. </h3>
-                      : null}
+                  {usingMortarMechanics && rollResult !== '1'
+                    ? <h3 style={{ display: 'flex', justifyContent: 'center' }}> Off by {rollToHit - Number(rollResult) <= 8
+                      ? rollToHit - Number(rollResult)
+                      : 8} inches{d12Result ? ` toward ${d12Result} o'clock` : '. Roll D12'}. </h3>
+                    : null}
 
-                    {rollResult === '1' ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
-                      Critical Failure: Weapon is jammed until end of next turn.
-                    </h3> : null}
+                  {rollResult === '1' ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+                    Critical Failure: Weapon is jammed until end of next turn.
+                  </h3> : null}
 
-                    <h3 style={{ display: 'flex', justifyContent: 'center' }}>Roll of {rollToHit > 0 ? rollToHit : 0}+ required to hit.</h3>
-                  </div> : null}
+                  <h3 style={{ display: 'flex', justifyContent: 'center' }}>Roll of {rollToHit > 0 ? rollToHit : 0}+ required to hit.</h3>
                 </div>
                 : null
           }
         </div>
         : null}
+      <div className="row">
+        {canCrossMines ? <input type="Button" value="Cross Mines" onClick={() => {
+          setCanCrossMines(false);
+          setCrossedMines(Math.ceil(Math.random() * 20) >= 6 ? 'Success' : 'Failure');
+          setTimeout(() => {
+            setCanCrossMines(true);
+          }, 5000);
+        }}
+        /> : <div>⏳</div>}
+        <span className="info-point">{crossedMines}</span>
+      </div>
       <div>
         <h3>Unit Stats</h3>
         {Object.keys(playerUnit).map((item) => {

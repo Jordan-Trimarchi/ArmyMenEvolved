@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import unitStats from './unitStats.jsx';
 
-const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, offSaveReq, rollResult, rollToHit, usingMortarMechanics, usingGrenade, isCriticalHit }) => {
+const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, offSaveReq, rollResult, rollToHit, usingMortarMechanics, usingGrenade, isCriticalHit, rollToHitAug }) => {
+  const [canRollToSave, setCanRollToSave] = useState(true);
+  const [saved, setSaved] = useState('');
+  const [saveRollResult, setSaveRollResult] = useState('0');
+
   const handleSaveAugChange = (event, value) => {
     if (event.target.checked) {
       setTargetUnitSaveAug(targetUnitSaveAug + value);
@@ -9,6 +13,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
       setTargetUnitSaveAug(targetUnitSaveAug - value);
     }
   };
+
 
   const rollToSave = () => {
     if (((rollResult
@@ -23,9 +28,13 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
       return <h3 style={{ display: 'flex', justifyContent: "center" }}>
         {isCriticalHit ? 'Critical: ' : ''}Unable to Save.
       </h3>
-    } 
+    }
   };
 
+  useEffect(() => {
+    setSaveRollResult('0');
+    setSaved('');
+  }, [playerUnit, targetUnit, rollResult, rollToHit, targetUnitSaveAug, rollToHitAug]);
 
   return (
     <div>
@@ -61,6 +70,23 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
         <span className="info-point" >Total Save Requirement Augmentation: </span>
         <span> {(targetUnitSaveAug ? targetUnitSaveAug : 0) + offSaveReq}</span>
       </div>
+      {((rollResult
+        && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
+        && rollResult >= rollToHit
+        && !isCriticalHit) || usingMortarMechanics) && rollResult > 1
+        ? <div className="row">
+          {canRollToSave ? <input type="Button" value="Roll To Save" onClick={() => {
+            setCanRollToSave(false);
+            const roll = Math.ceil(Math.random() * 20);
+            setSaved(roll >= Number(rollResult) + targetUnitSaveAug + offSaveReq ? `${roll}: Save Successful` : `${roll}: Save Failed`);
+            setTimeout(() => {
+              setCanRollToSave(true);
+            }, 5000);
+          }}
+          /> : <div>⏳</div>}
+          <span>{saved}</span>
+        </div>
+        : null}
       {rollToSave()}
     </div>
   );
