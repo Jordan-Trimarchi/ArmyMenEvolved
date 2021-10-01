@@ -14,7 +14,6 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
     }
   };
 
-
   const rollToSave = () => {
     if (((rollResult
       && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
@@ -34,6 +33,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   useEffect(() => {
     setSaveRollResult('0');
     setSaved('');
+    setCanRollToSave(true);
   }, [playerUnit, targetUnit, rollResult, rollToHit, targetUnitSaveAug, rollToHitAug]);
 
   return (
@@ -74,13 +74,14 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
         && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
         && rollResult >= rollToHit
         && !isCriticalHit) || usingMortarMechanics) && rollResult > 1
-        ? <div className="row">
+        ? <div className="row" style={{ justifyContent: saved ? 'space-around' : 'center' }}>
           {canRollToSave ? <input type="Button" value="Roll To Save" onClick={() => {
             setCanRollToSave(false);
             const roll = Math.ceil(Math.random() * 20);
-            setSaved(roll >= Number(rollResult) + targetUnitSaveAug + offSaveReq ? `${roll}: Save Successful` : `${roll}: Save Failed`);
+            setSaved(roll >= Number(rollResult) + targetUnitSaveAug + offSaveReq ? `Rolled ${roll} -  Save Successful` : `Rolled ${roll} - Save Failed`);
             setTimeout(() => {
               setCanRollToSave(true);
+              console.log('boom.')
             }, 5000);
           }}
           /> : <div>⏳</div>}

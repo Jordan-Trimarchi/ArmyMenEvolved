@@ -138,6 +138,7 @@ const Combat = () => {
               usingMortarMechanics={usingMortarMechanics}
               usingGrenade={usingGrenade}
               isCriticalHit={isCriticalHit}
+              rollToHitAug={rollToHitAug}
             />
             : targetUnit === 'barrier-vehicle'
               ?

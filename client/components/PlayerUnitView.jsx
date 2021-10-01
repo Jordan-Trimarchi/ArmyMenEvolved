@@ -70,6 +70,9 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
     setIsSneaky(false);
     setIsNearCaptain(false);
     setIsNearSergeant(false);
+    setCrossedMines('');
+    setCanCrossMines(true);
+    setD12Result(0);
   }, [playerUnit]);
 
   useEffect(() => {
@@ -138,6 +141,19 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
               event.target.checked ? setIsInPartialCover(true) : setIsInPartialCover(false);
             }} checked={isInPartialCover} />
           </div>
+          <div className="row">
+            <span className="info-point">{`Template #3: ${playerUnit.name} is actively 'Spotted' by ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
+            <input checked={spotted} type="checkbox" onChange={(event) => {
+              setSpotted(!spotted);
+              if (isInRecon) {
+                handleRollToHitAugChange(event, -2);
+                setIsInRecon(false);
+              } else {
+                handleRollToHitAugChange(event, -3);
+              }
+            }}
+            />
+          </div>
           {playerUnit.name !== 'Captain' ?
             <div className="row">
               <span className="info-point">{`Template #3: ${playerUnit.name} is within 'Call to Arms' radius of Captain:`}</span>
@@ -160,19 +176,6 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                 event.target.checked ? setIsNearSergeant(true) : setIsNearSergeant(false);
               }} checked={isNearSergeant} />
             </div> : null}
-          <div className="row">
-            <span className="info-point">{`Template #3: ${playerUnit.name} is actively 'Spotted' by ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
-            <input checked={spotted} type="checkbox" onChange={(event) => {
-              setSpotted(!spotted);
-              if (isInRecon) {
-                handleRollToHitAugChange(event, -2);
-                setIsInRecon(false);
-              } else {
-                handleRollToHitAugChange(event, -3);
-              }
-            }}
-            />
-          </div>
           {spotted ? null :
             <div className="row">
               <span className="info-point">{`Template #2: ${playerUnit.name} is within 'Recon' radius of ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
@@ -199,39 +202,43 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                       setRollResult(event.target.value);
                     }} type="number" step="1" placeholder='Roll' min="1" max="20" style={{ width: '5em' }} /> : <div style={{ marginRight: '.25em' }}>{rollResult}</div>}
                   </div>
-                  <div className="row">
-                    <span className="info-point">D20:</span>
-                    {canRoll ? <input value='Roll' onClick={() => {
-                      if (canRoll) {
-                        setRollResult(String(Math.ceil(Math.random() * 20)));
-                        setCanRoll(false);
-                        setTimeout(() => {
-                          setCanRoll(true);
-                        }, 10000);
-                      }
-                    }} type="button" /> : <div>⏳</div>}
+                  <div className="row" style={{ justifyContent: usingMortarMechanics && rollResult !== '1' ? 'space-around' : 'center' }}>
+                    {canRoll ?
+                      <div>
+                        <input value='Roll D20' onClick={() => {
+                          if (canRoll) {
+                            setRollResult(String(Math.ceil(Math.random() * 20)));
+                            setCanRoll(false);
+                            setTimeout(() => {
+                              setCanRoll(true);
+                            }, 10000);
+                          }
+                        }} type="button" />
+                      </div>
+                      : <div>⏳</div>}
+                    {usingMortarMechanics && rollResult !== '1' ?
+                      <div>
+                        {canRoll12 ? <input value='Roll D12' onClick={
+                          () => {
+                            if (canRoll12) {
+                              setD12Result(String(Math.ceil(Math.random() * 12)));
+                              setCanRoll12(false);
+                              setTimeout(() => {
+                                setCanRoll12(true);
+                              }, 10000);
+                            }
+                          }} type="button" /> : <div>⏳</div>}
+                      </div>
+                      : null}
                   </div>
-                  {usingMortarMechanics && rollResult !== '1' ? <div className="row">
-                    <span className="info-point">D12:</span>
-                    {
-                      canRoll12 ? <input value='Roll' onClick={() => {
-                        if (canRoll12) {
-                          setD12Result(String(Math.ceil(Math.random() * 12)));
-                          setCanRoll12(false);
-                          setTimeout(() => {
-                            setCanRoll12(true);
-                          }, 10000);
-                        }
-                      }} type="button" /> : <div>⏳</div>}
-                  </div> : null}
                   {rollResult !== '1' ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
                     {rollResult >= rollToHit ? 'Hit' : rollResult > 0 ? 'Miss' : null}
                   </h3> : null}
 
                   {usingMortarMechanics && rollResult !== '1'
-                    ? <h3 style={{ display: 'flex', justifyContent: 'center' }}> Off by {rollToHit - Number(rollResult) <= 8
+                    ? <h3 style={{ display: 'flex', justifyContent: 'center' }}> Off by {rollToHit - Number(rollResult) <= (usingGrenade ? 5 : 8)
                       ? rollToHit - Number(rollResult)
-                      : 8} inches{d12Result ? ` toward ${d12Result} o'clock` : '. Roll D12'}. </h3>
+                      : (usingGrenade ? 5 : 8)} inches{d12Result ? ` toward ${d12Result} o'clock` : '. Roll D12'}. </h3>
                     : null}
 
                   {rollResult === '1' ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
@@ -244,7 +251,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           }
         </div>
         : null}
-      <div className="row">
+      <div className="row" style={{ justifyContent: crossedMines ? 'space-around' : 'center' }}>
         {canCrossMines ? <input type="Button" value="Cross Mines" onClick={() => {
           setCanCrossMines(false);
           setCrossedMines(Math.ceil(Math.random() * 20) >= 6 ? 'Success' : 'Failure');
@@ -256,7 +263,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
         <span className="info-point">{crossedMines}</span>
       </div>
       <div>
-        <h3>Unit Stats</h3>
+        <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>
         {Object.keys(playerUnit).map((item) => {
           if (item !== "name") {
             const styles = {}
