@@ -37,7 +37,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   }, [playerUnit, targetUnit, rollResult, rollToHit, targetUnitSaveAug, rollToHitAug]);
 
   return (
-    <div className="fade-in" style={{transition:'1s', width: '48vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid' }}>
+    <div className="fade-in" style={{ transition: '1s', width: '48vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid', borderBottom: 'solid' }}>
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Target: {targetUnit}</h2>
       <div className="row">
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
@@ -84,8 +84,8 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
               console.log('boom.')
             }, 5000);
           }}
-          /> : <div>⏳</div>}
-          <span>{saved}</span>
+          /> : <div>&#10710;</div>}
+          {saved ? <span>{saved}</span> : null}
         </div>
         : null}
       {rollToSave()}

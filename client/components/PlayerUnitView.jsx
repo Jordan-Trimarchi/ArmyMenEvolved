@@ -112,7 +112,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   }, [playerUnit, usingGrenade, usingSideArm, elevation, distance, rollToHit, rollResult]);
 
   return (
-    <div className='fade-in' style={{ transition:'1s', width: '48vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid' }}>
+    <div className='fade-in' style={{ transition:'1s', width: '48vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid' }}>
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Unit: {playerUnit.name}</h2>
       {playerUnit && targetUnit ?
         <div className="fade-in">
@@ -235,7 +235,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                           }
                         }} type="button" />
                       </div>
-                      : <div>&#10710;</div>}
+                      : <span>&#10710;</span>}
                     {usingMortarMechanics && rollResult !== '1' ?
                       <div>
                         {canRoll12 ? <input value='Roll D12' onClick={
@@ -279,8 +279,8 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             setCanCrossMines(true);
           }, 5000);
         }}
-        /> : <div>&#10710;</div>}
-        <span className="info-point">{crossedMines}</span>
+        /> : <span>&#10710;</span>}
+        {crossedMines? <span className="info-point">{crossedMines}</span> : null}
       </div>
       <div>
         <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>

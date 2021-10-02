@@ -40,6 +40,7 @@ button {
   flex-wrap: wrap;
   padding-left: .5em;
   padding-right: .5em;
+  align-items: center;
 }
 
 .fake-h3 {
@@ -54,7 +55,7 @@ button {
 }
 
 
-.fade-in, body, .row {
+.fade-in, body, .row, input, button, div, span, .info-point {
 	opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
