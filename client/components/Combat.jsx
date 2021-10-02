@@ -74,7 +74,7 @@ const Combat = () => {
             || unitStats[event.target.value]["Sidearm Inches To Roll"]
           );
         }} name="Unit">
-          <option value="">--Select your unit--</option>
+          <option value="">--Select Unit--</option>
           {Object.keys(unitStats).map((unit) => {
             return <option value={unit} key={unit}>{unit}</option>
           })}
@@ -82,15 +82,15 @@ const Combat = () => {
         <select onChange={(event) => {
           setTargetUnit(event.target.value);
         }} name="Target">
-          <option value="">--Select your target--</option>
+          <option value="">--Select Target--</option>
           {playerUnit && playerUnit.name === 'Bazooka' ? <option value="barrier-vehicle">Barrier / Vehicle</option> : null}
           {Object.keys(unitStats).map((unit) => {
             return <option value={unit} key={unit}>{unit}</option>
           })}
         </select>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
-        <div style={{ width: '50vw', display: 'flex', flexDirection: 'column', borderRight: 'solid' }}>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <div>
           {playerUnit ?
             <PlayerUnitView
               playerUnit={playerUnit}
@@ -119,7 +119,7 @@ const Combat = () => {
             />
             : null}
         </div>
-        <div style={{ width: '49vw', marginLeft: '1vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid' }}>
+        <div>
           {targetUnit && targetUnit !== 'barrier-vehicle'
             ?
             <TargetUnitView
