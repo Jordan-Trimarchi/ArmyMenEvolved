@@ -60,7 +60,7 @@ button {
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in-out;
-	animation-duration: 1s;
+	animation-duration: .65s;
 }
 
 @keyframes fadeInOpacity {
