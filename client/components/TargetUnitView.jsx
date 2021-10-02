@@ -34,7 +34,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
     setSaveRollResult('0');
     setSaved('');
     setCanRollToSave(true);
-  }, [playerUnit, targetUnit, rollResult, rollToHit, targetUnitSaveAug, rollToHitAug]);
+  }, [playerUnit, targetUnit, rollResult]);
 
   return (
     <div className="fade-in" style={{ transition: '1s', width: '48vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid', borderBottom: 'solid' }}>

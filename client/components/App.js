@@ -9,7 +9,7 @@ const App = () => {
         <h1>Army Men Evolved</h1>
         <input value='Rules' type='button' onClick={() => setViewingCombat(!viewingCombat)} />
       </div>
-      {viewingCombat ? <Combat /> : <embed style={{ width: '100%', height: '65vh' }} src="https://drive.google.com/file/d/1ZNVa0JkGo_5whu6C6ZciUDVlxVObqvvE/preview" />}
+      {viewingCombat ? <Combat /> : <embed style={{ width: '100%', height: '65vh' }} src="https://drive.google.com/file/d/1AzVqaFvFOD8iXwt936GSCgFjrIP5iq-b/preview" />}
     </div>)
 };
 

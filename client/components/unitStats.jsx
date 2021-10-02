@@ -86,6 +86,8 @@ const unitStats = {
     "Unit Class": "Infantry",
     "Grenade": "Instead of firing, may  throw a grenade [ITR: 1.0].  Grenades use template #1, and has +2 Offensive Save Requirement.", 
     "Grenade Usage": "When throwing a grenade , each point short of a DH is equal to one point off target up to 5in.  Direction off target determined by D12 roll interpreted as position on a clock, with the Grenade thrower at 6 o’ clock.",
+    "Grenade Ignores target cover": "Grenade falls downward onto a target. Overhead cover is considered as the grenade will hit the cover instead of hitting the target",
+    "Grenade Barrier Damage": "Grenades do not damage barriers.",
     "Uphill Explosive": "If throwing a grenade at target on lower elevation, measure horizontally to airspace above target to determine range, if throwing at target on higher elevation measure directly(diagonally) to determine range."
   },
   "Kneeling Rifleman": {

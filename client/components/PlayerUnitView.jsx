@@ -104,7 +104,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   }, [rollResult, isSneaky]);
 
   useEffect(() => {
-    if (rollResult > 0 && ((playerUnit.name === 'Mortar' && !usingSideArm) || (playerUnit.name === 'Standing Rifleman' && usingGrenade) || (playerUnit.name === 'Bazooka' && elevation > distance / 2)) && rollResult < rollToHit) {
+    if ((playerUnit.name === 'Mortar' && !usingSideArm) || (playerUnit.name === 'Standing Rifleman' && usingGrenade) || (playerUnit.name === 'Bazooka' && elevation > distance / 2)) {
       setUsingMortarMechanics(true);
     } else {
       setUsingMortarMechanics(false);
@@ -112,7 +112,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   }, [playerUnit, usingGrenade, usingSideArm, elevation, distance, rollToHit, rollResult]);
 
   return (
-    <div className='fade-in' style={{ transition:'1s', width: '48vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid' }}>
+    <div className='fade-in' style={{ transition: '1s', width: '48vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid' }}>
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Unit: {playerUnit.name}</h2>
       {playerUnit && targetUnit ?
         <div className="fade-in">
@@ -154,13 +154,13 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
               setElevation(event.target.value);
             }} type="number" step=".0625" placeholder='Inches' style={{ width: '5em' }} />
           </div>
-          <div className="row">
+          {usingMortarMechanics === false ? <div className="row">
             <span className="info-point">Target is in partial cover:</span>
             <input name="cover" type="checkbox" onChange={(event) => {
               handleRollToHitAugChange(event, 3);
               event.target.checked ? setIsInPartialCover(true) : setIsInPartialCover(false);
             }} checked={isInPartialCover} />
-          </div>
+          </div> : null}
           <div className="row">
             <span className="info-point">{`Template #3: ${playerUnit.name} is actively 'Spotted' by ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
             <input checked={spotted} type="checkbox" onChange={(event) => {
@@ -211,9 +211,9 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             </div>
           }
           {
-            rollToHit > 20.5 || (distance < playerUnit["Minimum Range"] && !usingSideArm)
+            rollToHit > 20.5 || (distance && distance < playerUnit["Minimum Range"] && !usingSideArm)
               ? <h3 style={{ display: 'flex', justifyContent: "center" }}>Unable to hit.</h3>
-              : rollToHit
+              : rollToHit || distance
                 ?
                 <div>
                   <div className="row">
@@ -222,7 +222,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                       setRollResult(event.target.value);
                     }} type="number" step="1" placeholder='Roll' min="1" max="20" style={{ width: '5em' }} /> : <div style={{ marginRight: '.25em' }}>{rollResult}</div>}
                   </div>
-                  <div className="row" style={{ justifyContent: usingMortarMechanics && rollResult !== '1' ? 'space-around' : 'center' }}>
+                  <div className="row" style={{ justifyContent: usingMortarMechanics && rollResult > 1 ? 'space-around' : 'center' }}>
                     {canRoll ?
                       <div>
                         <input value='Roll D20' onClick={() => {
@@ -236,7 +236,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                         }} type="button" />
                       </div>
                       : <span>&#10710;</span>}
-                    {usingMortarMechanics && rollResult !== '1' ?
+                    {usingMortarMechanics && rollResult > 1 ?
                       <div>
                         {canRoll12 ? <input value='Roll D12' onClick={
                           () => {
@@ -251,21 +251,21 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                       </div>
                       : null}
                   </div>
-                  {rollResult !== '1' ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
-                    {rollResult >= rollToHit ? 'Hit' : rollResult > 0 ? 'Miss' : null}
+                  {rollResult > 1 || rollToHit < 2 ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+                    {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit` : rollResult > 0 ? `Rolled ${rollResult}: Miss` : null}
                   </h3> : null}
 
-                  {usingMortarMechanics && rollResult !== '1'
+                  {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit 
                     ? <h3 style={{ display: 'flex', justifyContent: 'center' }}> Off by {rollToHit - Number(rollResult) <= (usingGrenade ? 5 : 8)
                       ? rollToHit - Number(rollResult)
                       : (usingGrenade ? 5 : 8)} inches{d12Result ? ` toward ${d12Result} o'clock` : '. Roll D12'}. </h3>
                     : null}
 
-                  {rollResult === '1' ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+                  {rollResult === '1' && rollToHit > 1 ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
                     Critical Failure: Weapon is jammed until end of next turn.
                   </h3> : null}
 
-                  <h3 style={{ display: 'flex', justifyContent: 'center' }}>Roll of {rollToHit > 0 ? rollToHit : 0}+ required to hit.</h3>
+                  <h3 style={{ display: 'flex', justifyContent: 'center' }}>Roll of {rollToHit > 0 ? rollToHit : 1}+ required to hit.</h3>
                 </div>
                 : null
           }
@@ -274,13 +274,14 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
       <div className="row" style={{ justifyContent: crossedMines ? 'space-around' : 'center' }}>
         {canCrossMines ? <input type="Button" value="Cross Mines" onClick={() => {
           setCanCrossMines(false);
-          setCrossedMines(Math.ceil(Math.random() * 20) >= 6 ? 'Success' : 'Failure');
+          const roll = Math.ceil(Math.random() * 20);
+          setCrossedMines(roll >= 6 ? `Rolled ${roll}: Success` : `Rolled ${roll}: Failure`);
           setTimeout(() => {
             setCanCrossMines(true);
           }, 5000);
         }}
         /> : <span>&#10710;</span>}
-        {crossedMines? <span className="info-point">{crossedMines}</span> : null}
+        {crossedMines ? <span className="info-point">{crossedMines}</span> : null}
       </div>
       <div>
         <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>
