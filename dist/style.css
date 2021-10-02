@@ -5,10 +5,9 @@ body {
   background-attachment: fixed;
   background-size:cover;
   color:rgb(229, 230, 229);
-  zoom: 1.35;
   font-family: 'Stick No Bills', sans-serif;
   text-shadow: black 2px 2px 2px;
-
+  transition: 1s;
 }
 
 h1{
@@ -39,6 +38,8 @@ button {
   justify-content: space-between;
   border-bottom: solid; 
   flex-wrap: wrap;
+  padding-left: .5em;
+  padding-right: .5em;
 }
 
 .fake-h3 {
@@ -51,3 +52,22 @@ button {
   font-weight: bold;
   text-decoration: underline;
 }
+
+
+.fade-in, body, .row {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+	animation-duration: 1s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+

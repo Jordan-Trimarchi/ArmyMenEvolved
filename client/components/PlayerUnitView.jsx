@@ -112,10 +112,10 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   }, [playerUnit, usingGrenade, usingSideArm, elevation, distance, rollToHit, rollResult]);
 
   return (
-    <div>
-      <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>{playerUnit.name}</h2>
+    <div className='fade-in' style={{ transition:'1s', width: '48vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid' }}>
+      <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Unit: {playerUnit.name}</h2>
       {playerUnit && targetUnit ?
-        <div>
+        <div className="fade-in">
           <div className='row'>
             <span className="fake-h3">Attack Calculator</span>
             <button type="button" onClick={handleClear}>Clear All</button>
