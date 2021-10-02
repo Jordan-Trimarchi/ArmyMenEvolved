@@ -11,7 +11,9 @@
 ##Installation/Setup
 
   1 - Fork repo and clone to your machine.
-  2 - In the terminal, navigate to root directory, and type ```console npm install```
+  2 - In the terminal, navigate to root directory, and run the command ```npm install```.
+  3 - In two separate terminals, navigate to the root directory and run the commands ```npm run build``` and ```npm start```.
+  4 - If these run successfully, navigate to ```localhost:3001``` in your browser.
   
   
   
