@@ -8,7 +8,7 @@
   When dice rolls are necessary, you may either roll real dice and enter the values, or use the buttons in the app to generate rolls randomly.<br />
   Barriers are indended to be square wooden blocks approx 2.5" X 2.5" X 0.5" but any props or household items can be used.<br />
   
-##Installation/Setup
+## Installation/Setup
 
   1 - Fork repo and clone to your machine.<br />
   2 - In the terminal, navigate to root directory, and run the command ```npm install```.<br />
