@@ -1,4 +1,4 @@
-# ArmyMen
+# Army Men Evolved
 
   This is a Companion App to a table-top strategy game I developed called Army Men Evolved.  <br />
   The game can be played using standard Army Men bought from a dollar store.<br />
