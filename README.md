@@ -10,7 +10,8 @@
   
 ##Installation/Setup
 
-  
+  1 - Fork repo and clone to your machine.
+  2 - In the terminal, navigate to root directory, and type ```console npm install```
   
   
   
