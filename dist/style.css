@@ -1,0 +1,53 @@
+body {
+  background-color: rgb(18, 36, 21);
+  background-image: url('../darkfabric.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover;
+  color:rgb(229, 230, 229);
+  zoom: 1.35;
+  font-family: 'Stick No Bills', sans-serif;
+  text-shadow: black 2px 2px 2px;
+
+}
+
+h1{
+  text-decoration: underline;
+}
+
+button {
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+}
+
+.header {
+  background-image: url('../scratchmetal.jpeg'); 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  border: solid;
+  margin-left: 10em;
+  margin-right: 10em;
+}
+
+.info-point {
+  font-size: large;
+}
+
+.row { 
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid; 
+  flex-wrap: wrap;
+}
+
+.fake-h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  text-decoration: underline;
+}
