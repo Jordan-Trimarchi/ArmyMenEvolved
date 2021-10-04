@@ -10,6 +10,9 @@
     "start": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "14.16.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jordan-Trimarchi/ArmyMen.git"
