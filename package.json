@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development --watch",
+    "build": "webpack --mode production --watch",
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
