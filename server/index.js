@@ -4,7 +4,7 @@ const queries = require('../database/schema.js');
 const cors = require('cors');
 
 // serve static files from dist dir
-app.use(express.static(__dirname + '/../dist'));
+app.use(express.static(__dirname + '/../client/dist'));
 
 // middleware
 // use express.json for parsing JSON
