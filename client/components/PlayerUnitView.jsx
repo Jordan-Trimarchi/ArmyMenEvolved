@@ -231,7 +231,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                             setCanRoll(false);
                             setTimeout(() => {
                               setCanRoll(true);
-                            }, 10000);
+                            }, 7500);
                           }
                         }} type="button" />
                       </div>
@@ -245,14 +245,14 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                               setCanRoll12(false);
                               setTimeout(() => {
                                 setCanRoll12(true);
-                              }, 10000);
+                              }, 7500);
                             }
                           }} type="button" /> : <div>&#10710;</div>}
                       </div>
                       : null}
                   </div>
                   {rollResult > 1 || rollToHit < 2 ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
-                    {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit` : rollResult > 0 ? `Rolled ${rollResult}: Miss` : null}
+                    {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit.` : rollResult > 0 ? `Rolled ${rollResult}: Miss.` : null}
                   </h3> : null}
 
                   {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit 
@@ -275,7 +275,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
         {canCrossMines ? <input type="Button" value="Cross Mines" onClick={() => {
           setCanCrossMines(false);
           const roll = Math.ceil(Math.random() * 20);
-          setCrossedMines(roll >= 6 ? `Rolled ${roll}: Success` : `Rolled ${roll}: Failure`);
+          setCrossedMines(roll >= 6 ? `Rolled ${roll}: Success.` : `Rolled ${roll}: Failure.`);
           setTimeout(() => {
             setCanCrossMines(true);
           }, 5000);

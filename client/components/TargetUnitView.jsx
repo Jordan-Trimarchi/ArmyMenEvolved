@@ -15,13 +15,19 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   };
 
   const rollToSave = () => {
+
     if (((rollResult
       && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
       && rollResult >= rollToHit
       && !isCriticalHit) || usingMortarMechanics) && rollResult > 1) {
-      return <h3 style={{ display: 'flex', justifyContent: "center" }}>
-        Roll of {Number(rollResult) + targetUnitSaveAug + offSaveReq}+ required to save.
-      </h3>
+      return (
+        <div>
+          {saved ? <h3 style={{ display: 'flex', justifyContent: "center" }}>{saved}</h3> : null}
+          <h3 style={{ display: 'flex', justifyContent: "center" }}>
+            Roll of {Number(rollResult) + targetUnitSaveAug + offSaveReq}+ required to save.
+          </h3>
+        </div>
+      )
     } else if (((rollResult
       && ((targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) >= 20 || isCriticalHit)) || usingMortarMechanics) && rollResult > 1) {
       return <h3 style={{ display: 'flex', justifyContent: "center" }}>
@@ -74,18 +80,17 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
         && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
         && rollResult >= rollToHit
         && !isCriticalHit) || usingMortarMechanics) && rollResult > 1
-        ? <div className="row" style={{ justifyContent: saved ? 'space-around' : 'center' }}>
+        ? <div className="row" style={{ justifyContent: 'center' }}>
           {canRollToSave ? <input type="Button" value="Roll To Save" onClick={() => {
             setCanRollToSave(false);
             const roll = Math.ceil(Math.random() * 20);
-            setSaved(roll >= Number(rollResult) + targetUnitSaveAug + offSaveReq ? `Rolled ${roll} -  Save Successful` : `Rolled ${roll} - Save Failed`);
+            setSaved(roll >= Number(rollResult) + targetUnitSaveAug + offSaveReq ? `Rolled ${roll}:  Save Successful.` : `Rolled ${roll}: Save Failed.`);
             setTimeout(() => {
               setCanRollToSave(true);
               console.log('boom.')
             }, 5000);
           }}
           /> : <div>&#10710;</div>}
-          {saved ? <span>{saved}</span> : null}
         </div>
         : null}
       {rollToSave()}

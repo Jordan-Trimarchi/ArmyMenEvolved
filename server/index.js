@@ -24,7 +24,10 @@ app.get('/entries', (req, res) => {
 });
 
 // set port where server will listen
-const port = 3001;
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3001;
+}
 
 // tell server to listen on predefined port
 app.listen(port, () => {
