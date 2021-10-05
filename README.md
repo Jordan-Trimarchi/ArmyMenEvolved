@@ -1,6 +1,6 @@
 # Army Men Evolved
 
-## https://army-men-evolved.herokuapp.com/
+### https://army-men-evolved.herokuapp.com/
 
   - This is a Companion App to a table-top strategy game I developed called Army Men Evolved.  <br />
   - Instructions are available in the app by clicking "Rules" below the title.<br />
