@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build && npm start",
     "build": "webpack --mode production",
     "react-dev": "webpack -d --watch",
     "start": "node server/index.js",
