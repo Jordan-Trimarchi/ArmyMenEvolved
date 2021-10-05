@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const queries = require('../database/schema.js');
+// const queries = require('../database/schema.js');
 const cors = require('cors');
 
 // serve static files from dist dir
@@ -13,15 +13,15 @@ app.use(express.json());
 app.use(cors());
 
 // get entries
-app.get('/entries', (req, res) => {
-  queries.getEntry(req.query.name, (err, entry) => {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      res.status(200).send(entry);
-    }
-  })
-});
+// app.get('/entries', (req, res) => {
+//   queries.getEntry(req.query.name, (err, entry) => {
+//     if (err) {
+//       res.status(404).send(err);
+//     } else {
+//       res.status(200).send(entry);
+//     }
+//   })
+// });
 
 // set port where server will listen
 let port = process.env.PORT;
