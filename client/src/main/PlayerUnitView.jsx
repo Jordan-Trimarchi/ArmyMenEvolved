@@ -240,7 +240,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                         }} type="button" />
                       </div>
                       : <span>&#10710;</span>}
-                    {usingMortarMechanics && rollResult > 1 ?
+                    {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit?
                       <div>
                         {canRoll12 ? <input value='Roll D12' onClick={
                           () => {
