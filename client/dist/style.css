@@ -15,6 +15,10 @@ body {
   color: rgb(179, 179, 179);
 }
 
+select {
+  text-align: center;
+}
+
 select, input {
   background-color: rgb(65, 64, 64);
   color:rgb(229, 230, 229);
