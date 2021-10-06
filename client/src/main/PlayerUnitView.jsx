@@ -1,4 +1,6 @@
+import { Checkbox } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
+import useStyles from './useStyles';
 
 const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, setCurrentITR, rollResult, setRollResult, setOffSaveReq, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, setIsCriticalHit }) => {
   const [spotted, setSpotted] = useState(false);
@@ -13,6 +15,8 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   const [d12Result, setD12Result] = useState(0);
   const [crossedMines, setCrossedMines] = useState('');
   const [canCrossMines, setCanCrossMines] = useState(true);
+
+  const classes = useStyles();
 
   const handleClear = () => {
     setRollToHit(0);
@@ -112,13 +116,13 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   }, [playerUnit, usingGrenade, usingSideArm, elevation, distance, rollToHit, rollResult]);
 
   return (
-    <div className='fade-in' style={{ transition: '1s', width: '48vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid' }}>
+    <div className='fade-in' style={{ transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid' }}>
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Unit: {playerUnit.name}</h2>
       {playerUnit && targetUnit ?
         <div className="fade-in">
           <div className='row'>
             <span className="fake-h3">Attack Calculator</span>
-            <button type="button" onClick={handleClear}>Clear All</button>
+            <input type="button" value="Clear All" onClick={handleClear}/>
           </div>
           <div className="row">
             <span className="info-point">Distance to target: </span>
@@ -129,24 +133,24 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           {playerUnit["Sidearm Inches To Roll"] && !playerUnit["Inches To Roll"] ?
             <div className="row">
               <span className="info-point">Use Sidearm: </span>
-              <input checked={playerUnit.name === 'Flamer' ? true : usingSideArm} onChange={handleSidearm} type="checkbox" />
+              <Checkbox className={classes.unitSelect} checked={playerUnit.name === 'Flamer' ? true : usingSideArm} onChange={handleSidearm} />
             </div>
             : null
           }
           {playerUnit.name === "Standing Rifleman" ?
             <div className="row">
               <span className="info-point">Throw Grenade: </span>
-              <input checked={usingGrenade} onChange={handleGrenade} type="checkbox" />
+              <Checkbox className={classes.unitSelect} checked={usingGrenade} onChange={handleGrenade} />
             </div>
             : null
           }
           {playerUnit.name === 'Kneeling Rifleman' ? <div className="row">
             <span className="info-point">Mount up:</span>
-            <input type="checkbox" onChange={handleMount} checked={isMounted} />
+            <Checkbox className={classes.unitSelect} onChange={handleMount} checked={isMounted} />
           </div> : null}
           {playerUnit.name === 'Prone Rifleman' ? <div className="row">
             <span className="info-point">{'Sneak Attack(2 actions):'}</span>
-            <input type="checkbox" onChange={handleSneakAttack} checked={isSneaky} />
+            <Checkbox className={classes.unitSelect} onChange={handleSneakAttack} checked={isSneaky} />
           </div> : null}
           <div className="row">
             <span className="info-point">Elevation: Unit is {elevation === '0' ? 'level with' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher' : 'lower'}`} than target. </span>
@@ -156,14 +160,14 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           </div>
           {usingMortarMechanics === false ? <div className="row">
             <span className="info-point">Target is in partial cover:</span>
-            <input name="cover" type="checkbox" onChange={(event) => {
+            <Checkbox className={classes.unitSelect} name="cover" onChange={(event) => {
               handleRollToHitAugChange(event, 3);
               event.target.checked ? setIsInPartialCover(true) : setIsInPartialCover(false);
             }} checked={isInPartialCover} />
           </div> : null}
           <div className="row">
             <span className="info-point">{`Template #3: ${playerUnit.name} is actively 'Spotted' by ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
-            <input checked={spotted} type="checkbox" onChange={(event) => {
+            <Checkbox className={classes.unitSelect} checked={spotted} onChange={(event) => {
               setSpotted(!spotted);
               if (isInRecon) {
                 handleRollToHitAugChange(event, -2);
@@ -177,7 +181,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           {playerUnit.name !== 'Captain' ?
             <div className="row">
               <span className="info-point">{`Template #3: ${playerUnit.name} is within 'Call to Arms' radius of Captain:`}</span>
-              <input type="checkbox" onChange={(event) => {
+              <Checkbox className={classes.unitSelect} onChange={(event) => {
                 if (playerUnit["Unit Class"] === 'Infantry') {
                   handleRollToHitAugChange(event, -2);
                 } else {
@@ -189,7 +193,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           {playerUnit.name !== 'Sergeant' && playerUnit["Unit Class"] === 'Infantry' ?
             <div className="row">
               <span className="info-point">{`Template #2: ${playerUnit.name} is within 'Rally' radius of Sergeant:`}</span>
-              <input type="checkbox" onChange={(event) => {
+              <Checkbox className={classes.unitSelect} onChange={(event) => {
                 if (playerUnit["Unit Class"] === 'Infantry') {
                   handleRollToHitAugChange(event, -1);
                 }
@@ -199,7 +203,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           {spotted ? null :
             <div className="row">
               <span className="info-point">{`Template #2: ${playerUnit.name} is within 'Recon' radius of ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
-              <input type="checkbox" checked={isInRecon} onChange={(event) => {
+              <Checkbox className={classes.unitSelect} checked={isInRecon} onChange={(event) => {
                 handleRollToHitAugChange(event, -1);
                 if (event.target.checked) {
                   setIsInRecon(true);
@@ -231,12 +235,12 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                             setCanRoll(false);
                             setTimeout(() => {
                               setCanRoll(true);
-                            }, 10000);
+                            }, 7500);
                           }
                         }} type="button" />
                       </div>
                       : <span>&#10710;</span>}
-                    {usingMortarMechanics && rollResult > 1 ?
+                    {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit?
                       <div>
                         {canRoll12 ? <input value='Roll D12' onClick={
                           () => {
@@ -245,14 +249,14 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                               setCanRoll12(false);
                               setTimeout(() => {
                                 setCanRoll12(true);
-                              }, 10000);
+                              }, 7500);
                             }
                           }} type="button" /> : <div>&#10710;</div>}
                       </div>
                       : null}
                   </div>
                   {rollResult > 1 || rollToHit < 2 ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
-                    {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit` : rollResult > 0 ? `Rolled ${rollResult}: Miss` : null}
+                    {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit.` : rollResult > 0 ? `Rolled ${rollResult}: Miss.` : null}
                   </h3> : null}
 
                   {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit 
@@ -275,7 +279,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
         {canCrossMines ? <input type="Button" value="Cross Mines" onClick={() => {
           setCanCrossMines(false);
           const roll = Math.ceil(Math.random() * 20);
-          setCrossedMines(roll >= 6 ? `Rolled ${roll}: Success` : `Rolled ${roll}: Failure`);
+          setCrossedMines(roll >= 6 ? `Rolled ${roll}: Success.` : `Rolled ${roll}: Failure.`);
           setTimeout(() => {
             setCanCrossMines(true);
           }, 5000);

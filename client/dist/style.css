@@ -8,6 +8,26 @@ body {
   font-family: 'Stick No Bills', sans-serif;
   text-shadow: black 2px 2px 2px;
   transition: 1s;
+  zoom: 1.25;
+}
+
+::placeholder {
+  color: rgb(179, 179, 179);
+}
+
+select {
+  text-align: center;
+}
+
+select, input, button {
+  background-color: rgb(65, 64, 64, .6);
+  color:rgb(229, 230, 229);
+  border-color: rgb(131, 131, 131, .6);
+  border-width: .15em;
+  outline: none;
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: medium;
+  border-radius: .25em;
 }
 
 h1{
@@ -17,6 +37,12 @@ h1{
 button {
   margin-top: 1.33em;
   margin-bottom: 1.33em;
+  background-color: black;
+  color:rgb(229, 230, 229);
+  border: none;
+  outline: none;
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: medium;
 }
 
 .header {
@@ -55,7 +81,7 @@ button {
 }
 
 
-.fade-in, body, .row, input, button, div, span, .info-point {
+.fade-in, body, .row, button, div, span, .info-point {
 	opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
