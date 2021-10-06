@@ -6,8 +6,8 @@ const useStyles = makeStyles((theme) => (
       height: '0em',
       width: '0em',
       size: 'small',
-      backgroundColor: 'black',
-      color: 'rgb(229, 230, 229)',
+      backgroundColor: 'rgb(0, 0, 0, .5)',
+      color: 'rgb(229, 230, 229, .5)',
       '&.Mui-checked': {
         color: 'rgb(229, 230, 229)'
       },

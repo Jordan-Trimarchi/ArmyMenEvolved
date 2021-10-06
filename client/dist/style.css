@@ -20,9 +20,9 @@ select {
 }
 
 select, input {
-  background-color: rgb(65, 64, 64);
+  background-color: rgb(65, 64, 64, .6);
   color:rgb(229, 230, 229);
-  border-color: rgb(131, 131, 131);
+  border-color: rgb(131, 131, 131, .6);
   border-width: .15em;
   outline: none;
   font-family: 'Stick No Bills', sans-serif;
