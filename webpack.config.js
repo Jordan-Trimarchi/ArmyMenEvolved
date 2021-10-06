@@ -7,7 +7,7 @@ module.exports = {
  entry: path.resolve(__dirname, 'client', 'src', 'index.js'),
  output: {
    // output will be stored in dist dir
-   path: path.resolve(__dirname, 'dist'),
+   path: path.resolve(__dirname,'client', 'dist'),
    // naming bundled file
    filename: 'bundle.js'
  },

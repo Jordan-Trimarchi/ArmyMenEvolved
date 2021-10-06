@@ -1,10 +1,14 @@
+import { Checkbox } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import unitStats from './unitStats.jsx';
+import useStyles from './useStyles.js';
 
 const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, offSaveReq, rollResult, rollToHit, usingMortarMechanics, usingGrenade, isCriticalHit, rollToHitAug }) => {
   const [canRollToSave, setCanRollToSave] = useState(true);
   const [saved, setSaved] = useState('');
   const [saveRollResult, setSaveRollResult] = useState('0');
+
+  const classes = useStyles();
 
   const handleSaveAugChange = (event, value) => {
     if (event.target.checked) {
@@ -43,7 +47,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   }, [playerUnit, targetUnit, rollResult]);
 
   return (
-    <div className="fade-in" style={{ transition: '1s', width: '48vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid', borderBottom: 'solid' }}>
+    <div className="fade-in" style={{ transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid', borderBottom: 'solid' }}>
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Target: {targetUnit}</h2>
       <div className="row">
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
@@ -57,7 +61,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
       {targetUnit !== 'Captain'
         ? <div className="row">
           <span className="info-point">{`Template #3: Within 'Call to Arms' radius of Captain:`}</span>
-          <input type="checkbox" onChange={(event) => {
+          <Checkbox className={classes.unitSelect} onChange={(event) => {
             handleSaveAugChange(event, -2);
             event.target.checked ? setIsNearCaptain(true) : setIsNearCaptain(false);
           }} checked={isNearCaptain} />
@@ -66,7 +70,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
       {targetUnit !== 'Sergeant'
         ? <div className="row">
           <span className="info-point">{`Template #2: Within 'Rally' radius of Sergeant:`}</span>
-          <input type="checkbox" onChange={(event) => {
+          <Checkbox className={classes.unitSelect} onChange={(event) => {
             handleSaveAugChange(event, -1);
             event.target.checked ? setIsNearSergeant(true) : setIsNearSergeant(false);
           }} checked={isNearSergeant} />
