@@ -19,7 +19,7 @@ select {
   text-align: center;
 }
 
-select, input {
+select, input, button {
   background-color: rgb(65, 64, 64, .6);
   color:rgb(229, 230, 229);
   border-color: rgb(131, 131, 131, .6);
@@ -27,7 +27,7 @@ select, input {
   outline: none;
   font-family: 'Stick No Bills', sans-serif;
   font-size: medium;
-  border-radius: 5%;
+  border-radius: .25em;
 }
 
 h1{

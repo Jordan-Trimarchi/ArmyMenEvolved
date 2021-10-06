@@ -122,7 +122,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
         <div className="fade-in">
           <div className='row'>
             <span className="fake-h3">Attack Calculator</span>
-            <button type="button" onClick={handleClear}>Clear All</button>
+            <input type="button" value="Clear All" onClick={handleClear}/>
           </div>
           <div className="row">
             <span className="info-point">Distance to target: </span>
