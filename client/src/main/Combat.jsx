@@ -51,7 +51,7 @@ const Combat = () => {
     //   setOffSaveReq(0);
     // }
     setRollResult('');
-  }, [playerUnit, usingSideArm]);
+  }, [playerUnit]);
 
   useEffect(() => {
     handleRollToHitCalc();

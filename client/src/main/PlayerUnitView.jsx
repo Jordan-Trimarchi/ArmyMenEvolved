@@ -14,6 +14,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   const [d12Result, setD12Result] = useState(0);
   const [crossedMines, setCrossedMines] = useState('');
   const [canCrossMines, setCanCrossMines] = useState(true);
+  const [isBehindDestBarrier, setIsBehindDestBarrier] = useState(true);
 
   const classes = useStyles();
 

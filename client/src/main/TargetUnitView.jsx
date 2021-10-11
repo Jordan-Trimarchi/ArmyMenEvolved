@@ -7,6 +7,8 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   const [canRollToSave, setCanRollToSave] = useState(true);
   const [saved, setSaved] = useState('');
   const [saveRollResult, setSaveRollResult] = useState('0');
+  const [isBehindDestBarrier, setIsBehindDestBarrier] = useState(false);
+
 
   const classes = useStyles();
 
@@ -71,7 +73,12 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
         <span> {unitStats[targetUnit]["Save Requirement"] || 0}</span>
       </div>
-      {playerUnit && (playerUnit["Explosive Baseline Save Requirement"] || usingGrenade) && !usingSideArm ? <div className="row">
+      {playerUnit 
+      && (
+        (playerUnit["Explosive Baseline Save Requirement"] && playerUnit.name !== 'Standing Rifleman')
+        || (playerUnit.name === 'Standing Rifleman' && usingGrenade)
+        ) 
+      && !usingSideArm ? <div className="row">
         <span className="info-point">Explosive Baseline Save Requirement: </span>
         <span> {playerUnit["Explosive Baseline Save Requirement"] || playerUnit["Grenade OSR"]}</span>
       </div>
@@ -94,6 +101,15 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
           }} checked={isNearSergeant} />
         </div>
         : null}
+        {/* {targetUnit !== 'Sergeant'
+        ? <div className="row">
+          <span className="info-point">{`Template #2: Within 'Rally' radius of Sergeant:`}</span>
+          <Checkbox className={classes.unitSelect} onChange={(event) => {
+            handleSaveAugChange(event, -1);
+            event.target.checked ? setIsNearSergeant(true) : setIsNearSergeant(false);
+          }} checked={isNearSergeant} />
+        </div>
+        : null} */}
       <div className="row">
         <span className="info-point" >Total Save Requirement Augmentation: </span>
         <span> {(targetUnitSaveAug ? targetUnitSaveAug : 0)}</span>
