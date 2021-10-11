@@ -38,8 +38,8 @@ const unitStats = {
     "Unit Class": "Heavy Weapons",
     "Usage": "Each point short of a direct hit is equal to one inch off target up to 8 inches. The direction off target is determined by a D12 roll (or use D20 disregarding rolls over 12).  The roll represents the position on a clock, with the firing unit at 6 o'clock, and the intended target at the center of the clock face.",
     "Ignores target cover": "Mortar fires downward onto a target. Overhead cover is considered as the mortar round will hit the cover instead of hitting the target, in which case, see 'Barrier Damage' below.",
-    "Account for Elevation": "If firing at target on lower elevation, measure horizontally to airspace above target to determine range. If firing at target on higher elevation measure directly(diagonally) to determine range (This is to simulate range handicap when firing up-hill).",
-    "Barrier Damage": "May destroy a full or partial barrier with a direct hit.  Units taking cover behind, in front of, or below the destroyed barrier, within template #2 of the impact point, gain a bonus of -5 to SR (for a total of -2 after Mortar's +3 OSR). Units taking cover on top of the barrier take full damage."
+    "Mortar Elevation": "If firing at target on lower elevation, measure horizontally to airspace above target to determine range. If firing at target on higher elevation measure directly(diagonally) to determine range (This is to simulate range handicap when firing up-hill).",
+    "Barrier Damage": "May destroy a full or partial barrier with a direct hit.  Units taking cover behind, in front of, or below the destroyed barrier, within template #2 of the impact point, gain a bonus of -2 to Save Requirement. Units taking cover on top of the barrier take full damage."
   },
   "Bazooka": {
     "name": "Bazooka",
@@ -51,9 +51,8 @@ const unitStats = {
     "Explosive Baseline Save Requirement": 12,
     "Template": 3,
     "Unit Class": "Heavy Weapons",
-    "Minimum Range": 10,
-    "Account for Elevation": "If the Bazooka's elevation advantage is greater than half of the distance to target, each point short of a direct hit is equal to one inch off target up to 8 inches.",
-    "Barrier Damage": "May destroy a full or partial barrier with a direct hit.  Units taking cover behind, on top of, or below the destroyed barrier, within template #3 of the impact point, gain a bonus of -5 to SR (for a total of -3 after Bazooka's +2 OSR) from the explosion. Units in front of the barrier within range take full damage."
+    "Bazooka Elevation": "If the Bazooka's elevation advantage is greater than half of the distance to target, each point short of a direct hit is equal to one inch off target up to 8 inches.",
+    "Barrier Damage": "May destroy a full or partial barrier with a direct hit.  Units taking cover behind, on top of, or below the destroyed barrier, within template #3 of the impact point, gain a bonus of -2 to Save Requirement. Units in front of the barrier within range take full damage."
   },
   "Recon Scout": {
     "name": "Recon Scout",
@@ -88,7 +87,7 @@ const unitStats = {
     "Grenade Usage": "When throwing a grenade , each point short of a DH is equal to one point off target up to 5in.  Direction off target determined by D12 roll interpreted as position on a clock, with the Grenade thrower at 6 o’ clock.",
     "Grenade Ignores target cover": "Grenade falls downward onto a target. Overhead cover is considered as the grenade will hit the cover instead of hitting the target",
     "Grenade Barrier Damage": "Grenades do not damage barriers.",
-    "Uphill Explosive": "If throwing a grenade at target on lower elevation, measure horizontally to airspace above target to determine range, if throwing at target on higher elevation measure directly(diagonally) to determine range."
+    "Grenade Elevation": "If throwing a grenade at target on lower elevation, measure horizontally to airspace above target to determine range, if throwing at target on higher elevation measure directly(diagonally) to determine range."
   },
   "Kneeling Rifleman": {
     "name": "Kneeling Rifleman",
