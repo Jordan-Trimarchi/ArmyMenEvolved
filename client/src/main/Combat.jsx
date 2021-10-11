@@ -143,8 +143,8 @@ const Combat = () => {
             />
             : targetUnit === 'barrier-vehicle'
               ?
-              <div>
-                <h2 style={{ display: 'flex', justifyContent: "center" }}>Barrier / Vehicle</h2>
+              <div style={{ transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid' }}>
+                <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Barrier / Vehicle</h2>
                 <div className="row">
                   <span className="info-point">Suggested Tactics:</span>
                   <span> Obliterate It. </span>

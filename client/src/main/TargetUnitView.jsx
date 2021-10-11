@@ -47,7 +47,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   }, [playerUnit, targetUnit, rollResult]);
 
   return (
-    <div className="fade-in" style={{ transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid', borderBottom: 'solid' }}>
+    <div className="fade-in" style={{ transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid'}}>
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Target: {targetUnit}</h2>
       <div className="row">
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
