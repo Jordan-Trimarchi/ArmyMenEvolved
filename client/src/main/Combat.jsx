@@ -45,11 +45,11 @@ const Combat = () => {
   }, [targetUnit]);
 
   useEffect(() => {
-    if (playerUnit && playerUnit["Offensive Save Requirement"] && !usingSideArm) {
-      setOffSaveReq(playerUnit["Offensive Save Requirement"]);
-    } else {
-      setOffSaveReq(0);
-    }
+    // if (playerUnit && playerUnit["Offensive Save Requirement"] && !usingSideArm) {
+    //   setOffSaveReq(playerUnit["Offensive Save Requirement"]);
+    // } else {
+    //   setOffSaveReq(0);
+    // }
     setRollResult('');
   }, [playerUnit, usingSideArm]);
 
@@ -111,7 +111,6 @@ const Combat = () => {
               setCurrentITR={setCurrentITR}
               rollResult={rollResult}
               setRollResult={setRollResult}
-              setOffSaveReq={setOffSaveReq}
               usingMortarMechanics={usingMortarMechanics}
               setUsingMortarMechanics={setUsingMortarMechanics}
               usingGrenade={usingGrenade}
@@ -138,7 +137,6 @@ const Combat = () => {
               setIsNearSergeant={setIsNearSergeant}
               rollResult={rollResult}
               rollToHit={rollToHit}
-              offSaveReq={offSaveReq}
               usingMortarMechanics={usingMortarMechanics}
               usingGrenade={usingGrenade}
               isCriticalHit={isCriticalHit}

@@ -2,7 +2,7 @@ import { Checkbox } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import useStyles from './useStyles';
 
-const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, setCurrentITR, rollResult, setRollResult, setOffSaveReq, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, setIsCriticalHit, usingSideArm, setUsingSideArm }) => {
+const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, setCurrentITR, rollResult, setRollResult, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, setIsCriticalHit, usingSideArm, setUsingSideArm }) => {
   const [spotted, setSpotted] = useState(false);
   const [isInRecon, setIsInRecon] = useState(false);
   const [isNearCaptain, setIsNearCaptain] = useState(false);
@@ -58,10 +58,8 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
     event.target.checked ? setUsingGrenade(true) : setUsingGrenade(false);
     if (event.target.checked) {
       setCurrentITR(1);
-      setOffSaveReq(2);
     } else {
       setCurrentITR(playerUnit["Inches To Roll"]);
-      setOffSaveReq(0);
     }
   };
 
@@ -216,7 +214,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           {
             rollToHit > 20.5 || (distance && distance < playerUnit["Minimum Range"] && !usingSideArm)
               ? <h3 style={{ display: 'flex', justifyContent: "center" }}>Unable to hit.</h3>
-              : rollToHit || distance
+              : rollToHit && distance
                 ?
                 <div>
                   <div className="row">

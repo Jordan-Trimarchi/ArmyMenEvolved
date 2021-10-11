@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import unitStats from './unitStats.jsx';
 import useStyles from './useStyles.js';
 
-const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, offSaveReq, rollResult, rollToHit, usingMortarMechanics, usingGrenade, isCriticalHit, usingSideArm }) => {
+const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, rollResult, rollToHit, usingMortarMechanics, usingGrenade, isCriticalHit, usingSideArm }) => {
   const [canRollToSave, setCanRollToSave] = useState(true);
   const [saved, setSaved] = useState('');
   const [saveRollResult, setSaveRollResult] = useState('0');
@@ -19,12 +19,23 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   };
 
   const rollToSave = () => {
+    const tuSaveAug = (targetUnitSaveAug || 0);
+    let rolled = rollResult ? Number(rollResult) : null;
 
+    if (playerUnit && usingGrenade) {
+      rolled = 11;
+    }
+    if (playerUnit && playerUnit.name === "Bazooka" && !usingSideArm) {
+      rolled = 12;
+    }
+    if (playerUnit && playerUnit.name === "Mortar" && !usingSideArm) {
+      rolled = 13;
+    }
     if (
       (
         (
           rollResult
-          && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
+          && tuSaveAug + Number(rollResult) <= 20
           && rollResult >= rollToHit
           && !isCriticalHit
         )
@@ -32,16 +43,16 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
       )
       && rollResult > 1) {
       return (
-        <div>
+        <div style={{borderBottom:'solid'}}>
           {saved ? <h3 style={{ display: 'flex', justifyContent: "center" }}>{saved}</h3> : null}
           <h3 style={{ display: 'flex', justifyContent: "center" }}>
-            Roll of {Number(rollResult) + targetUnitSaveAug + offSaveReq}+ required to save.
+            Roll of {rolled + targetUnitSaveAug}+ required to save.
           </h3>
         </div>
       )
     } else if (((rollResult
-      && ((targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) >= 20 || isCriticalHit)) || usingMortarMechanics) && rollResult > 1) {
-      return <h3 style={{ display: 'flex', justifyContent: "center" }}>
+      && ((targetUnitSaveAug || 0) + Number(rollResult) >= 20 || isCriticalHit)) || usingMortarMechanics) && rollResult > 1) {
+      return <h3 style={{ display: 'flex', justifyContent: "center", borderBottom:'solid' }}>
         {isCriticalHit ? 'Critical: ' : ''}Unable to Save.
       </h3>
     }
@@ -60,9 +71,9 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
         <span> {unitStats[targetUnit]["Save Requirement"] || 0}</span>
       </div>
-      {playerUnit && (playerUnit["Offensive Save Requirement"] || usingGrenade) && !usingSideArm ? <div className="row">
-        <span className="info-point">Attacker's Offensive Save Requirement Augmentation: </span>
-        <span> {playerUnit["Offensive Save Requirement"] || playerUnit["Grenade OSR"]}</span>
+      {playerUnit && (playerUnit["Explosive Baseline Save Requirement"] || usingGrenade) && !usingSideArm ? <div className="row">
+        <span className="info-point">Explosive Baseline Save Requirement: </span>
+        <span> {playerUnit["Explosive Baseline Save Requirement"] || playerUnit["Grenade OSR"]}</span>
       </div>
         : null}
       {targetUnit !== 'Captain'
@@ -85,17 +96,17 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
         : null}
       <div className="row">
         <span className="info-point" >Total Save Requirement Augmentation: </span>
-        <span> {(targetUnitSaveAug ? targetUnitSaveAug : 0) + offSaveReq}</span>
+        <span> {(targetUnitSaveAug ? targetUnitSaveAug : 0)}</span>
       </div>
       {((rollResult
-        && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
+        && (targetUnitSaveAug || 0) + Number(rollResult) <= 20
         && rollResult >= rollToHit
         && !isCriticalHit) || usingMortarMechanics) && rollResult > 1
         ? <div className="row" style={{ justifyContent: 'center' }}>
           {canRollToSave ? <input type="Button" value="Roll To Save" onClick={() => {
             setCanRollToSave(false);
             const roll = Math.ceil(Math.random() * 20);
-            setSaved(roll >= Number(rollResult) + targetUnitSaveAug + offSaveReq ? `Rolled ${roll}:  Save Successful.` : `Rolled ${roll}: Save Failed.`);
+            setSaved(roll >= Number(rollResult) + targetUnitSaveAug ? `Rolled ${roll}:  Save Successful.` : `Rolled ${roll}: Save Failed.`);
             setTimeout(() => {
               setCanRollToSave(true);
               console.log('boom.')
