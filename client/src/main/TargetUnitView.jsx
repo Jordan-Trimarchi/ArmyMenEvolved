@@ -45,7 +45,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
       )
       && rollResult > 1) {
       return (
-        <div style={{borderBottom:'solid'}}>
+        <div style={{ borderBottom: 'solid' }}>
           {saved ? <h3 style={{ display: 'flex', justifyContent: "center" }}>{saved}</h3> : null}
           <h3 style={{ display: 'flex', justifyContent: "center" }}>
             Roll of {rolled + targetUnitSaveAug}+ required to save.
@@ -54,7 +54,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
       )
     } else if (((rollResult
       && ((targetUnitSaveAug || 0) + Number(rollResult) >= 20 || isCriticalHit)) || usingMortarMechanics) && rollResult > 1) {
-      return <h3 style={{ display: 'flex', justifyContent: "center", borderBottom:'solid' }}>
+      return <h3 style={{ display: 'flex', justifyContent: "center", borderBottom: 'solid' }}>
         {isCriticalHit ? 'Critical: ' : ''}Unable to Save.
       </h3>
     }
@@ -73,16 +73,28 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
         <span> {unitStats[targetUnit]["Save Requirement"] || 0}</span>
       </div>
-      {playerUnit 
-      && (
-        (playerUnit["Explosive Baseline Save Requirement"] && playerUnit.name !== 'Standing Rifleman')
-        || (playerUnit.name === 'Standing Rifleman' && usingGrenade)
-        ) 
-      && !usingSideArm ? <div className="row">
-        <span className="info-point">Explosive Baseline Save Requirement: </span>
-        <span> {playerUnit["Explosive Baseline Save Requirement"] || playerUnit["Grenade OSR"]}</span>
-      </div>
+      {playerUnit
+        && (
+          (playerUnit["Explosive Baseline Save Requirement"] && playerUnit.name !== 'Standing Rifleman')
+          || (playerUnit.name === 'Standing Rifleman' && usingGrenade)
+        )
+        && !usingSideArm
+        ? <div className="row">
+          <span className="info-point">Explosive Baseline Save Requirement: </span>
+          <span> {playerUnit["Explosive Baseline Save Requirement"] || playerUnit["Grenade OSR"]}</span>
+        </div>
         : null}
+        {playerUnit
+          && (playerUnit["Explosive Baseline Save Requirement"] && playerUnit.name !== 'Standing Rifleman')
+          && !usingSideArm
+          ? <div className="row">
+            <span className="info-point">{`Behind Exploding Barrier:`}</span>
+            <Checkbox className={classes.unitSelect} onChange={(event) => {
+              handleSaveAugChange(event, -2);
+              event.target.checked ? setIsBehindDestBarrier(true) : setIsBehindDestBarrier(false);
+            }} checked={isBehindDestBarrier} />
+          </div>
+          : null}
       {targetUnit !== 'Captain'
         ? <div className="row">
           <span className="info-point">{`Template #3: Within 'Call to Arms' radius of Captain:`}</span>
@@ -101,15 +113,6 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
           }} checked={isNearSergeant} />
         </div>
         : null}
-        {/* {targetUnit !== 'Sergeant'
-        ? <div className="row">
-          <span className="info-point">{`Template #2: Within 'Rally' radius of Sergeant:`}</span>
-          <Checkbox className={classes.unitSelect} onChange={(event) => {
-            handleSaveAugChange(event, -1);
-            event.target.checked ? setIsNearSergeant(true) : setIsNearSergeant(false);
-          }} checked={isNearSergeant} />
-        </div>
-        : null} */}
       <div className="row">
         <span className="info-point" >Total Save Requirement Augmentation: </span>
         <span> {(targetUnitSaveAug ? targetUnitSaveAug : 0)}</span>
@@ -125,7 +128,6 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
             setSaved(roll >= Number(rollResult) + targetUnitSaveAug ? `Rolled ${roll}:  Save Successful.` : `Rolled ${roll}: Save Failed.`);
             setTimeout(() => {
               setCanRollToSave(true);
-              console.log('boom.')
             }, 5000);
           }}
           /> : <div>&#10710;</div>}

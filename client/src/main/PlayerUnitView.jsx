@@ -14,8 +14,6 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   const [d12Result, setD12Result] = useState(0);
   const [crossedMines, setCrossedMines] = useState('');
   const [canCrossMines, setCanCrossMines] = useState(true);
-  const [isBehindDestBarrier, setIsBehindDestBarrier] = useState(true);
-
   const classes = useStyles();
 
   const handleClear = () => {
@@ -164,7 +162,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             }} checked={isInPartialCover} />
           </div> : null}
           <div className="row">
-            <span className="info-point">{`Template #3: ${playerUnit.name} is actively 'Spotted' by ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
+            <span className="info-point">{`Template #3: Actively 'Spotted' by ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
             <Checkbox className={classes.unitSelect} checked={spotted} onChange={(event) => {
               setSpotted(!spotted);
               if (isInRecon) {
@@ -178,7 +176,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           </div>
           {playerUnit.name !== 'Captain' ?
             <div className="row">
-              <span className="info-point">{`Template #3: ${playerUnit.name} is within 'Call to Arms' radius of Captain:`}</span>
+              <span className="info-point">{`Template #3: Within 'Call to Arms' radius of Captain:`}</span>
               <Checkbox className={classes.unitSelect} onChange={(event) => {
                 if (playerUnit["Unit Class"] === 'Infantry') {
                   handleRollToHitAugChange(event, -2);
@@ -190,7 +188,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             </div> : null}
           {playerUnit.name !== 'Sergeant' && playerUnit["Unit Class"] === 'Infantry' ?
             <div className="row">
-              <span className="info-point">{`Template #2: ${playerUnit.name} is within 'Rally' radius of Sergeant:`}</span>
+              <span className="info-point">{`Template #2: Within 'Rally' radius of Sergeant:`}</span>
               <Checkbox className={classes.unitSelect} onChange={(event) => {
                 if (playerUnit["Unit Class"] === 'Infantry') {
                   handleRollToHitAugChange(event, -1);
@@ -200,7 +198,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             </div> : null}
           {spotted ? null :
             <div className="row">
-              <span className="info-point">{`Template #2: ${playerUnit.name} is within 'Recon' radius of ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
+              <span className="info-point">{`Template #2: Within 'Recon' radius of ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
               <Checkbox className={classes.unitSelect} checked={isInRecon} onChange={(event) => {
                 handleRollToHitAugChange(event, -1);
                 if (event.target.checked) {
