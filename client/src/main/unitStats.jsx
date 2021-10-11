@@ -81,7 +81,7 @@ const unitStats = {
     "Movement Range": 10,
     "Inches To Roll": 0.8,
     "Grenade Inches To Roll": 1,
-    "Explosive Baseline Save Requirement": 11, 
+    "Explosive Baseline Save Requirement": 12, 
     "Unit Class": "Infantry",
     "Grenade": "Instead of firing, may  throw a grenade [ITR: 1.0].  Grenades use template #1, and has an 11 Baseline Save Requirement.", 
     "Grenade Usage": "When throwing a grenade , each point short of a DH is equal to one point off target up to 5in.  Direction off target determined by D12 roll interpreted as position on a clock, with the Grenade thrower at 6 o’ clock.",
