@@ -2,12 +2,11 @@ import { Checkbox } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import useStyles from './useStyles';
 
-const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, setCurrentITR, rollResult, setRollResult, setOffSaveReq, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, setIsCriticalHit }) => {
+const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, setCurrentITR, rollResult, setRollResult, setOffSaveReq, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, setIsCriticalHit, usingSideArm, setUsingSideArm }) => {
   const [spotted, setSpotted] = useState(false);
   const [isInRecon, setIsInRecon] = useState(false);
   const [isNearCaptain, setIsNearCaptain] = useState(false);
   const [isNearSergeant, setIsNearSergeant] = useState(false);
-  const [usingSideArm, setUsingSideArm] = useState(false);
   const [canRoll, setCanRoll] = useState(true);
   const [canRoll12, setCanRoll12] = useState(true);
   const [isMounted, setIsMounted] = useState(false);

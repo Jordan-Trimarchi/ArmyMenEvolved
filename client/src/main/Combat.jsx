@@ -21,6 +21,7 @@ const Combat = () => {
   const [usingMortarMechanics, setUsingMortarMechanics] = useState(false);
   const [usingGrenade, setUsingGrenade] = useState(false);
   const [isCriticalHit, setIsCriticalHit] = useState(false);
+  const [usingSideArm, setUsingSideArm] = useState(false);
 
   const handleRollToHitAugChange = (event, value) => {
     if (event.target.checked) {
@@ -44,13 +45,13 @@ const Combat = () => {
   }, [targetUnit]);
 
   useEffect(() => {
-    if (playerUnit && playerUnit["Offensive Save Requirement"]) {
+    if (playerUnit && playerUnit["Offensive Save Requirement"] && !usingSideArm) {
       setOffSaveReq(playerUnit["Offensive Save Requirement"]);
     } else {
       setOffSaveReq(0);
     }
     setRollResult('');
-  }, [playerUnit]);
+  }, [playerUnit, usingSideArm]);
 
   useEffect(() => {
     handleRollToHitCalc();
@@ -117,6 +118,8 @@ const Combat = () => {
               setUsingGrenade={setUsingGrenade}
               isCriticalHit={isCriticalHit}
               setIsCriticalHit={setIsCriticalHit}
+              usingSideArm={usingSideArm}
+              setUsingSideArm={setUsingSideArm}
             />
             : null}
         </div>
@@ -140,6 +143,7 @@ const Combat = () => {
               usingGrenade={usingGrenade}
               isCriticalHit={isCriticalHit}
               rollToHitAug={rollToHitAug}
+              usingSideArm={usingSideArm}
             />
             : targetUnit === 'barrier-vehicle'
               ?

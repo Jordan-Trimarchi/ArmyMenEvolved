@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import unitStats from './unitStats.jsx';
 import useStyles from './useStyles.js';
 
-const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, offSaveReq, rollResult, rollToHit, usingMortarMechanics, usingGrenade, isCriticalHit, rollToHitAug }) => {
+const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUnitSaveAug, isNearCaptain, isNearSergeant, setIsNearCaptain, setIsNearSergeant, offSaveReq, rollResult, rollToHit, usingMortarMechanics, usingGrenade, isCriticalHit, usingSideArm }) => {
   const [canRollToSave, setCanRollToSave] = useState(true);
   const [saved, setSaved] = useState('');
   const [saveRollResult, setSaveRollResult] = useState('0');
@@ -20,10 +20,17 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
 
   const rollToSave = () => {
 
-    if (((rollResult
-      && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
-      && rollResult >= rollToHit
-      && !isCriticalHit) || usingMortarMechanics) && rollResult > 1) {
+    if (
+      (
+        (
+          rollResult
+          && (targetUnitSaveAug || 0) + offSaveReq + Number(rollResult) <= 20
+          && rollResult >= rollToHit
+          && !isCriticalHit
+        )
+        || usingMortarMechanics
+      )
+      && rollResult > 1) {
       return (
         <div>
           {saved ? <h3 style={{ display: 'flex', justifyContent: "center" }}>{saved}</h3> : null}
@@ -47,17 +54,17 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
   }, [playerUnit, targetUnit, rollResult]);
 
   return (
-    <div className="fade-in" style={{ transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid'}}>
+    <div className="fade-in" style={{ transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid' }}>
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>Target: {targetUnit}</h2>
       <div className="row">
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
         <span> {unitStats[targetUnit]["Save Requirement"] || 0}</span>
       </div>
-      {playerUnit ? playerUnit["Offensive Save Requirement"] || usingGrenade ? <div className="row">
+      {playerUnit && (playerUnit["Offensive Save Requirement"] || usingGrenade) && !usingSideArm ? <div className="row">
         <span className="info-point">Attacker's Offensive Save Requirement Augmentation: </span>
         <span> {playerUnit["Offensive Save Requirement"] || playerUnit["Grenade OSR"]}</span>
       </div>
-        : null : null}
+        : null}
       {targetUnit !== 'Captain'
         ? <div className="row">
           <span className="info-point">{`Template #3: Within 'Call to Arms' radius of Captain:`}</span>
