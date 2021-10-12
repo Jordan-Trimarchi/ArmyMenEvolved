@@ -154,7 +154,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             <Checkbox className={classes.unitSelect} onChange={handleSneakAttack} checked={isSnipey} />
           </div> : null}
           <div className="row">
-            {!usingMortarMechanics || playerUnit.name === 'Bazooka'  ? <span className="info-point">Elevation: Unit is {elevation === '0' ? 'level with' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher' : 'lower'}`} than target. </span>
+            {!usingMortarMechanics || playerUnit.name === 'Bazooka'  ? <span className="info-point">Elevation: Unit is {elevation === '0' || !elevation ? 'level with' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher' : 'lower'}`} than target. </span>
               : <span className="info-point">Elevation:</span>}
             {!usingMortarMechanics || playerUnit.name === 'Bazooka' ? <input value={elevation} name="elevation" onChange={(event) => {
               setElevation(event.target.value);
