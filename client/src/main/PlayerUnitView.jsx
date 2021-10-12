@@ -267,7 +267,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                     : null}
 
                   {rollResult === '1' && rollToHit > 1 ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>
-                    Critical Failure: Weapon is jammed until end of next turn.
+                    Critical Failure: Weapon is jammed. Any unit within 1 inch may unjam using 1 action.
                   </h3> : null}
 
                   <h3 style={{ display: 'flex', justifyContent: 'center' }}>Roll of {rollToHit > 0 ? rollToHit : 1}+ required to hit.</h3>
