@@ -81,6 +81,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   };
 
   useEffect(() => {
+    playerUnit.name === "Flamer" ? setUsingSideArm(true) : null;
     setUsingGrenade(false);
     setIsMounted(false);
     setIsSnipey(false);
