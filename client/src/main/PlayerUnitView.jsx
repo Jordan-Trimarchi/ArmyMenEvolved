@@ -218,7 +218,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
           {
             rollToHit > 20.5 || (distance && distance < playerUnit["Minimum Range"] && !usingSideArm)
               ? <h3 style={{ display: 'flex', justifyContent: "center" }}>Unable to hit.</h3>
-              : rollToHit && distance
+              : distance
                 ?
                 <div>
                   <div className="row">
