@@ -80,6 +80,7 @@ const Combat = () => {
           {Object.keys(unitStats).map((unit) => {
             return <option value={unit} key={unit}>{unit}</option>
           })}
+          <option value="ground">The Ground</option>
         </select>
       </div>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -115,7 +116,7 @@ const Combat = () => {
             : null}
         </div>
         <div>
-          {targetUnit && targetUnit !== 'barrier-vehicle'
+          {targetUnit && targetUnit !== 'barrier-vehicle' && targetUnit !== 'ground'
             ?
             <TargetUnitView
               targetUnit={targetUnit}
@@ -144,7 +145,16 @@ const Combat = () => {
                   <span> Obliterate It. </span>
                 </div>
               </div>
-              : null}
+              : targetUnit === 'ground' 
+              ?
+              <div style={{ transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid' }}>
+                <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: "center" }}>The Ground</h2>
+                <div className="row">
+                  <span className="info-point">Suggested Tactics:</span>
+                  <span> Don't fall on it. </span>
+                </div>
+              </div> : null
+            }
         </div>
       </div>
     </>

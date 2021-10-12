@@ -154,7 +154,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             <Checkbox className={classes.unitSelect} onChange={handleSneakAttack} checked={isSnipey} />
           </div> : null}
           <div className="row">
-            {!usingMortarMechanics || playerUnit.name === 'Bazooka'  ? <span className="info-point">Elevation: Unit is {elevation === '0' || !elevation ? 'level with ' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher than ' : 'lower than '}`}target. </span>
+            {!usingMortarMechanics || playerUnit.name === 'Bazooka' ? <span className="info-point">Elevation: Unit is {elevation === '0' || !elevation ? 'level with ' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher than ' : 'lower than '}`}target. </span>
               : <span className="info-point">Elevation:</span>}
             {!usingMortarMechanics || playerUnit.name === 'Bazooka' ? <input value={elevation} name="elevation" onChange={(event) => {
               setElevation(event.target.value);
@@ -295,18 +295,19 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
         {crossedMines ? <span className="info-point">{crossedMines}</span> : null}
       </div>
       <div>
-      {Math.abs(elevation) > 1 ? <div className="row" style={{ justifyContent: survivedFall ? 'space-around' : 'center' }}>
-        {canCheckFall ? <input type="Button" value="Survive Fall" onClick={() => {
-          setCanCheckFall(false);
-          const roll = Math.ceil(Math.random() * 20);
-          setSurvivedFall(roll >= Math.abs(elevation) ? `Rolled ${roll}: Success.` : `Rolled ${roll}: Failure.`);
-          setTimeout(() => {
-            setCanCheckFall(true);
-          }, 5000);
-        }}
-        /> : <span>&#10710;</span>}
-        {survivedFall ? <span className="info-point">{survivedFall}</span> : null}
-      </div> : null}
+        {targetUnit === 'ground' ? Math.round(elevation) > 1
+          ? <div className="row" style={{ justifyContent: survivedFall ? 'space-around' : 'center' }}>
+            {canCheckFall ? <input type="Button" value="Tuck and Roll" onClick={() => {
+              setCanCheckFall(false);
+              const roll = Math.ceil(Math.random() * 20);
+              setSurvivedFall(roll >= Math.round(elevation) ? `Needed ${Math.round(elevation)}: Rolled ${roll}: Success.` : `Rolled ${roll}: Failure.`);
+              setTimeout(() => {
+                setCanCheckFall(true);
+              }, 5000);
+            }}
+            /> : <span>&#10710;</span>}
+            {survivedFall ? <span className="info-point">{survivedFall}</span> : null}
+          </div> : elevation && Math.round(elevation) < 2 ? <div className="row" style={{ justifyContent: 'center' }}>You're fine.</div> : <div className="row" style={{ justifyContent: 'center' }}>Enter Elevation to roll for fall survival.</div> : null}
         <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>
         {Object.keys(playerUnit).map((item) => {
           if (item !== "name") {
