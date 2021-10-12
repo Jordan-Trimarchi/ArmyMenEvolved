@@ -211,7 +211,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             </div>
           }
           <div className="row">
-            <span className="info-point">Current ITR:</span>
+            <span className="info-point">Current Inches To Roll:</span>
             <span> {currentITR}</span>
           </div>
           {
