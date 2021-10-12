@@ -150,10 +150,12 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             <Checkbox className={classes.unitSelect} onChange={handleSneakAttack} checked={isSnipey} />
           </div> : null}
           <div className="row">
-            <span className="info-point">Elevation: Unit is {elevation === '0' ? 'level with' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher' : 'lower'}`} than target. </span>
-            <input value={elevation} name="elevation" onChange={(event) => {
+            {!usingMortarMechanics ? <span className="info-point">Elevation: Unit is {elevation === '0' ? 'level with' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher' : 'lower'}`} than target. </span>
+              : <span className="info-point">Elevation:</span>}
+            {!usingMortarMechanics ? <input value={elevation} name="elevation" onChange={(event) => {
               setElevation(event.target.value);
             }} type="number" step=".0625" placeholder='Inches' style={{ width: '5em' }} />
+              : <div>Target is uphill: Measure diagonally. <br /> Target is downhill: Measure horizontally to space above target.</div>}
           </div>
           {usingMortarMechanics === false ? <div className="row">
             <span className="info-point">Target is in partial cover:</span>

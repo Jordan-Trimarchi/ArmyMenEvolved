@@ -88,7 +88,7 @@ const TargetUnitView = ({ targetUnit, playerUnit, targetUnitSaveAug, setTargetUn
           && (playerUnit["Explosive Baseline Save Requirement"] && playerUnit.name !== 'Standing Rifleman')
           && !usingSideArm
           ? <div className="row">
-            <span className="info-point">{`Behind Exploding Barrier:`}</span>
+            <span className="info-point">{`Behind exploding barrier:`}</span>
             <Checkbox className={classes.unitSelect} onChange={(event) => {
               handleSaveAugChange(event, -2);
               event.target.checked ? setIsBehindDestBarrier(true) : setIsBehindDestBarrier(false);
