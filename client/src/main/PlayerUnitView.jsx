@@ -2,7 +2,7 @@ import { Checkbox } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import useStyles from './useStyles';
 
-const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, setCurrentITR, rollResult, setRollResult, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, setIsCriticalHit, usingSideArm, setUsingSideArm }) => {
+const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRollToHitAug, elevation, setElevation, distance, setDistance, handleRollToHitAugChange, isInPartialCover, setIsInPartialCover, currentITR, setCurrentITR, rollResult, setRollResult, usingMortarMechanics, setUsingMortarMechanics, usingGrenade, setUsingGrenade, setIsCriticalHit, usingSideArm, setUsingSideArm }) => {
   const [spotted, setSpotted] = useState(false);
   const [isInRecon, setIsInRecon] = useState(false);
   const [isNearCaptain, setIsNearCaptain] = useState(false);
@@ -10,7 +10,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   const [canRoll, setCanRoll] = useState(true);
   const [canRoll12, setCanRoll12] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
-  const [isSneaky, setIsSneaky] = useState(false);
+  const [isSnipey, setIsSnipey] = useState(false);
   const [d12Result, setD12Result] = useState(0);
   const [crossedMines, setCrossedMines] = useState('');
   const [canCrossMines, setCanCrossMines] = useState(true);
@@ -25,7 +25,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
     setIsInPartialCover(false);
     setIsNearCaptain(false);
     setIsNearSergeant(false);
-    setIsSneaky(false);
+    setIsSnipey(false);
     setIsMounted(false);
     setUsingGrenade(false);
   };
@@ -33,7 +33,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   useEffect(() => {
     setUsingGrenade(false);
     setIsMounted(false);
-    setIsSneaky(false);
+    setIsSnipey(false);
     setIsNearCaptain(false);
     setIsNearSergeant(false);
     setIsInPartialCover(false);
@@ -72,9 +72,9 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   };
 
   const handleSneakAttack = (event) => {
-    event.target.checked ? setIsSneaky(true) : setIsSneaky(false);
+    event.target.checked ? setIsSnipey(true) : setIsSnipey(false);
     if (event.target.checked) {
-      setCurrentITR(0.53);
+      setCurrentITR(0.43);
     } else {
       setCurrentITR(playerUnit["Inches To Roll"]);
     }
@@ -83,7 +83,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   useEffect(() => {
     setUsingGrenade(false);
     setIsMounted(false);
-    setIsSneaky(false);
+    setIsSnipey(false);
     setIsNearCaptain(false);
     setIsNearSergeant(false);
     setIsInPartialCover(false);
@@ -96,12 +96,12 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   }, [playerUnit]);
 
   useEffect(() => {
-    if (rollResult === '20' || (rollResult >= rollToHit && isSneaky)) {
+    if (rollResult === '20' || (rollResult >= rollToHit && isSnipey)) {
       setIsCriticalHit(true);
     } else {
       setIsCriticalHit(false);
     }
-  }, [rollResult, isSneaky]);
+  }, [rollResult, isSnipey]);
 
   useEffect(() => {
     if ((playerUnit.name === 'Mortar' && !usingSideArm) || (playerUnit.name === 'Standing Rifleman' && usingGrenade) || (playerUnit.name === 'Bazooka' && elevation > distance / 2)) {
@@ -118,7 +118,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
         <div className="fade-in">
           <div className='row'>
             <span className="fake-h3">Attack Calculator</span>
-            <input type="button" value="Clear All" onClick={handleClear}/>
+            <input type="button" value="Clear All" onClick={handleClear} />
           </div>
           <div className="row">
             <span className="info-point">Distance to target: </span>
@@ -141,12 +141,12 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             : null
           }
           {playerUnit.name === 'Kneeling Rifleman' ? <div className="row">
-            <span className="info-point">Mount up:</span>
+            <span className="info-point">{`Mount up (.53 ITR)`}:</span>
             <Checkbox className={classes.unitSelect} onChange={handleMount} checked={isMounted} />
           </div> : null}
           {playerUnit.name === 'Prone Rifleman' ? <div className="row">
-            <span className="info-point">{'Sneak Attack(2 actions):'}</span>
-            <Checkbox className={classes.unitSelect} onChange={handleSneakAttack} checked={isSneaky} />
+            <span className="info-point">{'Dead-Eye (2 actions: .43 ITR):'}</span>
+            <Checkbox className={classes.unitSelect} onChange={handleSneakAttack} checked={isSnipey} />
           </div> : null}
           <div className="row">
             <span className="info-point">Elevation: Unit is {elevation === '0' ? 'level with' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher' : 'lower'}`} than target. </span>
@@ -210,6 +210,10 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
               />
             </div>
           }
+          <div className="row">
+            <span className="info-point">Current ITR:</span>
+            <span> {currentITR}</span>
+          </div>
           {
             rollToHit > 20.5 || (distance && distance < playerUnit["Minimum Range"] && !usingSideArm)
               ? <h3 style={{ display: 'flex', justifyContent: "center" }}>Unable to hit.</h3>
@@ -236,7 +240,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                         }} type="button" />
                       </div>
                       : <span>&#10710;</span>}
-                    {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit?
+                    {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit ?
                       <div>
                         {canRoll12 ? <input value='Roll D12' onClick={
                           () => {
@@ -255,7 +259,7 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
                     {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit.` : rollResult > 0 ? `Rolled ${rollResult}: Miss.` : null}
                   </h3> : null}
 
-                  {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit 
+                  {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit
                     ? <h3 style={{ display: 'flex', justifyContent: 'center' }}> Off by {rollToHit - Number(rollResult) <= (usingGrenade ? 5 : 8)
                       ? rollToHit - Number(rollResult)
                       : (usingGrenade ? 5 : 8)} inches{d12Result ? ` toward ${d12Result} o'clock` : '. Roll D12'}. </h3>

@@ -119,6 +119,7 @@ const Combat = () => {
               setIsCriticalHit={setIsCriticalHit}
               usingSideArm={usingSideArm}
               setUsingSideArm={setUsingSideArm}
+              currentITR={currentITR}
             />
             : null}
         </div>

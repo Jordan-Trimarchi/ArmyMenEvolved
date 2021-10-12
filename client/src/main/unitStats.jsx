@@ -6,7 +6,8 @@ const unitStats = {
     "Save Requirement": -2,
     "Template": 3,
     "Unit Class": "Infantry",
-    "Call to Arms": "Passive boost for units within template #3: -2 to Save Req for all types, -2 to Roll To Hit for infantry, -1 to RTH for heavy weapons(Bazooka, Mortar)."
+    "Call to Arms": "Passive boost for units within template #3: -2 to Save Req for all types, -2 to Roll To Hit for infantry, -1 to RTH for heavy weapons(Bazooka, Mortar).",
+    "Strategery": "The Captain may use 2 actions to grant an additional action to all units with template #3."
   },
   "Sergeant": {
     "name": "Sergeant",
@@ -16,7 +17,7 @@ const unitStats = {
     "Template": 2,
     "Unit Class": "Infantry",
     "Rally": "Passive boost for units within template #2: -1 to SR for all types, -1 to RTH for infantry",
-    "Melee": "Sergeant performs a Melee attack with his bayonet.  The range is 0-5in. Must roll a 3+ to hit"
+    "Melee": "Sergeant performs a Melee attack with his bayonet. Range 0-5in, upon performing action, Sergeant is moved straight toward target to 1/2 inch away. Must roll a 6+ to hit. Target unit cannot save."
   },
   "Flamer": {
     "name": "Flamer",
@@ -61,7 +62,7 @@ const unitStats = {
     "Save Requirement": -1,
     "Unit Class": "Infantry",
     "Recon": "Passive boost for units within template #2: -1 to RTH for all types.",
-    "Spotter": "Using 2 actions, the Recon Scout may grant -3 RTH to a single unit within template #3 for its upcoming turn. (This bonus does not stack with the Recon Scout's passive RTH boost)."
+    "Spotter": "Using 2 actions, the Recon Scout may grant -3 RTH to all units within template #2 for their upcoming attacks. (This bonus does not stack with the Recon Scout's passive RTH boost)."
   },
   "Engineer": {
     "name": "Engineer",
@@ -83,7 +84,7 @@ const unitStats = {
     "Grenade Inches To Roll": 1,
     "Explosive Baseline Save Requirement": 12, 
     "Unit Class": "Infantry",
-    "Grenade": "Instead of firing, may  throw a grenade [ITR: 1.0].  Grenades use template #1, and has an 11 Baseline Save Requirement.", 
+    "Grenade": "Instead of firing, may  throw a grenade.  Grenades use template #1.", 
     "Grenade Usage": "When throwing a grenade , each point short of a DH is equal to one point off target up to 5in.  Direction off target determined by D12 roll interpreted as position on a clock, with the Grenade thrower at 6 o’ clock.",
     "Grenade Ignores target cover": "Grenade falls downward onto a target. Overhead cover is considered as the grenade will hit the cover instead of hitting the target",
     "Grenade Barrier Damage": "Grenades do not damage barriers.",
@@ -103,7 +104,7 @@ const unitStats = {
     "Inches To Roll": 0.53,
     "Save Requirement": -2,
     "Unit Class": "Infantry",
-    "Sneak Attack": "Uses 2 actions. There must be no standing or kneeling units within 5 inches. This must be the first time the Prone Rifleman is attacking the target from its current location. Using Sneak Attack causes any Hit to become a Critical Hit."
+    "Dead-Eye": "Accurate attack at .43 ITR. Costs 2 actions. Any Hit becomes a Critical Hit."
   }, 
   "Zombie": {
     "name": "Zombie",
