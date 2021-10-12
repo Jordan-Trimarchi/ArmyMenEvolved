@@ -45,15 +45,6 @@ const Combat = () => {
   }, [targetUnit]);
 
   useEffect(() => {
-    // if (playerUnit && playerUnit["Offensive Save Requirement"] && !usingSideArm) {
-    //   setOffSaveReq(playerUnit["Offensive Save Requirement"]);
-    // } else {
-    //   setOffSaveReq(0);
-    // }
-    setRollResult('');
-  }, [playerUnit]);
-
-  useEffect(() => {
     handleRollToHitCalc();
     if (playerUnit && playerUnit.name === 'Bazooka' && targetUnit === 'barrier-vehicle') {
       setCurrentITR(playerUnit['Inches To Roll vs Vehicle/Structure']);

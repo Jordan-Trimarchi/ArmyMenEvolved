@@ -14,6 +14,8 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
   const [d12Result, setD12Result] = useState(0);
   const [crossedMines, setCrossedMines] = useState('');
   const [canCrossMines, setCanCrossMines] = useState(true);
+  const [survivedFall, setSurvivedFall] = useState('');
+  const [canCheckFall, setCanCheckFall] = useState(true);
   const classes = useStyles();
 
   const handleClear = () => {
@@ -44,6 +46,8 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
     setD12Result(0);
     setRollToHitAug(0);
     setUsingSideArm(false);
+    setRollResult('');
+    setElevation('');
   }, [playerUnit]);
 
   const handleSidearm = (event) => {
@@ -150,9 +154,9 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
             <Checkbox className={classes.unitSelect} onChange={handleSneakAttack} checked={isSnipey} />
           </div> : null}
           <div className="row">
-            {!usingMortarMechanics ? <span className="info-point">Elevation: Unit is {elevation === '0' ? 'level with' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher' : 'lower'}`} than target. </span>
+            {!usingMortarMechanics || playerUnit.name === 'Bazooka'  ? <span className="info-point">Elevation: Unit is {elevation === '0' ? 'level with' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher' : 'lower'}`} than target. </span>
               : <span className="info-point">Elevation:</span>}
-            {!usingMortarMechanics ? <input value={elevation} name="elevation" onChange={(event) => {
+            {!usingMortarMechanics || playerUnit.name === 'Bazooka' ? <input value={elevation} name="elevation" onChange={(event) => {
               setElevation(event.target.value);
             }} type="number" step=".0625" placeholder='Inches' style={{ width: '5em' }} />
               : <div>Target is uphill: Measure diagonally. <br /> Target is downhill: Measure horizontally to space above target.</div>}
@@ -291,6 +295,18 @@ const PlayerUnitView = ({ playerUnit, targetUnit, rollToHit, setRollToHit, setRo
         {crossedMines ? <span className="info-point">{crossedMines}</span> : null}
       </div>
       <div>
+      {Math.abs(elevation) > 1 ? <div className="row" style={{ justifyContent: survivedFall ? 'space-around' : 'center' }}>
+        {canCheckFall ? <input type="Button" value="Survive Fall" onClick={() => {
+          setCanCheckFall(false);
+          const roll = Math.ceil(Math.random() * 20);
+          setSurvivedFall(roll >= Math.abs(elevation) ? `Rolled ${roll}: Success.` : `Rolled ${roll}: Failure.`);
+          setTimeout(() => {
+            setCanCheckFall(true);
+          }, 5000);
+        }}
+        /> : <span>&#10710;</span>}
+        {survivedFall ? <span className="info-point">{survivedFall}</span> : null}
+      </div> : null}
         <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>
         {Object.keys(playerUnit).map((item) => {
           if (item !== "name") {
