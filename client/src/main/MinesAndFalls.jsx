@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Context from '../context';
 
-const MinesAndFalls = ({
-  targetUnit,
-  elevation,
-  playerUnit,
-}) => {
+const MinesAndFalls = () => {
+  const {
+    targetUnit,
+    elevation,
+    playerUnit,
+  } = useContext(Context);
+
   const [crossedMines, setCrossedMines] = useState('');
   const [canCrossMines, setCanCrossMines] = useState(true);
   const [survivedFall, setSurvivedFall] = useState('');

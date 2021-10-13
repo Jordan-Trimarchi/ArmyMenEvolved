@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import Context from '../context';
 import RollToSave from './RollToSave';
 import TargetUnitRows from './TargetUnitRows';
 
-const TargetUnitView = ({
-  targetUnit,
-  playerUnit,
-  targetUnitSaveAug,
-  setTargetUnitSaveAug,
-  isNearCaptain,
-  isNearSergeant,
-  setIsNearCaptain,
-  setIsNearSergeant,
-  rollResult,
-  rollToHit,
-  usingMortarMechanics,
-  usingGrenade,
-  isCriticalHit,
-  usingSideArm,
-}) => {
+const TargetUnitView = () => {
   const [isBehindDestBarrier, setIsBehindDestBarrier] = useState(false);
+  const {
+    targetUnit,
+    playerUnit,
+    targetUnitSaveAug,
+    setTargetUnitSaveAug,
+    isNearCaptain,
+    isNearSergeant,
+    setIsNearCaptain,
+    setIsNearSergeant,
+    rollResult,
+    rollToHit,
+    usingMortarMechanics,
+    usingGrenade,
+    isCriticalHit,
+    usingSideArm,
+  } = useContext(Context);
 
   const handleSaveAugChange = (event, value) => {
     if (event.target.checked) {

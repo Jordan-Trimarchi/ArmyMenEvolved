@@ -1,41 +1,43 @@
 import { Checkbox } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import useStyles from './useStyles';
 import AttackRoll from './AttackRoll';
 import MinesAndFalls from './MinesAndFalls';
+import Context from '../context';
 
-const PlayerUnitView = ({
-  playerUnit,
-  targetUnit,
-  rollToHit,
-  setRollToHit,
-  setRollToHitAug,
-  elevation,
-  setElevation,
-  distance,
-  setDistance,
-  handleRollToHitAugChange,
-  isInPartialCover,
-  setIsInPartialCover,
-  currentITR,
-  setCurrentITR,
-  rollResult,
-  setRollResult,
-  usingMortarMechanics,
-  setUsingMortarMechanics,
-  usingGrenade,
-  setUsingGrenade,
-  setIsCriticalHit,
-  usingSideArm,
-  setUsingSideArm,
-}) => {
+const PlayerUnitView = () => {
+  const {
+    playerUnit,
+    targetUnit,
+    rollToHit,
+    setRollToHit,
+    setRollToHitAug,
+    elevation,
+    setElevation,
+    distance,
+    setDistance,
+    handleRollToHitAugChange,
+    isInPartialCover,
+    setIsInPartialCover,
+    currentITR,
+    setCurrentITR,
+    rollResult,
+    setRollResult,
+    usingMortarMechanics,
+    setUsingMortarMechanics,
+    usingGrenade,
+    setUsingGrenade,
+    setIsCriticalHit,
+    usingSideArm,
+    setUsingSideArm,
+  } = useContext(Context);
+
   const [spotted, setSpotted] = useState(false);
   const [isInRecon, setIsInRecon] = useState(false);
   const [isNearCaptain, setIsNearCaptain] = useState(false);
   const [isNearSergeant, setIsNearSergeant] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isSnipey, setIsSnipey] = useState(false);
-  const [d12Result, setD12Result] = useState(0);
 
   const classes = useStyles();
 
@@ -63,7 +65,6 @@ const PlayerUnitView = ({
     setIsInPartialCover(false);
     setSpotted(false);
     setIsInRecon(false);
-    setD12Result(0);
     setRollToHitAug(0);
     setUsingSideArm(false);
     setRollResult('');
@@ -309,22 +310,13 @@ const PlayerUnitView = ({
               </span>
             </div>
 
-            <AttackRoll
-              rollToHit={rollToHit}
-              distance={distance}
-              rollResult={rollResult}
-              setRollResult={setRollResult}
-              usingMortarMechanics={usingMortarMechanics}
-              d12Result={d12Result}
-              setD12Result={setD12Result}
-              usingGrenade={usingGrenade}
-            />
+            <AttackRoll />
 
           </div>
         )
         : null}
 
-      <MinesAndFalls targetUnit={targetUnit} elevation={elevation} playerUnit={playerUnit} />
+      <MinesAndFalls />
 
       <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>
       {Object.keys(playerUnit).map((item) => {

@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Context from '../context';
 
-const AttackRoll = ({
-  rollToHit,
-  distance,
-  rollResult,
-  setRollResult,
-  usingMortarMechanics,
-  d12Result,
-  setD12Result,
-  usingGrenade,
-}) => {
+const AttackRoll = () => {
+  const {
+    playerUnit,
+    rollToHit,
+    distance,
+    rollResult,
+    setRollResult,
+    usingMortarMechanics,
+    usingGrenade,
+  } = useContext(Context);
+
+  const [d12Result, setD12Result] = useState(0);
   const [canRoll, setCanRoll] = useState(true);
   const [canRoll12, setCanRoll12] = useState(true);
 
   const maxMiss = usingGrenade ? 5 : 8;
+
+  useEffect(() => { setD12Result(0); }, [playerUnit]);
+
   return (
     <>
       {

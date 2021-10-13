@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import unitStats from './unitStats';
 import TargetUnitView from './TargetUnitView';
 import PlayerUnitView from './PlayerUnitView';
+import Context from '../context';
 
 const Combat = () => {
   const [playerUnit, setPlayerUnit] = useState(null);
@@ -54,7 +55,40 @@ const Combat = () => {
   }, [distance, rollToHitAug, playerUnit, targetUnit, elevation, currentITR]);
 
   return (
-    <>
+    <Context.Provider value={{
+      currentITR,
+      distance,
+      elevation,
+      isCriticalHit,
+      isInPartialCover,
+      isNearCaptain,
+      isNearSergeant,
+      playerUnit,
+      rollResult,
+      rollToHit,
+      rollToHitAug,
+      targetUnit,
+      targetUnitSaveAug,
+      usingGrenade,
+      usingMortarMechanics,
+      usingSideArm,
+      handleRollToHitAugChange,
+      setCurrentITR,
+      setDistance,
+      setElevation,
+      setIsCriticalHit,
+      setIsInPartialCover,
+      setIsNearCaptain,
+      setIsNearSergeant,
+      setRollResult,
+      setRollToHit,
+      setRollToHitAug,
+      setTargetUnitSaveAug,
+      setUsingGrenade,
+      setUsingMortarMechanics,
+      setUsingSideArm,
+    }}
+    >
       <div style={{ display: 'flex', justifyContent: 'space-around', borderBottom: 'solid' }}>
         <select
           onChange={(event) => {
@@ -87,56 +121,14 @@ const Combat = () => {
         <div>
           {playerUnit
             ? (
-              <PlayerUnitView
-                playerUnit={playerUnit}
-                targetUnit={targetUnit}
-                rollToHit={rollToHit}
-                setRollToHit={setRollToHit}
-                setRollToHitAug={setRollToHitAug}
-                elevation={elevation}
-                setElevation={setElevation}
-                distance={distance}
-                setDistance={setDistance}
-                isInPartialCover={isInPartialCover}
-                setIsInPartialCover={setIsInPartialCover}
-                handleRollToHitAugChange={handleRollToHitAugChange}
-                currentITR={currentITR}
-                setCurrentITR={setCurrentITR}
-                rollResult={rollResult}
-                setRollResult={setRollResult}
-                usingMortarMechanics={usingMortarMechanics}
-                setUsingMortarMechanics={setUsingMortarMechanics}
-                usingGrenade={usingGrenade}
-                setUsingGrenade={setUsingGrenade}
-                isCriticalHit={isCriticalHit}
-                setIsCriticalHit={setIsCriticalHit}
-                usingSideArm={usingSideArm}
-                setUsingSideArm={setUsingSideArm}
-              />
+              <PlayerUnitView />
             )
             : null}
         </div>
         <div>
           {targetUnit && targetUnit !== 'barrier-vehicle' && targetUnit !== 'ground'
             ? (
-              <TargetUnitView
-                targetUnit={targetUnit}
-                playerUnit={playerUnit}
-                targetUnitSaveAug={targetUnitSaveAug}
-                setTargetUnitSaveAug={setTargetUnitSaveAug}
-                handleRollToHitAugChange={handleRollToHitAugChange}
-                isNearCaptain={isNearCaptain}
-                isNearSergeant={isNearSergeant}
-                setIsNearCaptain={setIsNearCaptain}
-                setIsNearSergeant={setIsNearSergeant}
-                rollResult={rollResult}
-                rollToHit={rollToHit}
-                usingMortarMechanics={usingMortarMechanics}
-                usingGrenade={usingGrenade}
-                isCriticalHit={isCriticalHit}
-                rollToHitAug={rollToHitAug}
-                usingSideArm={usingSideArm}
-              />
+              <TargetUnitView />
             )
             : null}
           {targetUnit === 'barrier-vehicle'
@@ -165,7 +157,7 @@ const Combat = () => {
             ) : null}
         </div>
       </div>
-    </>
+    </Context.Provider>
   );
 };
 
