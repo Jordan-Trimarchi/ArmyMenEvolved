@@ -2,6 +2,7 @@ import { Checkbox } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import useStyles from './useStyles';
 import AttackRoll from './AttackRoll';
+import MinesAndFalls from './MinesAndFalls';
 
 const PlayerUnitView = ({
   playerUnit,
@@ -35,10 +36,6 @@ const PlayerUnitView = ({
   const [isMounted, setIsMounted] = useState(false);
   const [isSnipey, setIsSnipey] = useState(false);
   const [d12Result, setD12Result] = useState(0);
-  const [crossedMines, setCrossedMines] = useState('');
-  const [canCrossMines, setCanCrossMines] = useState(true);
-  const [survivedFall, setSurvivedFall] = useState('');
-  const [canCheckFall, setCanCheckFall] = useState(true);
 
   const classes = useStyles();
 
@@ -57,6 +54,7 @@ const PlayerUnitView = ({
   };
 
   useEffect(() => {
+    if (playerUnit.name === 'Flamer') { setUsingSideArm(true); }
     setUsingGrenade(false);
     setIsMounted(false);
     setIsSnipey(false);
@@ -65,8 +63,6 @@ const PlayerUnitView = ({
     setIsInPartialCover(false);
     setSpotted(false);
     setIsInRecon(false);
-    setCrossedMines('');
-    setCanCrossMines(true);
     setD12Result(0);
     setRollToHitAug(0);
     setUsingSideArm(false);
@@ -98,22 +94,6 @@ const PlayerUnitView = ({
     handleRollToHitAugChange(event, 3);
     if (event.target.checked) { setIsInPartialCover(true); } else { setIsInPartialCover(false); }
   };
-
-  useEffect(() => {
-    if (playerUnit.name === 'Flamer') { setUsingSideArm(true); }
-    setUsingGrenade(false);
-    setIsMounted(false);
-    setIsSnipey(false);
-    setIsNearCaptain(false);
-    setIsNearSergeant(false);
-    setIsInPartialCover(false);
-    setSpotted(false);
-    setIsInRecon(false);
-    setCrossedMines('');
-    setCanCrossMines(true);
-    setD12Result(0);
-    setRollToHitAug(0);
-  }, [playerUnit]);
 
   useEffect(() => {
     if (rollResult === '20' || (rollResult >= rollToHit && isSnipey)) {
@@ -343,68 +323,24 @@ const PlayerUnitView = ({
           </div>
         )
         : null}
-      <div className="row" style={{ justifyContent: crossedMines ? 'space-around' : 'center' }}>
-        {canCrossMines ? (
-          <input
-            type="Button"
-            value="Cross Mines"
-            onClick={() => {
-              setCanCrossMines(false);
-              const roll = Math.ceil(Math.random() * 20);
-              setCrossedMines(roll >= 6 ? `Rolled ${roll}: Success.` : `Rolled ${roll}: Failure.`);
-              setTimeout(() => {
-                setCanCrossMines(true);
-              }, 5000);
-            }}
-          />
-        ) : <span>&#10710;</span>}
-        {crossedMines ? <span className="info-point">{crossedMines}</span> : null}
-      </div>
-      <div>
-        {targetUnit === 'ground' && Math.round(elevation) > 1
-          ? (
-            <div className="row" style={{ justifyContent: survivedFall ? 'space-around' : 'center' }}>
-              {canCheckFall ? (
-                <input
-                  type="Button"
-                  value="Tuck and Roll"
-                  onClick={() => {
-                    setCanCheckFall(false);
-                    const roll = Math.ceil(Math.random() * 20);
-                    setSurvivedFall(roll >= Math.round(elevation) ? `Needed ${Math.round(elevation)}+: Rolled ${roll}: Success.` : `Rolled ${roll}: Failure.`);
-                    setTimeout(() => {
-                      setCanCheckFall(true);
-                    }, 5000);
-                  }}
-                />
-              ) : <span>&#10710;</span>}
-              {survivedFall ? <span className="info-point">{survivedFall}</span> : null}
-            </div>
-          ) : null}
-        {targetUnit === 'ground' && elevation && Math.round(elevation) < 2
-          ? <div className="row" style={{ justifyContent: 'center' }}>{'You\'re fine.'}</div>
-          : null}
 
-        {targetUnit === 'ground' && !elevation
-          ? <div className="row" style={{ justifyContent: 'center' }}>Enter Elevation to roll for fall survival.</div>
-          : null}
+      <MinesAndFalls targetUnit={targetUnit} elevation={elevation} playerUnit={playerUnit} />
 
-        <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>
-        {Object.keys(playerUnit).map((item) => {
-          const styles = {};
-          if (playerUnit[item].length > 93) { styles.textDecoration = 'underline'; }
-          return item !== 'name' ? (
-            <div className="row">
-              <span style={styles} className="info-point">
-                {`${item}:`}
-              </span>
-              <span>
-                {playerUnit[item]}
-              </span>
-            </div>
-          ) : null;
-        })}
-      </div>
+      <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>
+      {Object.keys(playerUnit).map((item) => {
+        const styles = {};
+        if (playerUnit[item].length > 93) { styles.textDecoration = 'underline'; }
+        return item !== 'name' ? (
+          <div className="row">
+            <span style={styles} className="info-point">
+              {`${item}:`}
+            </span>
+            <span>
+              {playerUnit[item]}
+            </span>
+          </div>
+        ) : null;
+      })}
     </div>
   );
 };
