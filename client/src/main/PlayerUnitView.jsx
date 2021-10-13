@@ -55,22 +55,6 @@ const PlayerUnitView = () => {
     setUsingGrenade(false);
   };
 
-  useEffect(() => {
-    if (playerUnit.name === 'Flamer') { setUsingSideArm(true); }
-    setUsingGrenade(false);
-    setIsMounted(false);
-    setIsSnipey(false);
-    setIsNearCaptain(false);
-    setIsNearSergeant(false);
-    setIsInPartialCover(false);
-    setSpotted(false);
-    setIsInRecon(false);
-    setRollToHitAug(0);
-    setUsingSideArm(false);
-    setRollResult('');
-    setElevation('');
-  }, [playerUnit]);
-
   const handleSidearm = (event) => {
     if (event.target.checked) { setUsingSideArm(true); } else { setUsingSideArm(false); }
     if (event.target.checked) { setCurrentITR(playerUnit['Sidearm Inches To Roll']); } else { setCurrentITR(playerUnit['Inches To Roll'] || playerUnit['Mortar Inches To Roll']); }
@@ -95,6 +79,22 @@ const PlayerUnitView = () => {
     handleRollToHitAugChange(event, 3);
     if (event.target.checked) { setIsInPartialCover(true); } else { setIsInPartialCover(false); }
   };
+
+  useEffect(() => {
+    if (playerUnit.name === 'Flamer') { setUsingSideArm(true); }
+    setUsingGrenade(false);
+    setIsMounted(false);
+    setIsSnipey(false);
+    setIsNearCaptain(false);
+    setIsNearSergeant(false);
+    setIsInPartialCover(false);
+    setSpotted(false);
+    setIsInRecon(false);
+    setRollToHitAug(0);
+    setUsingSideArm(false);
+    setRollResult('');
+    setElevation('');
+  }, [playerUnit]);
 
   useEffect(() => {
     if (rollResult === '20' || (rollResult >= rollToHit && isSnipey)) {

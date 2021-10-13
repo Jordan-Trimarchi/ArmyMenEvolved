@@ -47,12 +47,12 @@ const Combat = () => {
 
   useEffect(() => {
     handleRollToHitCalc();
-    if (isBazooka && targetUnit === 'barrier-vehicle') {
+    if (isBazooka && targetUnit === 'barrier-vehicle' && !usingSideArm) {
       setCurrentITR(playerUnit['Inches To Roll vs Vehicle/Structure']);
     } else if (isBazooka) {
       setCurrentITR(playerUnit['Inches To Roll vs Infantry']);
     }
-  }, [distance, rollToHitAug, playerUnit, targetUnit, elevation, currentITR]);
+  }, [distance, rollToHitAug, playerUnit, targetUnit, elevation, currentITR, usingSideArm]);
 
   return (
     <Context.Provider value={{
