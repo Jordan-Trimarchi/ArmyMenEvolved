@@ -39,7 +39,7 @@ const unitStats = {
     'Unit Class': 'Heavy Weapons',
     Usage: "Each point short of a direct hit is equal to one inch off target up to 8 inches. The direction off target is determined by a D12 roll (or use D20 disregarding rolls over 12).  The roll represents the position on a clock, with the firing unit at 6 o'clock, and the intended target at the center of the clock face.",
     'Ignores target cover': "Mortar fires downward onto a target. Overhead cover is considered as the mortar round will hit the cover instead of hitting the target, in which case, see 'Barrier Damage' below.",
-    'Mortar Elevation': 'If firing at target on lower elevation, measure horizontally to airspace above target to determine range. If firing at target on higher elevation measure directly(diagonally) to determine range (This is to simulate range handicap when firing up-hill).',
+    'Mortar Elevation': 'If firing at target on lower elevation, measure horizontally to airspace above target to determine range. If firing at target on higher elevation measure directly(diagonally) to determine range (This is to simulate range handicap when firing uphill).',
     'Barrier Damage': 'May destroy a full or partial barrier with a direct hit.  Units taking cover behind, in front of, or below the destroyed barrier, within template #2 of the impact point, gain a bonus of -2 to Save Requirement. Units taking cover on top of the barrier take full damage.',
   },
   Bazooka: {
