@@ -1,10 +1,11 @@
 const express = require('express');
+
 const app = express();
 // const queries = require('../database/schema.js');
 const cors = require('cors');
 
 // serve static files from dist dir
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(`${__dirname}/../client/dist`));
 
 // middleware
 // use express.json for parsing JSON
@@ -25,7 +26,7 @@ app.use(cors());
 
 // set port where server will listen
 let port = process.env.PORT;
-if (port == null || port == "") {
+if (port == null || port === '') {
   port = 3001;
 }
 
