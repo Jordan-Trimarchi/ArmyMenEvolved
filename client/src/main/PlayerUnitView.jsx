@@ -341,7 +341,7 @@ const PlayerUnitView = ({
                           <input
                             value={rollResult}
                             onChange={(event) => {
-                              setRollResult(event.target.value);
+                              setRollResult(Number(event.target.value));
                             }}
                             type="number"
                             step="1"
@@ -360,7 +360,7 @@ const PlayerUnitView = ({
                                 value="Roll D20"
                                 onClick={() => {
                                   if (canRoll) {
-                                    setRollResult(String(Math.ceil(Math.random() * 20)));
+                                    setRollResult(Math.ceil(Math.random() * 20));
                                     setCanRoll(false);
                                     setTimeout(() => {
                                       setCanRoll(true);
@@ -407,8 +407,8 @@ const PlayerUnitView = ({
                           <h3 style={{ display: 'flex', justifyContent: 'center' }}>
                             Off by
                             {' '}
-                            {rollToHit - Number(rollResult) <= (usingGrenade ? 5 : 8)
-                              ? rollToHit - Number(rollResult)
+                            {rollToHit - rollResult <= (usingGrenade ? 5 : 8)
+                              ? rollToHit - rollResult
                               : (usingGrenade ? 5 : 8)}
                             {' '}
                             inches
@@ -419,7 +419,7 @@ const PlayerUnitView = ({
                         )
                         : null}
 
-                      {rollResult === '1' && rollToHit > 1 ? (
+                      {rollResult === 1 && rollToHit > 1 ? (
                         <h3 style={{ display: 'flex', justifyContent: 'center' }}>
                           Critical Failure: Weapon is jammed.
                           Any unit within 1 inch may unjam using 1 action.

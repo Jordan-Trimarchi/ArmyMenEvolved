@@ -1,5 +1,5 @@
 import { Checkbox } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useStyles from './useStyles';
 import RollToSave from './RollToSave';
 
@@ -19,8 +19,6 @@ const TargetUnitView = ({
   isCriticalHit,
   usingSideArm,
 }) => {
-  const [canRollToSave, setCanRollToSave] = useState(true);
-  const [saved, setSaved] = useState('');
   const [isBehindDestBarrier, setIsBehindDestBarrier] = useState(false);
 
   const classes = useStyles();
@@ -32,11 +30,6 @@ const TargetUnitView = ({
       setTargetUnitSaveAug(targetUnitSaveAug - value);
     }
   };
-
-  useEffect(() => {
-    setSaved('');
-    setCanRollToSave(true);
-  }, [playerUnit, targetUnit, rollResult]);
 
   return (
     <div
@@ -133,29 +126,6 @@ const TargetUnitView = ({
           {(targetUnitSaveAug || 0)}
         </span>
       </div>
-      {((rollResult
-        && (targetUnitSaveAug || 0) + Number(rollResult) <= 20
-        && rollResult >= rollToHit
-        && !isCriticalHit) || usingMortarMechanics) && rollResult > 1
-        ? (
-          <div className="row" style={{ justifyContent: 'center' }}>
-            {canRollToSave ? (
-              <input
-                type="Button"
-                value="Roll To Save"
-                onClick={() => {
-                  setCanRollToSave(false);
-                  const roll = Math.ceil(Math.random() * 20);
-                  setSaved(roll >= Number(rollResult) + targetUnitSaveAug ? `Rolled ${roll}:  Save Successful.` : `Rolled ${roll}: Save Failed.`);
-                  setTimeout(() => {
-                    setCanRollToSave(true);
-                  }, 5000);
-                }}
-              />
-            ) : <div>&#10710;</div>}
-          </div>
-        )
-        : null}
       <RollToSave
         targetUnitSaveAug={targetUnitSaveAug}
         rollResult={rollResult}
@@ -165,7 +135,7 @@ const TargetUnitView = ({
         rollToHit={rollToHit}
         isCriticalHit={isCriticalHit}
         usingMortarMechanics={usingMortarMechanics}
-        saved={saved}
+        targetUnit={targetUnit}
       />
     </div>
   );

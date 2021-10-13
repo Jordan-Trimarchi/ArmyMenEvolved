@@ -1,66 +1,70 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const RollToSave = ({
   targetUnitSaveAug,
   rollResult,
   playerUnit,
+  targetUnit,
   usingGrenade,
   usingSideArm,
   rollToHit,
   isCriticalHit,
   usingMortarMechanics,
-  saved,
 }) => {
-  const TUSaveAug = (targetUnitSaveAug || 0);
-  let rolled = rollResult ? Number(rollResult) : null;
+  const [saved, setSaved] = useState('');
+  const [canRollToSave, setCanRollToSave] = useState(true);
 
-  if (playerUnit && usingGrenade) {
-    rolled = 11;
-  }
-  if (playerUnit && playerUnit.name === 'Bazooka' && !usingSideArm) {
-    rolled = 12;
-  }
-  if (playerUnit && playerUnit.name === 'Mortar' && !usingSideArm) {
-    rolled = 13;
-  }
+  let saveReq = (rollResult + targetUnitSaveAug);
+  if ((playerUnit && playerUnit.name === 'Bazooka' && !usingSideArm) || usingGrenade) { saveReq = (12 + targetUnitSaveAug); }
+  if (playerUnit && playerUnit.name === 'Mortar' && !usingSideArm) { saveReq = (13 + targetUnitSaveAug); }
+  saveReq = saveReq < 1 ? 1 : saveReq;
+
+  useEffect(() => {
+    setSaved('');
+    setCanRollToSave(true);
+  }, [playerUnit, targetUnit, rollResult]);
+
+  const handleRollToSaveClick = () => {
+    const roll = Math.ceil(Math.random() * 20);
+    const saveSucceeded = roll >= saveReq;
+    const successText = `Rolled ${roll}:  Save Successful.`;
+    const failureText = `Rolled ${roll}: Save Failed.`;
+    setSaved(saveSucceeded ? successText : failureText);
+    setCanRollToSave(false);
+    setTimeout(() => {
+      setCanRollToSave(true);
+    }, 5000);
+  };
 
   return (
     <>
-      {
-        ((rollResult
-          && TUSaveAug + Number(rollResult) <= 20
-          && rollResult >= rollToHit
-          && !isCriticalHit)
-          || usingMortarMechanics)
-          && rollResult > 1
-          ? (
+      {!isCriticalHit && (rollResult >= rollToHit || usingMortarMechanics) && rollResult
+        ? (
+          <>
+            <div className="row" style={{ justifyContent: 'center' }}>
+              {canRollToSave
+                ? <input type="Button" value="Roll To Save" onClick={handleRollToSaveClick} />
+                : <div>&#10710;</div>}
+            </div>
             <div style={{ borderBottom: 'solid' }}>
               {saved ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>{saved}</h3> : null}
               <h3 style={{ display: 'flex', justifyContent: 'center' }}>
-                Roll of
-                {' '}
-                {rolled + targetUnitSaveAug}
-                + required to save.
+                {`Roll of ${saveReq}+ required to save.`}
               </h3>
             </div>
-          )
-          : null
-      }
+          </>
+        )
+        : null}
 
-      {
-        ((rollResult
-          && ((targetUnitSaveAug
-            || 0) + Number(rollResult) >= 20
-            || isCriticalHit))
-          || usingMortarMechanics)
-          && rollResult > 1
-          ? (
-            <h3 style={{ display: 'flex', justifyContent: 'center', borderBottom: 'solid' }}>
-              {isCriticalHit ? 'Critical: ' : ''}
-              Unable to Save.
+      {isCriticalHit
+        ? (
+          <div style={{ borderBottom: 'solid' }}>
+            <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+              Critical Hit: Unable to Save.
             </h3>
-          ) : null
-      }
+          </div>
+        )
+        : null}
     </>
   );
 };
