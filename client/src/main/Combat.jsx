@@ -73,7 +73,7 @@ const Combat = () => {
         </select>
         <select
           onChange={(event) => {
-            setTargetUnit(unitStats[event.target.value]);
+            setTargetUnit(unitStats[event.target.value] || event.target.value);
           }}
           name="Target"
         >
@@ -160,12 +160,7 @@ const Combat = () => {
               }}
               >
                 <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: 'center' }}>The Ground</h2>
-                <div className="row">
-                  <span className="info-point">Suggested Tactics:</span>
-                  <span>
-                    {'Don\'t fall on it.'}
-                  </span>
-                </div>
+                <h3 style={{ display: 'flex', justifyContent: 'center' }}>{'It\'s not the fall that kills you, it\'s the sudden stop at the end.'}</h3>
               </div>
             ) : null}
         </div>

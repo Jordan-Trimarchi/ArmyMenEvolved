@@ -35,7 +35,6 @@ const unitStats = {
     'Save Requirement': -1,
     'Explosive Baseline Save Requirement': 13,
     Template: 2,
-    'Minimum Range': 15,
     'Unit Class': 'Heavy Weapons',
     Usage: "Each point short of a direct hit is equal to one inch off target up to 8 inches. The direction off target is determined by a D12 roll (or use D20 disregarding rolls over 12).  The roll represents the position on a clock, with the firing unit at 6 o'clock, and the intended target at the center of the clock face.",
     'Ignores target cover': "Mortar fires downward onto a target. Overhead cover is considered as the mortar round will hit the cover instead of hitting the target, in which case, see 'Barrier Damage' below.",

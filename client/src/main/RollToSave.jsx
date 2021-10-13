@@ -14,10 +14,12 @@ const RollToSave = ({
   const [saved, setSaved] = useState('');
   const [canRollToSave, setCanRollToSave] = useState(true);
 
+  const unitName = playerUnit ? playerUnit.name : null;
   let saveReq = (rollResult + targetUnitSaveAug);
-  if ((playerUnit && playerUnit.name === 'Bazooka' && !usingSideArm) || usingGrenade) { saveReq = (12 + targetUnitSaveAug); }
-  if (playerUnit && playerUnit.name === 'Mortar' && !usingSideArm) { saveReq = (13 + targetUnitSaveAug); }
-  saveReq = saveReq < 1 ? 1 : saveReq;
+
+  if ((unitName === 'Bazooka' && !usingSideArm) || usingGrenade) { saveReq = 12 + targetUnitSaveAug; }
+  if (unitName === 'Mortar' && !usingSideArm) { saveReq = 13 + targetUnitSaveAug; }
+  if (saveReq < 1) { saveReq = 1; }
 
   useEffect(() => {
     setSaved('');
@@ -29,8 +31,10 @@ const RollToSave = ({
     const saveSucceeded = roll >= saveReq;
     const successText = `Rolled ${roll}:  Save Successful.`;
     const failureText = `Rolled ${roll}: Save Failed.`;
+
     setSaved(saveSucceeded ? successText : failureText);
     setCanRollToSave(false);
+
     setTimeout(() => {
       setCanRollToSave(true);
     }, 5000);
@@ -46,6 +50,7 @@ const RollToSave = ({
                 ? <input type="Button" value="Roll To Save" onClick={handleRollToSaveClick} />
                 : <div>&#10710;</div>}
             </div>
+
             <div style={{ borderBottom: 'solid' }}>
               {saved ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>{saved}</h3> : null}
               <h3 style={{ display: 'flex', justifyContent: 'center' }}>
