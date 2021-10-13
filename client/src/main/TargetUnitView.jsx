@@ -31,7 +31,7 @@ const TargetUnitView = () => {
   };
 
   return (
-    <>
+    <div>
       {targetUnit === 'barrier-vehicle'
         ? (
           <div style={{
@@ -93,7 +93,7 @@ const TargetUnitView = () => {
           </div>
         )
         : null}
-    </>
+    </div>
   );
 };
 

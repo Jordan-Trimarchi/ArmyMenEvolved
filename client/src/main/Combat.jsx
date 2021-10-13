@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import unitStats from './unitStats';
+import UnitSelectors from './UnitSelectors';
 import TargetUnitView from './TargetUnitView';
 import PlayerUnitView from './PlayerUnitView';
 import Context from '../context';
@@ -42,16 +42,14 @@ const Combat = () => {
     setIsNearCaptain(false);
     setIsNearSergeant(false);
     setIsInPartialCover(false);
-    if (targetUnit) {
-      setTargetUnitSaveAug(targetUnit['Save Requirement'] ? targetUnit['Save Requirement'] : 0);
-    }
+    if (targetUnit) { setTargetUnitSaveAug(targetUnit['Save Requirement'] ? targetUnit['Save Requirement'] : 0); }
   }, [targetUnit]);
 
   useEffect(() => {
     handleRollToHitCalc();
     if (isBazooka && targetUnit === 'barrier-vehicle') {
       setCurrentITR(playerUnit['Inches To Roll vs Vehicle/Structure']);
-    } else if (isBazooka && targetUnit !== 'barrier-vehicle') {
+    } else if (isBazooka) {
       setCurrentITR(playerUnit['Inches To Roll vs Infantry']);
     }
   }, [distance, rollToHitAug, playerUnit, targetUnit, elevation, currentITR]);
@@ -82,51 +80,21 @@ const Combat = () => {
       setIsInPartialCover,
       setIsNearCaptain,
       setIsNearSergeant,
+      setPlayerUnit,
       setRollResult,
       setRollToHit,
       setRollToHitAug,
+      setTargetUnit,
       setTargetUnitSaveAug,
       setUsingGrenade,
       setUsingMortarMechanics,
       setUsingSideArm,
     }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-around', borderBottom: 'solid' }}>
-        <select
-          onChange={(event) => {
-            setPlayerUnit(unitStats[event.target.value]);
-            setCurrentITR(
-              (unitStats[event.target.value]['Inches To Roll']
-                || unitStats[event.target.value]['Mortar Inches To Roll']
-              )
-              || unitStats[event.target.value]['Sidearm Inches To Roll'],
-            );
-          }}
-          name="UnitSelect"
-        >
-          <option value="">--Select Unit--</option>
-          {Object.keys(unitStats).map((unit) => <option value={unit} key={unit}>{unit}</option>)}
-        </select>
-        <select
-          onChange={(event) => {
-            setTargetUnit(unitStats[event.target.value] || event.target.value);
-          }}
-          name="TargetSelect"
-        >
-          <option value="">--Select Target--</option>
-          {isBazooka ? <option value="barrier-vehicle">Barrier / Vehicle</option> : null}
-          {Object.keys(unitStats).map((unit) => <option value={unit} key={unit}>{unit}</option>)}
-          <option value="ground">The Ground</option>
-        </select>
-      </div>
+      <UnitSelectors />
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-        <div>
-
-          {playerUnit ? (<PlayerUnitView />) : null}
-        </div>
-        <div>
-          {targetUnit ? <TargetUnitView /> : null}
-        </div>
+        {playerUnit ? (<PlayerUnitView />) : null}
+        {targetUnit ? <TargetUnitView /> : null}
       </div>
     </Context.Provider>
   );
