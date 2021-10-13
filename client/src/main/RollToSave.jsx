@@ -27,8 +27,12 @@ const RollToSave = ({
   return (
     <>
       {
-        (rollResult > 1 && TUSaveAug + Number(rollResult) <= 20 && rollResult >= rollToHit && !isCriticalHit)
-          || usingMortarMechanics
+        ((rollResult
+          && TUSaveAug + Number(rollResult) <= 20
+          && rollResult >= rollToHit
+          && !isCriticalHit)
+          || usingMortarMechanics)
+          && rollResult > 1
           ? (
             <div style={{ borderBottom: 'solid' }}>
               {saved ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>{saved}</h3> : null}
@@ -44,8 +48,12 @@ const RollToSave = ({
       }
 
       {
-        rollResult > 1
-          && (TUSaveAug + Number(rollResult) >= 20 || isCriticalHit || usingMortarMechanics)
+        ((rollResult
+          && ((targetUnitSaveAug
+            || 0) + Number(rollResult) >= 20
+            || isCriticalHit))
+          || usingMortarMechanics)
+          && rollResult > 1
           ? (
             <h3 style={{ display: 'flex', justifyContent: 'center', borderBottom: 'solid' }}>
               {isCriticalHit ? 'Critical: ' : ''}
