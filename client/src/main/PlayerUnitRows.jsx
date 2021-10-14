@@ -36,7 +36,10 @@ const PlayerUnitRows = () => {
     unitIsNearCaptain,
     unitIsNearSergeant,
   } = useContext(Context);
-  const classes = useStyles();
+
+  const { unitSelect } = useStyles();
+
+  const isBazooka = playerUnit.name === 'Bazooka';
 
   const handleClear = () => {
     setRollToHit(0);
@@ -86,9 +89,7 @@ const PlayerUnitRows = () => {
         <span className="info-point">Distance to target: </span>
         <input
           value={distance}
-          onChange={(event) => {
-            setDistance(event.target.value);
-          }}
+          onChange={(event) => { setDistance(event.target.value); }}
           type="number"
           step=".0625"
           placeholder="Inches"
@@ -96,11 +97,11 @@ const PlayerUnitRows = () => {
           style={{ width: '5em' }}
         />
       </div>
-      {playerUnit['Sidearm Inches To Roll'] && !playerUnit['Inches To Roll']
+      {playerUnit['Sidearm Inches To Roll']
         ? (
           <div className="row">
             <span className="info-point">Use Sidearm: </span>
-            <Checkbox className={classes.unitSelect} checked={playerUnit.name === 'Flamer' ? true : usingSideArm} onChange={handleSidearm} />
+            <Checkbox className={unitSelect} checked={playerUnit.name === 'Flamer' ? true : usingSideArm} onChange={handleSidearm} />
           </div>
         )
         : null}
@@ -108,11 +109,7 @@ const PlayerUnitRows = () => {
         ? (
           <div className="row">
             <span className="info-point">Throw Grenade: </span>
-            <Checkbox
-              className={classes.unitSelect}
-              checked={usingGrenade}
-              onChange={handleGrenade}
-            />
+            <Checkbox className={unitSelect} checked={usingGrenade} onChange={handleGrenade} />
           </div>
         )
         : null}
@@ -122,41 +119,29 @@ const PlayerUnitRows = () => {
             Mount up (.53 ITR)
             :
           </span>
-          <Checkbox
-            className={classes.unitSelect}
-            onChange={handleMount}
-            checked={isMounted}
-          />
+          <Checkbox className={unitSelect} onChange={handleMount} checked={isMounted} />
         </div>
       ) : null}
       {playerUnit.name === 'Prone Rifleman' ? (
         <div className="row">
           <span className="info-point">Dead-Eye (2 actions: .43 ITR):</span>
-          <Checkbox
-            className={classes.unitSelect}
-            onChange={handleSneakAttack}
-            checked={isSnipey}
-          />
+          <Checkbox className={unitSelect} onChange={handleSneakAttack} checked={isSnipey} />
         </div>
       ) : null}
       <div className="row">
-        {!usingMortarMechanics || playerUnit.name === 'Bazooka' ? (
+        {!usingMortarMechanics || isBazooka ? (
           <span className="info-point">
-            Elevation: Unit is
-            {' '}
-            {elevation === '0' || !elevation ? 'level with ' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher than ' : 'lower than '}`}
-            target.
-            {' '}
+            {` Elevation: Unit is
+            ${elevation === '0' || !elevation ? 'level with ' : `${Math.abs(elevation)} inches ${elevation >= 0 ? 'higher than ' : 'lower than '}`}
+            target.`}
           </span>
         )
           : <span className="info-point">Elevation:</span>}
-        {!usingMortarMechanics || playerUnit.name === 'Bazooka' ? (
+        {!usingMortarMechanics || isBazooka ? (
           <input
             value={elevation}
             name="elevation"
-            onChange={(event) => {
-              setElevation(event.target.value);
-            }}
+            onChange={(event) => { setElevation(event.target.value); }}
             type="number"
             step=".0625"
             placeholder="Inches"
@@ -166,17 +151,15 @@ const PlayerUnitRows = () => {
           : (
             <div>
               Target is uphill: Measure diagonally.
-              {' '}
               <br />
-              {' '}
               Target is downhill: Measure horizontally to space above target.
             </div>
           )}
       </div>
-      {!usingMortarMechanics || playerUnit.name === 'Bazooka' ? (
+      {!usingMortarMechanics || isBazooka ? (
         <div className="row">
           <span className="info-point">Target is in partial cover:</span>
-          <Checkbox className={classes.unitSelect} name="cover" onChange={handleCover} checked={isInPartialCover} />
+          <Checkbox className={unitSelect} name="cover" onChange={handleCover} checked={isInPartialCover} />
         </div>
       ) : null}
       <div className="row">
@@ -184,7 +167,7 @@ const PlayerUnitRows = () => {
           {`Template #3: Actively 'Spotted' by ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}
         </span>
         <Checkbox
-          className={classes.unitSelect}
+          className={unitSelect}
           checked={spotted}
           onChange={(event) => {
             setSpotted(!spotted);
@@ -202,7 +185,7 @@ const PlayerUnitRows = () => {
           <div className="row">
             <span className="info-point">{'Template #3: Within \'Call to Arms\' radius of Captain:'}</span>
             <Checkbox
-              className={classes.unitSelect}
+              className={unitSelect}
               onChange={(event) => {
                 if (playerUnit['Unit Class'] === 'Infantry') {
                   handleRollToHitAugChange(event, -2);
@@ -222,7 +205,7 @@ const PlayerUnitRows = () => {
           <div className="row">
             <span className="info-point">{'Template #2: Within \'Rally\' radius of Sergeant:'}</span>
             <Checkbox
-              className={classes.unitSelect}
+              className={unitSelect}
               onChange={(event) => {
                 if (playerUnit['Unit Class'] === 'Infantry') {
                   handleRollToHitAugChange(event, -1);
@@ -240,7 +223,7 @@ const PlayerUnitRows = () => {
           <div className="row">
             <span className="info-point">{`Template #2: Within 'Recon' radius of ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
             <Checkbox
-              className={classes.unitSelect}
+              className={unitSelect}
               checked={isInRecon}
               onChange={(event) => {
                 handleRollToHitAugChange(event, -1);
@@ -256,7 +239,6 @@ const PlayerUnitRows = () => {
       <div className="row">
         <span className="info-point">Current Inches To Roll:</span>
         <span>
-          {' '}
           {currentITR}
         </span>
       </div>

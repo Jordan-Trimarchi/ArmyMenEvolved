@@ -64,7 +64,6 @@ const PlayerUnitView = () => {
 
   return (
     <div
-      className="fade-in"
       style={{
         transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid',
       }}
@@ -72,6 +71,7 @@ const PlayerUnitView = () => {
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: 'center' }}>
         {`Unit: ${playerUnit.name}`}
       </h2>
+
       {playerUnit && targetUnit
         ? <PlayerUnitRows />
         : null}
