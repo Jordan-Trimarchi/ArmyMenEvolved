@@ -81,7 +81,7 @@ button {
 }
 
 
-.fade-in, body, .row, button, div, span, .info-point {
+body, .row, button, div, span, .info-point {
 	opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;

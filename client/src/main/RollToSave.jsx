@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Context from '../context';
 
-const RollToSave = ({
-  targetUnitSaveAug,
-  rollResult,
-  playerUnit,
-  targetUnit,
-  usingGrenade,
-  usingSideArm,
-  rollToHit,
-  isCriticalHit,
-  usingMortarMechanics,
-}) => {
+const RollToSave = () => {
+  const {
+    targetUnitSaveAug,
+    rollResult,
+    playerUnit,
+    targetUnit,
+    usingGrenade,
+    usingSideArm,
+    rollToHit,
+    isCriticalHit,
+    usingMortarMechanics,
+  } = useContext(Context);
+
   const [saved, setSaved] = useState('');
   const [canRollToSave, setCanRollToSave] = useState(true);
 

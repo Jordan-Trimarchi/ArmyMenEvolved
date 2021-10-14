@@ -1,25 +1,36 @@
 import { Checkbox } from '@material-ui/core';
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import Context from '../context';
 import useStyles from './useStyles';
 
-const TargetUnitRows = ({
-  targetUnit,
-  playerUnit,
-  targetUnitSaveAug,
-  usingGrenade,
-  usingSideArm,
-  handleSaveAugChange,
-  isBehindDestBarrier,
-  setIsBehindDestBarrier,
-  isNearCaptain,
-  setIsNearCaptain,
-  isNearSergeant,
-  setIsNearSergeant,
-}) => {
+const TargetUnitRows = () => {
+  const {
+    targetUnit,
+    playerUnit,
+    targetUnitSaveAug,
+    setTargetUnitSaveAug,
+    usingGrenade,
+    usingSideArm,
+    targetIsNearCaptain,
+    setTargetIsNearCaptain,
+    targetIsNearSergeant,
+    setTargetIsNearSergeant,
+  } = useContext(Context);
+
+  const [isBehindDestBarrier, setIsBehindDestBarrier] = useState(false);
+
   const classes = useStyles();
   const explosiveBaseline = playerUnit ? playerUnit['Explosive Baseline Save Requirement'] : null;
   const unitName = playerUnit ? playerUnit.name : null;
   const targetName = targetUnit.name;
+
+  const handleSaveAugChange = (event, value) => {
+    if (event.target.checked) {
+      setTargetUnitSaveAug(targetUnitSaveAug + value);
+    } else {
+      setTargetUnitSaveAug(targetUnitSaveAug - value);
+    }
+  };
 
   return (
     <>
@@ -68,10 +79,10 @@ const TargetUnitRows = ({
               onChange={(event) => {
                 handleSaveAugChange(event, -2);
                 if (event.target.checked) {
-                  setIsNearCaptain(true);
-                } else { setIsNearCaptain(false); }
+                  setTargetIsNearCaptain(true);
+                } else { setTargetIsNearCaptain(false); }
               }}
-              checked={isNearCaptain}
+              checked={targetIsNearCaptain}
             />
           </div>
         )
@@ -86,10 +97,10 @@ const TargetUnitRows = ({
               onChange={(event) => {
                 handleSaveAugChange(event, -1);
                 if (event.target.checked) {
-                  setIsNearSergeant(true);
-                } else { setIsNearSergeant(false); }
+                  setTargetIsNearSergeant(true);
+                } else { setTargetIsNearSergeant(false); }
               }}
-              checked={isNearSergeant}
+              checked={targetIsNearSergeant}
             />
           </div>
         )
