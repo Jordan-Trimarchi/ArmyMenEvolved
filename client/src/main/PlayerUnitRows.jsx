@@ -43,7 +43,7 @@ const PlayerUnitRows = () => {
   return (
     <div>
       <div className="row">
-        <span className="fake-h3">Attack Calculator</span>
+        <h2>Attack Calculator</h2>
         <input type="button" value="Clear All" onClick={handleClear} />
       </div>
 
@@ -97,7 +97,7 @@ const PlayerUnitRows = () => {
 
       <div className="row">
         <span className="info-point">Current Inches To Roll:</span>
-        <span>
+        <span className="info">
           {currentITR}
         </span>
       </div>

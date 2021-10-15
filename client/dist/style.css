@@ -97,10 +97,6 @@ select, input, button {
   overflow: hidden;
 }
 
-.center-div {
-  justify-content: center;
-}
-
 .header {
   background-image: url('../scratchmetal.jpeg');
   display: flex;
@@ -115,8 +111,12 @@ select, input, button {
   border-color: rgb(184, 184, 184);
 }
 
+.info {
+  font-size: 1.1em;
+}
+
 .info-point {
-  font-size: x-large;
+  font-size: 1.1em;
 }
 
 .long-span {
@@ -145,23 +145,8 @@ select, input, button {
   border-color: rgb(184, 184, 184);
 }
 
-.row-one-button {
+.row-center-div {
   justify-content: center;
-}
-
-.row-two-buttons {
-  justify-content: space-around;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: solid;
-  flex-wrap: wrap;
-  padding-left: .5em;
-  padding-right: .5em;
-  align-items: center;
-  border-color: rgb(184, 184, 184);
 }
 
 .row-one-button {

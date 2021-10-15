@@ -68,7 +68,7 @@ const AttackRoll = () => {
                     />
                   </div>
                 )
-                : <span>&#10710;</span>}
+                : <span className="info">&#10710;</span>}
               {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit
                 ? (
                   <div>

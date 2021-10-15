@@ -4,11 +4,11 @@ import RollToSave from './RollToSave';
 import TargetUnitRows from './TargetUnitRows';
 
 const TargetUnitView = () => {
-  const { targetUnit } = useContext(Context);
+  const { playerUnit, targetUnit } = useContext(Context);
 
   return (
     <div className="target">
-      {targetUnit === 'barrier-vehicle'
+      {targetUnit === 'barrier-vehicle' && playerUnit.name === 'Bazooka'
         ? (
           <div className="target-unit-view static-pane">
             <h2>Barrier / Vehicle</h2>

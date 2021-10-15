@@ -81,7 +81,7 @@ const PlayerUnitView = () => {
             <span className={`info-point ${playerUnit[item].length > 93 ? 'long-span' : ''}`}>
               {`${item}:`}
             </span>
-            <span>
+            <span className="info">
               {playerUnit[item]}
             </span>
           </div>

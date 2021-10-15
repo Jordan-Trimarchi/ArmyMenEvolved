@@ -36,9 +36,9 @@ const UnitSelectors = () => {
         name="TargetSelect"
       >
         <option value="">--Select Target--</option>
+        <option value="ground">The Ground</option>
         {isBazooka ? <option value="barrier-vehicle">Barrier / Vehicle</option> : null}
         {Object.keys(unitStats).map((unit) => <option value={unit} key={unit}>{unit}</option>)}
-        <option value="ground">The Ground</option>
       </select>
     </div>
   );

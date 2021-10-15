@@ -41,7 +41,7 @@ const TargetUnitRows = () => {
               {unitName === 'Mortar' || unitName === 'Bazooka' ? `${unitName} ` : 'Grenade '}
               Baseline Save Requirement:
             </span>
-            <span>
+            <span className="info">
               {explosiveBaseline}
             </span>
           </div>
@@ -50,7 +50,7 @@ const TargetUnitRows = () => {
 
       <div className="row">
         <span className="info-point">Inherant Save Requirement Augmentation: </span>
-        <span>
+        <span className="info">
           {targetUnit['Save Requirement'] || 0}
         </span>
       </div>
@@ -111,7 +111,7 @@ const TargetUnitRows = () => {
 
       <div className="row">
         <span className="info-point">Total Save Requirement Augmentation: </span>
-        <span>
+        <span className="info">
           {(targetUnitSaveAug || 0)}
         </span>
       </div>
