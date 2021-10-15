@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Checkbox } from '@material-ui/core';
 import Context from '../context';
-import useStyles from './useStyles';
+import useStyles from '../useStyles';
 
 const RollToHitControllers = () => {
   const {

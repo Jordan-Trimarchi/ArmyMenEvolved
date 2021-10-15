@@ -1,7 +1,7 @@
 import { Checkbox } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
 import Context from '../context';
-import useStyles from './useStyles';
+import useStyles from '../useStyles';
 
 const TargetUnitRows = () => {
   const {

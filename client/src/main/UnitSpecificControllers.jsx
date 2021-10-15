@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Checkbox } from '@material-ui/core';
-import useStyles from './useStyles';
+import useStyles from '../useStyles';
 import Context from '../context';
 
 const UnitSpecificControllers = () => {
