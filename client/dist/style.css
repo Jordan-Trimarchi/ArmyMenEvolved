@@ -8,6 +8,7 @@ body {
   color: rgb(229, 230, 229);
   font-family: 'Stick No Bills', sans-serif;
   text-shadow: black 2px 2px 2px;
+  font-size:large;
 }
 
 .app {
@@ -16,6 +17,7 @@ body {
 
 ::placeholder {
   color: rgb(179, 179, 179);
+  font-size: large;
 }
 
 select {
@@ -30,7 +32,7 @@ select, input, button {
   border-width: .1em;
   outline: none;
   font-family: 'Stick No Bills', sans-serif;
-  font-size: medium;
+  font-size: large;
   border-radius: .25em;
 }
 
@@ -92,7 +94,7 @@ button {
 }
 
 .info-point {
-  font-size: large;
+  font-size: x-large;
 }
 
 .split-view-container {
