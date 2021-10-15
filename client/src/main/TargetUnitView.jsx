@@ -12,7 +12,7 @@ const TargetUnitView = () => {
         ? (
           <div className="target-unit-view static-pane">
             <h2>Barrier / Vehicle</h2>
-            <h3 style={{ display: 'flex', justifyContent: 'center' }}>Obliterate it.</h3>
+            <h3>Obliterate it.</h3>
           </div>
         )
         : null}

@@ -24,7 +24,7 @@ const AttackRoll = () => {
     <>
       {
         rollToHit >= 20.5
-          ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>Unable to hit.</h3>
+          ? <h3>Unable to hit.</h3>
           : null
       }
 
@@ -96,7 +96,7 @@ const AttackRoll = () => {
             </div>
 
             {rollResult > 1 || rollToHit < 2 ? (
-              <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+              <h3>
                 {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit.` : null}
                 {rollResult < rollToHit && rollResult ? `Rolled ${rollResult}: Miss.` : null}
               </h3>
@@ -104,7 +104,7 @@ const AttackRoll = () => {
 
             {usingMortarMechanics && rollResult > 1 && rollResult < rollToHit
               ? (
-                <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+                <h3>
                   Off by
                   {` ${rollToHit - rollResult <= maxMiss ? rollToHit - rollResult : maxMiss} `}
                   inches
@@ -115,13 +115,13 @@ const AttackRoll = () => {
               : null}
 
             {rollResult === 1 && rollToHit > 1 ? (
-              <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+              <h3>
                 <p>Critical Failure: Weapon Jam.</p>
                 <p>Any unit within 1 inch may unjam using 1 action.</p>
               </h3>
             ) : null}
 
-            <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+            <h3>
               {`Roll of ${rollToHit > 0 ? rollToHit : 1}+ required to hit.`}
             </h3>
           </div>

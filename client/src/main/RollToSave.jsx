@@ -55,8 +55,8 @@ const RollToSave = () => {
             </div>
 
             <div style={{ borderBottom: 'solid' }}>
-              {saved ? <h3 style={{ display: 'flex', justifyContent: 'center' }}>{saved}</h3> : null}
-              <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+              {saved ? <h3>{saved}</h3> : null}
+              <h3>
                 {`Roll of ${saveReq}+ required to save.`}
               </h3>
             </div>
@@ -67,7 +67,7 @@ const RollToSave = () => {
       {isCriticalHit
         ? (
           <div style={{ borderBottom: 'solid' }}>
-            <h3 style={{ display: 'flex', justifyContent: 'center' }}>
+            <h3>
               Critical Hit: Unable to Save.
             </h3>
           </div>

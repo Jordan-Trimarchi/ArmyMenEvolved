@@ -74,7 +74,7 @@ const PlayerUnitView = () => {
 
       <MinesAndFalls />
 
-      <h3>Unit Stats</h3>
+      <h2>Unit Stats</h2>
       {Object.keys(playerUnit).map((item) => (
         item !== 'name' ? (
           <div className="row">
