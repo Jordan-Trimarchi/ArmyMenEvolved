@@ -10,7 +10,7 @@ const TargetUnitView = () => {
     <div className="target">
       {targetUnit === 'barrier-vehicle'
         ? (
-          <div className="target-unit-view">
+          <div className="target-unit-view static-pane">
             <h2>Barrier / Vehicle</h2>
             <h3 style={{ display: 'flex', justifyContent: 'center' }}>Obliterate it.</h3>
           </div>
@@ -26,7 +26,7 @@ const TargetUnitView = () => {
         ) : null}
       {targetUnit !== 'ground' && targetUnit !== 'barrier-vehicle'
         ? (
-          <div className="target-unit-view static-pane">
+          <div className="target-unit-view">
             <h2>
               {`Target: ${targetUnit.name}`}
             </h2>
