@@ -112,7 +112,7 @@ const Combat = () => {
     }}
     >
       <UnitSelectors />
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+      <div className="split-view-container">
         {playerUnit ? (<PlayerUnitView />) : <div> </div>}
         {targetUnit ? <TargetUnitView /> : null}
       </div>

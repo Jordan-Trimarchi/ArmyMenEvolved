@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     background-color: rgb(18, 36, 21);
     background-image: url('../darkfabric.jpeg');
     background-repeat: no-repeat;
@@ -8,7 +9,10 @@ body {
     font-family: 'Stick No Bills', sans-serif;
     text-shadow: black 2px 2px 2px;
     transition: 1s;
-    zoom: 1.25;
+}
+
+.app {
+    overflow: hidden;
 }
 
 ::placeholder {
@@ -17,14 +21,15 @@ body {
 
 select {
     text-align: center;
+    width: 48.3vw;
 }
 
 select,
 input,
 button {
-    background-color: rgb(65, 64, 64, .6);
+    background-color: rgb(65, 64, 64);
     color: rgb(229, 230, 229);
-    border-color: rgb(131, 131, 131, .6);
+    border-color: rgb(131, 131, 131);
     border-width: .1em;
     outline: none;
     font-family: 'Stick No Bills', sans-serif;
@@ -63,36 +68,62 @@ button {
     flex-direction: column;
     align-items: center;
     border: solid;
-    margin-left: 10em;
-    margin-right: 10em;
     height: 7em;
+    width: calc(100% - .4em);
+    top: 0;
+    z-index: 2;
+    position: fixed;
+    border-color: rgb(184, 184, 184);
+}
+
+.unit-selectors {
+    height: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    top: 7.5em;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    padding-top: .2em;
 }
 
 .info-point {
     font-size: large;
 }
 
+.split-view-container {
+    display: flex;
+    flex-direction: row;
+    width: 48vw;
+    justify-content: space-between;
+}
+
 .player-unit-view {
-    transition: 1s;
-    width: 38.5vw;
+    width: 48vw;
     display: flex;
     flex-direction: column;
     border-right: solid;
     border-left: solid;
-    max-height: calc(78vh - 9em);
-    /* position: fixed; */
-    overflow: auto;
+    border-top: solid;
+    margin-top: 9.5em;
+    border-color: rgb(184, 184, 184);
 }
 
 .target-unit-view {
-    transition: 1s;
-    width: 38.5vw;
+    width: 48vw;
     display: flex;
     flex-direction: column;
     border-right: solid;
     border-left: solid;
+    border-top: solid;
+    margin-top: 9.5em;
+    position: fixed;
+    right: 0;
+    border-color: rgb(184, 184, 184);
+}
+
+.static-pane {
     border-bottom: solid;
-    /* margin-left: 39vw; */
 }
 
 .row {
@@ -103,6 +134,7 @@ button {
     padding-left: .5em;
     padding-right: .5em;
     align-items: center;
+    border-color: rgb(184, 184, 184);
 }
 
 .fake-h3 {
@@ -126,7 +158,7 @@ span,
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
-    animation-duration: .65s;
+    animation-duration: .25s;
     transition: 1s;
 }
 

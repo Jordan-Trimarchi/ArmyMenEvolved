@@ -13,7 +13,7 @@ const UnitSelectors = () => {
   const isBazooka = playerUnit && playerUnit.name === 'Bazooka';
 
   return (
-    <div style={{ height: '1.5em', display: 'flex', justifyContent: 'space-around', borderBottom: 'solid' }}>
+    <div className="unit-selectors">
       <select
         onChange={(event) => {
           setPlayerUnit(unitStats[event.target.value]);

@@ -19,17 +19,14 @@ const TargetUnitView = () => {
 
       {targetUnit === 'ground'
         ? (
-          <div style={{
-            transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid',
-          }}
-          >
+          <div className="target-unit-view static-pane">
             <h2>The Ground</h2>
             <h3>{'It\'s not the fall that kills you, it\'s the sudden stop at the end.'}</h3>
           </div>
         ) : null}
       {targetUnit !== 'ground' && targetUnit !== 'barrier-vehicle'
         ? (
-          <div className="target-unit-view">
+          <div className="target-unit-view static-pane">
             <h2>
               {`Target: ${targetUnit.name}`}
             </h2>
