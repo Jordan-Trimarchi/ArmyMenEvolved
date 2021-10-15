@@ -9,6 +9,7 @@ const PlayerUnitRows = () => {
     distance,
     setDistance,
     playerUnit,
+    targetUnit,
     usingSideArm,
     setUsingSideArm,
     setCurrentITR,
@@ -137,7 +138,7 @@ const PlayerUnitRows = () => {
           </span>
         )
           : <span className="info-point">Elevation:</span>}
-        {!usingMortarMechanics || isBazooka ? (
+        {!usingMortarMechanics || isBazooka || targetUnit === 'ground' ? (
           <input
             value={elevation}
             name="elevation"

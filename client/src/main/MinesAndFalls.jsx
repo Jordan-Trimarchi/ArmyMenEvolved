@@ -21,7 +21,7 @@ const MinesAndFalls = () => {
   }, [playerUnit]);
   return (
     <>
-      <div className="row" style={{ justifyContent: crossedMines ? 'space-around' : 'center' }}>
+      <div className={`row ${crossedMines > 1 ? 'two-buttons' : 'one-button'}`}>
         {canCrossMines ? (
           <input
             type="Button"
@@ -40,7 +40,7 @@ const MinesAndFalls = () => {
       </div>
       {targetUnit === 'ground' && Math.round(elevation) > 1
         ? (
-          <div className="row" style={{ justifyContent: survivedFall ? 'space-around' : 'center' }}>
+          <div className={`row ${survivedFall > 1 ? 'two-buttons' : 'one-button'}`}>
             {canCheckFall ? (
               <input
                 type="Button"

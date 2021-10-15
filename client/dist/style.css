@@ -8,7 +8,6 @@ body {
     color: rgb(229, 230, 229);
     font-family: 'Stick No Bills', sans-serif;
     text-shadow: black 2px 2px 2px;
-    transition: 1s;
 }
 
 .app {
@@ -138,6 +137,14 @@ button {
     border-color: rgb(184, 184, 184);
 }
 
+.one-button {
+    justify-content: center;
+}
+
+.two-buttons {
+    justify-content: space-around;
+}
+
 .fake-h3 {
     display: block;
     font-size: 1.17em;
@@ -159,8 +166,8 @@ span,
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
-    animation-duration: .25s;
-    transition: 1s;
+    animation-duration: .75s;
+    transition: .5s;
 }
 
 @keyframes fadeInOpacity {
