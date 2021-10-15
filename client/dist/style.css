@@ -1,100 +1,140 @@
 body {
-  background-color: rgb(18, 36, 21);
-  background-image: url('../darkfabric.jpeg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size:cover;
-  color:rgb(229, 230, 229);
-  font-family: 'Stick No Bills', sans-serif;
-  text-shadow: black 2px 2px 2px;
-  transition: 1s;
-  zoom: 1.25;
+    background-color: rgb(18, 36, 21);
+    background-image: url('../darkfabric.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: rgb(229, 230, 229);
+    font-family: 'Stick No Bills', sans-serif;
+    text-shadow: black 2px 2px 2px;
+    transition: 1s;
+    zoom: 1.25;
 }
 
 ::placeholder {
-  color: rgb(179, 179, 179);
+    color: rgb(179, 179, 179);
 }
 
 select {
-  text-align: center;
+    text-align: center;
 }
 
-select, input, button {
-  background-color: rgb(65, 64, 64, .6);
-  color:rgb(229, 230, 229);
-  border-color: rgb(131, 131, 131, .6);
-  border-width: .1em;
-  outline: none;
-  font-family: 'Stick No Bills', sans-serif;
-  font-size: medium;
-  border-radius: .25em;
+select,
+input,
+button {
+    background-color: rgb(65, 64, 64, .6);
+    color: rgb(229, 230, 229);
+    border-color: rgb(131, 131, 131, .6);
+    border-width: .1em;
+    outline: none;
+    font-family: 'Stick No Bills', sans-serif;
+    font-size: medium;
+    border-radius: .25em;
 }
 
-h1{
-  text-decoration: underline;
+h1 {
+    text-decoration: underline;
+}
+
+h2 {
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    text-decoration: underline;
 }
 
 button {
-  margin-top: 1.33em;
-  margin-bottom: 1.33em;
-  background-color: black;
-  color:rgb(229, 230, 229);
-  border: none;
-  outline: none;
-  font-family: 'Stick No Bills', sans-serif;
-  font-size: medium;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    background-color: black;
+    color: rgb(229, 230, 229);
+    border: none;
+    outline: none;
+    font-family: 'Stick No Bills', sans-serif;
+    font-size: medium;
 }
 
 .header {
-  background-image: url('../scratchmetal.jpeg'); 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  border: solid;
-  margin-left: 10em;
-  margin-right: 10em;
+    background-image: url('../scratchmetal.jpeg');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid;
+    margin-left: 10em;
+    margin-right: 10em;
+    height: 7em;
 }
 
 .info-point {
-  font-size: large;
+    font-size: large;
 }
 
-.row { 
-  display: flex;
-  justify-content: space-between;
-  border-bottom: solid; 
-  flex-wrap: wrap;
-  padding-left: .5em;
-  padding-right: .5em;
-  align-items: center;
+.player-unit-view {
+    transition: 1s;
+    width: 38.5vw;
+    display: flex;
+    flex-direction: column;
+    border-right: solid;
+    border-left: solid;
+    max-height: calc(78vh - 9em);
+    /* position: fixed; */
+    overflow: auto;
+}
+
+.target-unit-view {
+    transition: 1s;
+    width: 38.5vw;
+    display: flex;
+    flex-direction: column;
+    border-right: solid;
+    border-left: solid;
+    border-bottom: solid;
+    /* margin-left: 39vw; */
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid;
+    flex-wrap: wrap;
+    padding-left: .5em;
+    padding-right: .5em;
+    align-items: center;
 }
 
 .fake-h3 {
-  display: block;
-  font-size: 1.17em;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
-  text-decoration: underline;
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
-
-body, .row, button, div, span, .info-point {
-	opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in-out;
-	animation-duration: .65s;
+body,
+.row,
+button,
+div,
+span,
+.info-point {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: .65s;
+    transition: 1s;
 }
 
 @keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
-

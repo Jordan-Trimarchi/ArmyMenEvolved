@@ -7,14 +7,11 @@ const TargetUnitView = () => {
   const { targetUnit } = useContext(Context);
 
   return (
-    <div>
+    <div className="target">
       {targetUnit === 'barrier-vehicle'
         ? (
-          <div style={{
-            transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid',
-          }}
-          >
-            <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: 'center' }}>Barrier / Vehicle</h2>
+          <div className="target-unit-view">
+            <h2>Barrier / Vehicle</h2>
             <h3 style={{ display: 'flex', justifyContent: 'center' }}>Obliterate it.</h3>
           </div>
         )
@@ -26,17 +23,14 @@ const TargetUnitView = () => {
             transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid', borderBottom: 'solid',
           }}
           >
-            <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: 'center' }}>The Ground</h2>
-            <h3 style={{ display: 'flex', justifyContent: 'center' }}>{'It\'s not the fall that kills you, it\'s the sudden stop at the end.'}</h3>
+            <h2>The Ground</h2>
+            <h3>{'It\'s not the fall that kills you, it\'s the sudden stop at the end.'}</h3>
           </div>
         ) : null}
       {targetUnit !== 'ground' && targetUnit !== 'barrier-vehicle'
         ? (
-          <div style={{
-            transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderLeft: 'solid', borderRight: 'solid',
-          }}
-          >
-            <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: 'center' }}>
+          <div className="target-unit-view">
+            <h2>
               {`Target: ${targetUnit.name}`}
             </h2>
             <TargetUnitRows />

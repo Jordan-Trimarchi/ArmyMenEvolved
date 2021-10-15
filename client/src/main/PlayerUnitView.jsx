@@ -63,11 +63,7 @@ const PlayerUnitView = () => {
   }, [playerUnit, usingGrenade, usingSideArm, elevation, distance, rollToHit, rollResult]);
 
   return (
-    <div
-      style={{
-        transition: '1s', width: '38.5vw', display: 'flex', flexDirection: 'column', borderRight: 'solid', borderLeft: 'solid',
-      }}
-    >
+    <div className="player-unit-view">
       <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: 'center' }}>
         {`Unit: ${playerUnit.name}`}
       </h2>
@@ -78,21 +74,19 @@ const PlayerUnitView = () => {
 
       <MinesAndFalls />
 
-      <h3 style={{ textDecoration: 'underline' }}>Unit Stats</h3>
-      {Object.keys(playerUnit).map((item) => {
-        const styles = {};
-        if (playerUnit[item].length > 93) { styles.textDecoration = 'underline'; }
-        return item !== 'name' ? (
+      <h3>Unit Stats</h3>
+      {Object.keys(playerUnit).map((item) => (
+        item !== 'name' ? (
           <div className="row">
-            <span style={styles} className="info-point">
+            <span style={{ textDecoration: playerUnit[item].length > 93 ? 'underline' : 'none' }} className="info-point">
               {`${item}:`}
             </span>
             <span>
               {playerUnit[item]}
             </span>
           </div>
-        ) : null;
-      })}
+        ) : null
+      ))}
     </div>
   );
 };
