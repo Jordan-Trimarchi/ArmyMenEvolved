@@ -34,23 +34,26 @@ const TargetUnitRows = () => {
 
   return (
     <>
-      <div className="row">
-        <span className="info-point">Inherant Save Requirement Augmentation: </span>
-        <span>
-          {targetUnit['Save Requirement'] || 0}
-        </span>
-      </div>
-
       {((explosiveBaseline && unitName !== 'Standing Rifleman') || (unitName === 'Standing Rifleman' && usingGrenade)) && !usingSideArm
         ? (
           <div className="row">
-            <span className="info-point">Explosive Baseline Save Requirement: </span>
+            <span className="info-point">
+              {unitName === 'Mortar' || unitName === 'Bazooka' ? `${unitName} ` : 'Grenade '}
+              Baseline Save Requirement:
+            </span>
             <span>
               {explosiveBaseline}
             </span>
           </div>
         )
         : null}
+
+      <div className="row">
+        <span className="info-point">Inherant Save Requirement Augmentation: </span>
+        <span>
+          {targetUnit['Save Requirement'] || 0}
+        </span>
+      </div>
 
       {(explosiveBaseline && unitName !== 'Standing Rifleman') && !usingSideArm
         ? (
