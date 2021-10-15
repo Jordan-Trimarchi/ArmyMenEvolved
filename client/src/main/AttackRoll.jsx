@@ -49,7 +49,7 @@ const AttackRoll = () => {
               ) : <div style={{ marginRight: '.25em' }}>{rollResult}</div>}
             </div>
 
-            <div className={`row ${usingMortarMechanics && rollResult > 1 ? 'two-buttons' : 'one-button'}`}>
+            <div className={`row ${usingMortarMechanics && rollResult > 1 ? 'row-two-buttons' : 'row-one-button'}`}>
               {canRoll
                 ? (
                   <div>

@@ -21,7 +21,7 @@ const MinesAndFalls = () => {
   }, [playerUnit]);
   return (
     <>
-      <div className={`row ${crossedMines > 1 ? 'one-button' : 'two-buttons'}`}>
+      <div className={`row ${crossedMines > 1 ? 'row-one-button' : 'row-two-buttons'}`}>
         {canCrossMines ? (
           <input
             type="Button"
@@ -40,7 +40,7 @@ const MinesAndFalls = () => {
       </div>
       {targetUnit === 'ground' && Math.round(elevation) > 1
         ? (
-          <div className={`row ${survivedFall > 1 ? 'one-button' : 'two-buttons'}`}>
+          <div className={`row ${survivedFall > 1 ? 'row-one-button' : 'row-two-buttons'}`}>
             {canCheckFall ? (
               <input
                 type="Button"
