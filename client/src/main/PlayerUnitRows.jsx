@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Checkbox } from '@material-ui/core';
 import Context from '../context';
 import AttackRoll from './AttackRoll';
-import useStyles from './useStyles';
+import RollToHitControllers from './RollToHitControllers';
+import UnitSpecificControllers from './UnitSpecificControllers';
 
 const PlayerUnitRows = () => {
   const {
@@ -10,36 +10,20 @@ const PlayerUnitRows = () => {
     setDistance,
     playerUnit,
     targetUnit,
-    usingSideArm,
-    setUsingSideArm,
-    setCurrentITR,
     setUsingGrenade,
     setIsMounted,
     setIsSnipey,
-    handleRollToHitAugChange,
     setIsInPartialCover,
-    usingGrenade,
-    isMounted,
-    isSnipey,
     usingMortarMechanics,
     elevation,
     setElevation,
-    isInPartialCover,
-    spotted,
     setRollToHit,
     setRollToHitAug,
     setSpotted,
-    isInRecon,
-    setIsInRecon,
     currentITR,
     setUnitIsNearCaptain,
     setUnitIsNearSergeant,
-    unitIsNearCaptain,
-    unitIsNearSergeant,
   } = useContext(Context);
-
-  const { unitSelect } = useStyles();
-
   const isBazooka = playerUnit.name === 'Bazooka';
 
   const handleClear = () => {
@@ -56,36 +40,13 @@ const PlayerUnitRows = () => {
     setUsingGrenade(false);
   };
 
-  const handleSidearm = (event) => {
-    if (event.target.checked) { setUsingSideArm(true); } else { setUsingSideArm(false); }
-    if (event.target.checked) { setCurrentITR(playerUnit['Sidearm Inches To Roll']); } else { setCurrentITR(playerUnit['Inches To Roll'] || playerUnit['Mortar Inches To Roll']); }
-  };
-
-  const handleGrenade = (event) => {
-    if (event.target.checked) { setUsingGrenade(true); } else { setUsingGrenade(false); }
-    if (event.target.checked) { setCurrentITR(1); } else { setCurrentITR(playerUnit['Inches To Roll']); }
-  };
-
-  const handleMount = (event) => {
-    if (event.target.checked) { setIsMounted(true); } else { setIsMounted(false); }
-    if (event.target.checked) { setCurrentITR(0.53); } else { setCurrentITR(playerUnit['Inches To Roll']); }
-  };
-
-  const handleSneakAttack = (event) => {
-    if (event.target.checked) { setIsSnipey(true); } else { setIsSnipey(false); }
-    if (event.target.checked) { setCurrentITR(0.43); } else { setCurrentITR(playerUnit['Inches To Roll']); }
-  };
-
-  const handleCover = (event) => {
-    handleRollToHitAugChange(event, 3);
-    if (event.target.checked) { setIsInPartialCover(true); } else { setIsInPartialCover(false); }
-  };
   return (
     <div>
       <div className="row">
         <span className="fake-h3">Attack Calculator</span>
         <input type="button" value="Clear All" onClick={handleClear} />
       </div>
+
       <div className="row">
         <span className="info-point">Distance to target: </span>
         <input
@@ -97,38 +58,11 @@ const PlayerUnitRows = () => {
           min="0"
         />
       </div>
-      {playerUnit['Sidearm Inches To Roll']
-        ? (
-          <div className="row">
-            <span className="info-point">Use Sidearm: </span>
-            <Checkbox className={unitSelect} checked={playerUnit.name === 'Flamer' ? true : usingSideArm} onChange={handleSidearm} />
-          </div>
-        )
-        : null}
-      {playerUnit.name === 'Standing Rifleman'
-        ? (
-          <div className="row">
-            <span className="info-point">Throw Grenade: </span>
-            <Checkbox className={unitSelect} checked={usingGrenade} onChange={handleGrenade} />
-          </div>
-        )
-        : null}
-      {playerUnit.name === 'Kneeling Rifleman' ? (
-        <div className="row">
-          <span className="info-point">
-            Mount up (.53 ITR)
-            :
-          </span>
-          <Checkbox className={unitSelect} onChange={handleMount} checked={isMounted} />
-        </div>
-      ) : null}
-      {playerUnit.name === 'Prone Rifleman' ? (
-        <div className="row">
-          <span className="info-point">Dead-Eye (2 actions: .43 ITR):</span>
-          <Checkbox className={unitSelect} onChange={handleSneakAttack} checked={isSnipey} />
-        </div>
-      ) : null}
+
+      <UnitSpecificControllers />
+
       <div className="row">
+
         {!usingMortarMechanics || isBazooka ? (
           <span className="info-point">
             {` Elevation: Unit is
@@ -137,16 +71,18 @@ const PlayerUnitRows = () => {
           </span>
         )
           : <span className="info-point">Elevation:</span>}
-        {!usingMortarMechanics || isBazooka || targetUnit === 'ground' ? (
-          <input
-            value={elevation}
-            name="elevation"
-            onChange={(event) => { setElevation(event.target.value); }}
-            type="number"
-            step=".0625"
-            placeholder="Inches"
-          />
-        )
+
+        {!usingMortarMechanics || isBazooka || targetUnit === 'ground'
+          ? (
+            <input
+              value={elevation}
+              name="elevation"
+              onChange={(event) => { setElevation(event.target.value); }}
+              type="number"
+              step=".0625"
+              placeholder="Inches"
+            />
+          )
           : (
             <div>
               Target is uphill: Measure diagonally.
@@ -154,87 +90,11 @@ const PlayerUnitRows = () => {
               Target is downhill: Measure horizontally to space above target.
             </div>
           )}
+
       </div>
-      {!usingMortarMechanics || isBazooka ? (
-        <div className="row">
-          <span className="info-point">Target is in partial cover:</span>
-          <Checkbox className={unitSelect} name="cover" onChange={handleCover} checked={isInPartialCover} />
-        </div>
-      ) : null}
-      <div className="row">
-        <span className="info-point">
-          {`Template #3: Actively 'Spotted' by ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}
-        </span>
-        <Checkbox
-          className={unitSelect}
-          checked={spotted}
-          onChange={(event) => {
-            setSpotted(!spotted);
-            if (isInRecon) {
-              handleRollToHitAugChange(event, -2);
-              setIsInRecon(false);
-            } else {
-              handleRollToHitAugChange(event, -3);
-            }
-          }}
-        />
-      </div>
-      {playerUnit.name !== 'Captain'
-        ? (
-          <div className="row">
-            <span className="info-point">{'Template #3: Within \'Call to Arms\' radius of Captain:'}</span>
-            <Checkbox
-              className={unitSelect}
-              onChange={(event) => {
-                if (playerUnit['Unit Class'] === 'Infantry') {
-                  handleRollToHitAugChange(event, -2);
-                } else {
-                  handleRollToHitAugChange(event, -1);
-                }
-                if (event.target.checked) {
-                  setUnitIsNearCaptain(true);
-                } else { setUnitIsNearCaptain(false); }
-              }}
-              checked={unitIsNearCaptain}
-            />
-          </div>
-        ) : null}
-      {playerUnit.name !== 'Sergeant' && playerUnit['Unit Class'] === 'Infantry'
-        ? (
-          <div className="row">
-            <span className="info-point">{'Template #2: Within \'Rally\' radius of Sergeant:'}</span>
-            <Checkbox
-              className={unitSelect}
-              onChange={(event) => {
-                if (playerUnit['Unit Class'] === 'Infantry') {
-                  handleRollToHitAugChange(event, -1);
-                }
-                if (event.target.checked) {
-                  setUnitIsNearSergeant(true);
-                } else { setUnitIsNearSergeant(false); }
-              }}
-              checked={unitIsNearSergeant}
-            />
-          </div>
-        ) : null}
-      {spotted ? null
-        : (
-          <div className="row">
-            <span className="info-point">{`Template #2: Within 'Recon' radius of ${playerUnit.name === 'Recon Scout' ? 'another ' : ''}Recon Scout:`}</span>
-            <Checkbox
-              className={unitSelect}
-              checked={isInRecon}
-              onChange={(event) => {
-                handleRollToHitAugChange(event, -1);
-                if (event.target.checked) {
-                  setIsInRecon(true);
-                } else {
-                  setIsInRecon(false);
-                }
-              }}
-            />
-          </div>
-        )}
+
+      <RollToHitControllers />
+
       <div className="row">
         <span className="info-point">Current Inches To Roll:</span>
         <span>
