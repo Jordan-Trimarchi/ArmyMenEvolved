@@ -59,11 +59,11 @@ const MinesAndFalls = () => {
           </div>
         ) : null}
       {targetUnit === 'ground' && elevation && Math.round(elevation) < 2
-        ? <div className="row" style={{ justifyContent: 'center' }}>{'You\'re fine.'}</div>
+        ? <div className="row center-div">{'You\'re fine.'}</div>
         : null}
 
       {targetUnit === 'ground' && !elevation
-        ? <div className="row" style={{ justifyContent: 'center' }}>Enter Elevation to roll for fall survival.</div>
+        ? <div className="row center-div">Enter Elevation to roll for fall survival.</div>
         : null}
     </>
   );

@@ -46,7 +46,7 @@ const AttackRoll = () => {
                   min="1"
                   max="20"
                 />
-              ) : <div>{rollResult}</div>}
+              ) : <div style={{ marginRight: '.25em' }}>{rollResult}</div>}
             </div>
 
             <div className={`row ${usingMortarMechanics && rollResult > 1 ? 'two-buttons' : 'one-button'}`}>

@@ -64,7 +64,7 @@ const PlayerUnitView = () => {
 
   return (
     <div className="player-unit-view">
-      <h2 style={{ textDecoration: 'underline', display: 'flex', justifyContent: 'center' }}>
+      <h2>
         {`Unit: ${playerUnit.name}`}
       </h2>
 
@@ -78,7 +78,7 @@ const PlayerUnitView = () => {
       {Object.keys(playerUnit).map((item) => (
         item !== 'name' ? (
           <div className="row">
-            <span style={{ textDecoration: playerUnit[item].length > 93 ? 'underline' : 'none' }} className="info-point">
+            <span className={`info-point ${playerUnit[item].length > 93 ? 'long-span' : ''}`}>
               {`${item}:`}
             </span>
             <span>
