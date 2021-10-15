@@ -95,7 +95,6 @@ const PlayerUnitRows = () => {
           step=".0625"
           placeholder="Inches"
           min="0"
-          style={{ width: '5em' }}
         />
       </div>
       {playerUnit['Sidearm Inches To Roll']
@@ -146,7 +145,6 @@ const PlayerUnitRows = () => {
             type="number"
             step=".0625"
             placeholder="Inches"
-            style={{ width: '5em' }}
           />
         )
           : (
