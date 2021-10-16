@@ -48,10 +48,10 @@ const RollToHitControllers = () => {
           onChange={(event) => {
             setSpotted(!spotted);
             if (isInRecon) {
-              handleRollToHitAugChange(event, -2);
+              handleRollToHitAugChange(event, -1);
               setIsInRecon(false);
             } else {
-              handleRollToHitAugChange(event, -3);
+              handleRollToHitAugChange(event, -2);
             }
           }}
         />
