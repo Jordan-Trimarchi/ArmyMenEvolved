@@ -1,5 +1,5 @@
 import { Checkbox } from '@material-ui/core';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Context from '../context';
 import useStyles from '../useStyles';
 
@@ -18,6 +18,10 @@ const TargetUnitRows = () => {
   } = useContext(Context);
 
   const [isBehindDestBarrier, setIsBehindDestBarrier] = useState(false);
+
+  useEffect(() => {
+    setIsBehindDestBarrier(false);
+  }, [targetUnit]);
 
   const classes = useStyles();
   const explosiveBaseline = playerUnit ? playerUnit['Explosive Baseline Save Requirement'] : null;
