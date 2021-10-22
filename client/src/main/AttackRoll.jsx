@@ -61,7 +61,7 @@ const AttackRoll = () => {
                           setCanRoll(false);
                           setTimeout(() => {
                             setCanRoll(true);
-                          }, 7500);
+                          }, 1);
                         }
                       }}
                       type="button"
@@ -113,7 +113,7 @@ const AttackRoll = () => {
               )
               : null}
 
-            {rollResult === '1' ? (
+            {rollResult < 2 ? (
               <h3>
                 <p>Critical Failure: Weapon Jam.</p>
                 <p>Any unit within 1 inch may unjam using 1 action.</p>
