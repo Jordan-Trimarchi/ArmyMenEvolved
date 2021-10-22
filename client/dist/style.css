@@ -125,7 +125,7 @@ select, input, button {
   padding-right: .5vw;
   width: auto;
   align-self: center;
-  transition: all .20s ease-in-out;
+  transition: all .075s ease-in-out;
 }
 
 .icon:hover {
@@ -133,6 +133,14 @@ select, input, button {
   padding-right: 0;
   padding-left: 0;
   width: auto;
+}
+
+.icon:active {
+  height: 4.2vw;
+  padding-left: .15vw;
+  padding-right: .15vw;
+  width: auto;
+  align-self: center;
 }
 
 .icon-wide {
@@ -148,6 +156,13 @@ select, input, button {
   padding-right: 0;
   padding-left: 0;
   width: 5vw;
+}
+
+.icon-wide:active {
+  height: 1.5vw;
+  padding-left: .25vw;
+  padding-right: .25vw;
+  width: 4.5vw;
 }
 
 .icons {
