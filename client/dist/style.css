@@ -60,6 +60,7 @@ h2 {
   text-decoration: underline;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 h3 {
@@ -96,6 +97,11 @@ select, input, button {
 
 .app {
   overflow: hidden;
+}
+
+.avatar {
+  height: auto;
+  width: 5vw;
 }
 
 .header {

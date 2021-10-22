@@ -11,7 +11,10 @@ const TargetUnitView = () => {
       {targetUnit === 'barrier' && (playerUnit.name === 'Bazooka' || playerUnit.name === 'Mortar')
         ? (
           <div className="target-unit-view static-pane">
-            <h2>Barrier</h2>
+            <h2>
+              Target: Barrier
+              <img className="avatar" src={`${targetUnit}.png`} />
+            </h2>
             <h3>Obliterate it.</h3>
           </div>
         )
@@ -20,7 +23,10 @@ const TargetUnitView = () => {
       {targetUnit === 'ground'
         ? (
           <div className="target-unit-view static-pane">
-            <h2>The Ground</h2>
+            <h2>
+              Target: The Ground
+              <img className="avatar" src={`${targetUnit}.png`} />
+            </h2>
             <h3>{'It\'s not the fall that kills you, it\'s the sudden stop at the end.'}</h3>
           </div>
         ) : null}
@@ -29,6 +35,7 @@ const TargetUnitView = () => {
           <div className="target-unit-view">
             <h2>
               {`Target: ${targetUnit.name}`}
+              <img className="avatar" src={`${targetUnit.name} black.png`} />
             </h2>
             <TargetUnitRows />
             <RollToSave />

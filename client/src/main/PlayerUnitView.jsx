@@ -66,6 +66,7 @@ const PlayerUnitView = () => {
     <div className="player-unit-view">
       <h2>
         {`Unit: ${playerUnit.name}`}
+        <img className="avatar" src={`${playerUnit.name}.png`} />
       </h2>
 
       {playerUnit && targetUnit
