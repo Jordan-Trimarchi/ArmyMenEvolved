@@ -115,35 +115,46 @@ select, input, button {
 
 .icon {
   height: 4vw;
+  /* padding-left: .5vw;
+  padding-right: .5vw; */
   width: auto;
   align-self: center;
+  transition: all .15s ease-in-out;
 }
 
 .icon:hover {
-  height: 5vw;
+  height: 7.5vw;
+  padding-right: 0;
+  padding-left: 0;
   width: auto;
 }
 
 .icon-wide {
   height: 1.33vw;
+  /* padding-left: .5vw;
+  padding-right: .5vw; */
   width: 4vw;
+  transition: all .15s ease-in-out;
 }
 
 .icon-wide:hover {
-  height: 1.66vw;
-  width: 5vw;
+  height: 2.5vw;
+  padding-right: 0;
+  padding-left: 0;
+  width: 7.5vw;
 }
 
 .icons {
   display: flex;
   justify-content: space-evenly;
-  width: 47%;
+  width: 50%;
 }
 
 .icons-other {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-content: center;
 }
 
 .info {
