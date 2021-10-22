@@ -30,7 +30,7 @@ const UnitSelectors = () => {
 
   return (
     <div className="unit-selectors">
-      <div className="icons">
+      <div className="icons black-background">
         <img className="icon" alt="Captain" src="Captain.png" onClick={handlePlayerUnitClick} />
         <img className="icon" alt="Sergeant" src="Sergeant.png" onClick={handlePlayerUnitClick} />
         <img className="icon" alt="Flamer" src="Flamer.png" onClick={handlePlayerUnitClick} />

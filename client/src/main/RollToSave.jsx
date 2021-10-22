@@ -19,6 +19,7 @@ const RollToSave = () => {
   const [canRollToSave, setCanRollToSave] = useState(true);
 
   const unitName = playerUnit ? playerUnit.name : null;
+  const isExplosive = playerUnit.name === 'Bazooka' || playerUnit.name === 'Flamer' || playerUnit.name === 'Mortar';
   let saveReq = (Number(rollResult) + targetUnitSaveAug);
 
   if ((unitName === 'Bazooka' && !usingSideArm) || usingGrenade) { saveReq = 12 + targetUnitSaveAug; }
@@ -70,7 +71,7 @@ const RollToSave = () => {
         ? (
           <div style={{ borderBottom: 'solid' }}>
             <h3>
-              Critical Hit: Unable to Save.
+              {`Critical Hit: ${isExplosive ? 'Boom.' : 'Unable to Save.'}`}
             </h3>
           </div>
         )

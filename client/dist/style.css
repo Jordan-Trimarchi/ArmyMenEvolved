@@ -105,6 +105,10 @@ select, input, button {
   transition: .2s;
 }
 
+.black-background {
+  background-color: black;
+}
+
 .header {
   background-image: url('../scratchmetal.jpeg');
   display: flex;
@@ -115,7 +119,7 @@ select, input, button {
   height: 5em;
   width: calc(100% - .4em);
   top: 0;
-  z-index: 2;
+  z-index: 3;
   position: fixed;
   border-color: rgb(184, 184, 184);
 }
@@ -171,7 +175,6 @@ select, input, button {
   justify-content: space-evenly;
   width: 50%;
   height: 4.6em;
-  background-color: black;
 }
 
 .icons-other {
