@@ -119,7 +119,7 @@ select, input, button {
   padding-right: .5vw; */
   width: auto;
   align-self: center;
-  transition: all .15s ease-in-out;
+  transition: all .20s ease-in-out;
 }
 
 .icon:hover {
