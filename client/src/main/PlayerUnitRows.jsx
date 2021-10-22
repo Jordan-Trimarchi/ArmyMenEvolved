@@ -32,7 +32,7 @@ const PlayerUnitRows = () => {
     setRollToHit(0);
     setRollToHitAug(0);
     setElevation('');
-    setDistance(0);
+    setDistance('');
     setSpotted(false);
     setIsInPartialCover(false);
     setUnitIsNearCaptain(false);
