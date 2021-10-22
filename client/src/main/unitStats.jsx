@@ -61,7 +61,7 @@ const unitStats = {
     'Save Requirement': -1,
     'Unit Class': 'Infantry',
     Recon: 'Passive boost for units within template #2: -1 to RTH for all types.',
-    Spotter: "Using 2 actions, the Recon Scout may grant -3 RTH to all units within template #2 for their upcoming attacks. (This bonus does not stack with the Recon Scout's passive RTH boost).",
+    Spotter: "Using 2 actions, the Recon Scout may grant -2 RTH to all units within template #2 for their upcoming attacks. (This bonus does not stack with the Recon Scout's passive RTH boost).",
   },
   Engineer: {
     name: 'Engineer',
