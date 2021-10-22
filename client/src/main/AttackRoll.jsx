@@ -61,7 +61,7 @@ const AttackRoll = () => {
                           setCanRoll(false);
                           setTimeout(() => {
                             setCanRoll(true);
-                          }, 1);
+                          }, 7500);
                         }
                       }}
                       type="button"

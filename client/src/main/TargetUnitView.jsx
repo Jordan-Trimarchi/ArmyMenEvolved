@@ -4,7 +4,7 @@ import RollToSave from './RollToSave';
 import TargetUnitRows from './TargetUnitRows';
 
 const TargetUnitView = () => {
-  const { playerUnit, targetUnit, isDead } = useContext(Context);
+  const { playerUnit, targetUnit, isDead, isCriticalHit } = useContext(Context);
 
   return (
     <div className="target">
@@ -35,7 +35,7 @@ const TargetUnitView = () => {
           <div className="target-unit-view">
             <h2>
               {`Target: ${targetUnit.name}`}
-              <img className="avatar" style={{ transform: `rotate(${isDead ? '90deg' : '0deg'})` }} alt="" src={`${targetUnit.name} black.png`} />
+              <img className="avatar" style={{ transform: `rotate(${isDead || isCriticalHit ? '90deg' : '0deg'})` }} alt="" src={`${targetUnit.name} black.png`} />
             </h2>
             <TargetUnitRows />
             <RollToSave />
