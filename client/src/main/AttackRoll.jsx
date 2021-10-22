@@ -94,10 +94,18 @@ const AttackRoll = () => {
                 : null}
             </div>
 
-            {rollResult > 1 ? (
+            {rollResult > 1 && rollResult < 20
+              ? (
+                <h3>
+                  {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit.` : null}
+                  {rollResult < rollToHit && rollResult ? `Rolled ${rollResult}: Miss.` : null}
+                </h3>
+              )
+              : null}
+
+            {rollResult > 19 ? (
               <h3>
-                {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit.` : null}
-                {rollResult < rollToHit && rollResult ? `Rolled ${rollResult}: Miss.` : null}
+                {rollResult > 20 ? 'Especially Critical Hit.' : 'Critical Hit.'}
               </h3>
             ) : null}
 

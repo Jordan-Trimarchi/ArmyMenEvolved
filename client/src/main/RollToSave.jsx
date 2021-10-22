@@ -36,7 +36,7 @@ const RollToSave = () => {
     const successText = `Rolled ${roll}:  Save Successful.`;
     const failureText = `Rolled ${roll}: Save Failed.`;
 
-    setSaved(saveSucceeded ? successText : failureText);
+    setSaved(saveSucceeded && rollResult < 20 ? successText : failureText);
     setCanRollToSave(false);
     setIsDead(!saveSucceeded);
 
@@ -47,7 +47,7 @@ const RollToSave = () => {
 
   return (
     <>
-      {!isCriticalHit && (rollResult >= rollToHit || usingMortarMechanics) && rollResult
+      {(rollResult >= rollToHit || usingMortarMechanics) && rollResult < 20 && rollResult > 1
         ? (
           <>
             <div className="row" style={{ justifyContent: 'center' }}>
@@ -59,7 +59,7 @@ const RollToSave = () => {
             <div style={{ borderBottom: 'solid' }}>
               {saved ? <h3>{saved}</h3> : null}
               <h3>
-                {`Roll of ${saveReq}+ required to save.`}
+                {`Roll of ${saveReq}+ required to save${rollResult >= rollToHit ? '' : ' if hit'}.`}
               </h3>
             </div>
           </>
@@ -71,6 +71,16 @@ const RollToSave = () => {
           <div style={{ borderBottom: 'solid' }}>
             <h3>
               Critical Hit: Unable to Save.
+            </h3>
+          </div>
+        )
+        : null}
+
+      {rollResult > 20
+        ? (
+          <div style={{ borderBottom: 'solid' }}>
+            <h3>
+              These dice are rigged.
             </h3>
           </div>
         )

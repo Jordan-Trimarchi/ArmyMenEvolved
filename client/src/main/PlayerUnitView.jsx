@@ -47,7 +47,7 @@ const PlayerUnitView = () => {
   }, [playerUnit]);
 
   useEffect(() => {
-    if (rollResult === '20' || (rollResult >= rollToHit && isSnipey)) {
+    if (Number(rollResult) === 20 || (rollResult >= rollToHit && isSnipey)) {
       setIsCriticalHit(true);
     } else {
       setIsCriticalHit(false);

@@ -102,7 +102,7 @@ select, input, button {
 .avatar {
   height: auto;
   width: 5vw;
-  transition: .5s;
+  transition: .2s;
 }
 
 .header {
