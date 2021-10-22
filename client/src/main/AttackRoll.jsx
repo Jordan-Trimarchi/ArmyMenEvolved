@@ -94,7 +94,7 @@ const AttackRoll = () => {
                 : null}
             </div>
 
-            {rollResult > 1 || rollToHit < 2 ? (
+            {rollResult > 1 ? (
               <h3>
                 {rollResult >= rollToHit && rollResult ? `Rolled ${rollResult}: Hit.` : null}
                 {rollResult < rollToHit && rollResult ? `Rolled ${rollResult}: Miss.` : null}
@@ -113,7 +113,7 @@ const AttackRoll = () => {
               )
               : null}
 
-            {rollResult === 1 ? (
+            {rollResult === '1' ? (
               <h3>
                 <p>Critical Failure: Weapon Jam.</p>
                 <p>Any unit within 1 inch may unjam using 1 action.</p>
