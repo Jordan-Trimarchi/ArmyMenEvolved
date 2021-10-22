@@ -9,7 +9,6 @@ const PlayerUnitRows = () => {
     distance,
     setDistance,
     playerUnit,
-    targetUnit,
     setUsingGrenade,
     setIsMounted,
     setIsSnipey,
@@ -23,13 +22,16 @@ const PlayerUnitRows = () => {
     currentITR,
     setUnitIsNearCaptain,
     setUnitIsNearSergeant,
+    checkFallView,
+    setCheckFallView,
   } = useContext(Context);
+
   const isBazooka = playerUnit.name === 'Bazooka';
 
   const handleClear = () => {
     setRollToHit(0);
     setRollToHitAug(0);
-    setElevation('0');
+    setElevation('');
     setDistance(0);
     setSpotted(false);
     setIsInPartialCover(false);
@@ -38,6 +40,7 @@ const PlayerUnitRows = () => {
     setIsSnipey(false);
     setIsMounted(false);
     setUsingGrenade(false);
+    setCheckFallView(false);
   };
 
   return (
@@ -72,7 +75,7 @@ const PlayerUnitRows = () => {
         )
           : <span className="info-point">Elevation:</span>}
 
-        {!usingMortarMechanics || isBazooka || targetUnit === 'ground'
+        {!usingMortarMechanics || isBazooka || checkFallView
           ? (
             <input
               value={elevation}

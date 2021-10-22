@@ -6,6 +6,8 @@ const MinesAndFalls = () => {
     targetUnit,
     elevation,
     playerUnit,
+    checkFallView,
+    setCheckFallView,
   } = useContext(Context);
 
   const [crossedMines, setCrossedMines] = useState('');
@@ -19,6 +21,7 @@ const MinesAndFalls = () => {
     setSurvivedFall('');
     setCanCheckFall(true);
   }, [playerUnit]);
+
   return (
     <>
       <div className={`row ${crossedMines > 1 ? 'row-one-button' : 'row-two-buttons'}`}>
@@ -62,8 +65,15 @@ const MinesAndFalls = () => {
         ? <div className="row row-center-div">{'You\'re fine.'}</div>
         : null}
 
-      {targetUnit === 'ground' && !elevation
+      {targetUnit === 'ground' && !elevation && checkFallView
         ? <div className="row row-center-div">Enter Elevation to roll for fall survival.</div>
+        : null}
+      {targetUnit === 'ground' && !elevation && !checkFallView
+        ? (
+          <div className="row row-center-div">
+            <input type="button" value="I've Fallen" onClick={() => { setCheckFallView(true); }} />
+          </div>
+        )
         : null}
     </>
   );

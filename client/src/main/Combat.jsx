@@ -27,6 +27,7 @@ const Combat = () => {
   const [isInRecon, setIsInRecon] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isSnipey, setIsSnipey] = useState(false);
+  const [checkFallView, setCheckFallView] = useState(false);
 
   const isBazooka = playerUnit && playerUnit.name === 'Bazooka';
 
@@ -62,8 +63,13 @@ const Combat = () => {
     }
   }, [distance, rollToHitAug, playerUnit, targetUnit, elevation, currentITR, usingSideArm]);
 
+  useEffect(() => {
+    setCheckFallView(!usingMortarMechanics);
+  }, [usingMortarMechanics]);
+
   return (
     <Context.Provider value={{
+      checkFallView,
       currentITR,
       distance,
       elevation,
@@ -87,6 +93,7 @@ const Combat = () => {
       usingMortarMechanics,
       usingSideArm,
       handleRollToHitAugChange,
+      setCheckFallView,
       setCurrentITR,
       setDistance,
       setElevation,

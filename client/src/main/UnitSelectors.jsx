@@ -31,32 +31,32 @@ const UnitSelectors = () => {
   return (
     <div className="unit-selectors">
       <div className="icons">
-        <img className="icon" alt="Captain" src="captain.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Sergeant" src="sergeant.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Flamer" src="flamer.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Mortar" src="mortar.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Bazooka" src="bazooka.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Recon Scout" src="recon.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Engineer" src="engineer.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Standing Rifleman" src="standing.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Kneeling Rifleman" src="kneeling.png" onClick={handlePlayerUnitClick} />
-        <img className="icon" alt="Prone Rifleman" src="prone.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Captain" src="captainblack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Sergeant" src="sergeantblack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Flamer" src="flamerblack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Mortar" src="mortarblack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Bazooka" src="bazookablack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Recon Scout" src="reconblack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Engineer" src="engineerblack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Standing Rifleman" src="standingblack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Kneeling Rifleman" src="kneelingblack.png" onClick={handlePlayerUnitClick} />
+        <img className="icon" alt="Prone Rifleman" src="proneblack.png" onClick={handlePlayerUnitClick} />
       </div>
       <div className="icons">
         <div className="icons-other">
           {isArtillery ? <img className="icon-wide" alt="barrier" src="barrier.png" onClick={handleTargetUnitClick} /> : null}
           <img className="icon-wide" alt="ground" src="ground.png" onClick={handleTargetUnitClick} />
         </div>
-        <img className="icon" alt="Captain" src="captainblack2.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Sergeant" src="sergeantblack.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Flamer" src="flamerblack.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Mortar" src="mortarblack.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Bazooka" src="bazookablack.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Recon Scout" src="reconblack.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Engineer" src="engineerblack.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Standing Rifleman" src="standingblack.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Kneeling Rifleman" src="kneelingblack.png" onClick={handleTargetUnitClick} />
-        <img className="icon" alt="Prone Rifleman" src="proneblack.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Captain" src="captain.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Sergeant" src="sergeant.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Flamer" src="flamer.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Mortar" src="mortar.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Bazooka" src="bazooka.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Recon Scout" src="recon.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Engineer" src="engineer.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Standing Rifleman" src="standing.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Kneeling Rifleman" src="kneeling.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Prone Rifleman" src="prone.png" onClick={handleTargetUnitClick} />
       </div>
 
     </div>
