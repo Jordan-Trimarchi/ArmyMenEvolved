@@ -116,11 +116,22 @@ select, input, button {
 .icon {
   height: 4vw;
   width: auto;
+  align-self: center;
+}
+
+.icon:hover {
+  height: 5vw;
+  width: auto;
 }
 
 .icon-wide {
   height: 1.33vw;
   width: 4vw;
+}
+
+.icon-wide:hover {
+  height: 1.66vw;
+  width: 5vw;
 }
 
 .icons {
@@ -212,9 +223,10 @@ select, input, button {
 .unit-selectors {
   display: flex;
   justify-content: space-around;
-  top: 5.5em;
+  top: 4.7em;
   width: 100%;
   position: fixed;
   z-index: 2;
   padding-top: .2em;
+  height: 5em;
 }

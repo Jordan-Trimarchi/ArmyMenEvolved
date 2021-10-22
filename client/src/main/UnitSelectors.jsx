@@ -47,7 +47,7 @@ const UnitSelectors = () => {
           {isArtillery ? <img className="icon-wide" alt="barrier" src="barrier.png" onClick={handleTargetUnitClick} /> : null}
           <img className="icon-wide" alt="ground" src="ground.png" onClick={handleTargetUnitClick} />
         </div>
-        <img className="icon" alt="Captain" src="captainblack.png" onClick={handleTargetUnitClick} />
+        <img className="icon" alt="Captain" src="captainblack2.png" onClick={handleTargetUnitClick} />
         <img className="icon" alt="Sergeant" src="sergeantblack.png" onClick={handleTargetUnitClick} />
         <img className="icon" alt="Flamer" src="flamerblack.png" onClick={handleTargetUnitClick} />
         <img className="icon" alt="Mortar" src="mortarblack.png" onClick={handleTargetUnitClick} />
