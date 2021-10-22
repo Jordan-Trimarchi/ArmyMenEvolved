@@ -64,7 +64,7 @@ const PlayerUnitView = () => {
 
   return (
     <div className="player-unit-view">
-      <h2>
+      <h2 style={{ marginBottom: '0', marginTop: '.3em' }}>
         {`Unit: ${playerUnit.name}`}
         <img className="avatar" alt="" src={`${playerUnit.name}.png`} />
       </h2>

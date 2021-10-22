@@ -4,7 +4,12 @@ import RollToSave from './RollToSave';
 import TargetUnitRows from './TargetUnitRows';
 
 const TargetUnitView = () => {
-  const { playerUnit, targetUnit, isDead, isCriticalHit } = useContext(Context);
+  const {
+    playerUnit,
+    targetUnit,
+    isDead,
+    isCriticalHit,
+  } = useContext(Context);
 
   return (
     <div className="target">

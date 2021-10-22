@@ -113,8 +113,8 @@ const AttackRoll = () => {
               )
               : null}
 
-            {rollResult < 2 ? (
-              <h3>
+            {Number(rollResult) === 1 ? (
+              <h3 style={{ marginBottom: '0', marginTop: '0' }}>
                 <p>Critical Failure: Weapon Jam.</p>
                 <p>Any unit within 1 inch may unjam using 1 action.</p>
               </h3>
