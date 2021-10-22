@@ -38,7 +38,7 @@ const TargetUnitView = () => {
       {targetUnit !== 'ground' && targetUnit !== 'barrier'
         ? (
           <div className="target-unit-view">
-            <h2>
+            <h2 style={{ marginBottom: '.3em', marginTop: '.3em' }}>
               {`Target: ${targetUnit.name}`}
               <img className="avatar" style={{ transform: `rotate(${isDead || isCriticalHit ? '90deg' : '0deg'})` }} alt="" src={`${targetUnit.name} black.png`} />
             </h2>

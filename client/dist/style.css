@@ -170,6 +170,8 @@ select, input, button {
   display: flex;
   justify-content: space-evenly;
   width: 50%;
+  height: 4.6em;
+  background-color: black;
 }
 
 .icons-other {
