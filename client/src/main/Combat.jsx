@@ -28,6 +28,7 @@ const Combat = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isSnipey, setIsSnipey] = useState(false);
   const [checkFallView, setCheckFallView] = useState(false);
+  const [isDead, setIsDead] = useState(false);
 
   const isBazooka = playerUnit && playerUnit.name === 'Bazooka';
 
@@ -56,6 +57,7 @@ const Combat = () => {
 
   useEffect(() => {
     handleRollToHitCalc();
+    setIsDead(false);
     if (isBazooka && targetUnit === 'barrier' && !usingSideArm) {
       setCurrentITR(playerUnit['Inches To Roll vs Vehicle/Structure']);
     } else if (isBazooka) {
@@ -74,6 +76,7 @@ const Combat = () => {
       distance,
       elevation,
       isCriticalHit,
+      isDead,
       isInPartialCover,
       isInRecon,
       isMounted,
@@ -98,6 +101,7 @@ const Combat = () => {
       setDistance,
       setElevation,
       setIsCriticalHit,
+      setIsDead,
       setIsInPartialCover,
       setIsInRecon,
       setUnitIsNearCaptain,

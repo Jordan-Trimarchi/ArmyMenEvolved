@@ -12,6 +12,7 @@ const RollToSave = () => {
     rollToHit,
     isCriticalHit,
     usingMortarMechanics,
+    setIsDead,
   } = useContext(Context);
 
   const [saved, setSaved] = useState('');
@@ -37,6 +38,7 @@ const RollToSave = () => {
 
     setSaved(saveSucceeded ? successText : failureText);
     setCanRollToSave(false);
+    setIsDead(!saveSucceeded);
 
     setTimeout(() => {
       setCanRollToSave(true);
