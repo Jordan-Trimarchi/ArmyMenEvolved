@@ -120,16 +120,16 @@ select, input, button {
 }
 
 .icon {
-  height: 4vw;
-  /* padding-left: .5vw;
-  padding-right: .5vw; */
+  height: 3.5vw;
+  padding-left: .5vw;
+  padding-right: .5vw;
   width: auto;
   align-self: center;
   transition: all .20s ease-in-out;
 }
 
 .icon:hover {
-  height: 7.5vw;
+  height: 4.5vw;
   padding-right: 0;
   padding-left: 0;
   width: auto;
@@ -137,17 +137,17 @@ select, input, button {
 
 .icon-wide {
   height: 1.33vw;
-  /* padding-left: .5vw;
-  padding-right: .5vw; */
+  padding-left: .5vw;
+  padding-right: .5vw;
   width: 4vw;
   transition: all .15s ease-in-out;
 }
 
 .icon-wide:hover {
-  height: 2.5vw;
+  height: 1.66vw;
   padding-right: 0;
   padding-left: 0;
-  width: 7.5vw;
+  width: 5vw;
 }
 
 .icons {
