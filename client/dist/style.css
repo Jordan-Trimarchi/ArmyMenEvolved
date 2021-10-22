@@ -53,6 +53,7 @@ button {
 
 h1 {
   text-decoration: underline;
+  margin-left: .5em;
 }
 
 h2 {
@@ -100,15 +101,38 @@ select, input, button {
 .header {
   background-image: url('../scratchmetal.jpeg');
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   border: solid;
-  height: 7em;
+  height: 5em;
   width: calc(100% - .4em);
   top: 0;
   z-index: 2;
   position: fixed;
   border-color: rgb(184, 184, 184);
+}
+
+.icon {
+  height: 4vw;
+  width: auto;
+}
+
+.icon-wide {
+  height: 1.33vw;
+  width: 4vw;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 47%;
+}
+
+.icons-other {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .info {
@@ -157,6 +181,10 @@ select, input, button {
   justify-content: space-around;
 }
 
+.rules-back-button {
+  margin-right: 1em;
+}
+
 .split-view-container {
   display: flex;
   flex-direction: row;
@@ -182,10 +210,9 @@ select, input, button {
 }
 
 .unit-selectors {
-  height: 1.5em;
   display: flex;
-  justify-content: space-between;
-  top: 7.5em;
+  justify-content: space-around;
+  top: 5.5em;
   width: 100%;
   position: fixed;
   z-index: 2;

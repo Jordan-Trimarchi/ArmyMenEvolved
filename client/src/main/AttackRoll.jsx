@@ -38,12 +38,12 @@ const AttackRoll = () => {
                 <input
                   value={rollResult}
                   onChange={(event) => {
-                    setRollResult(Number(event.target.value));
+                    setRollResult(event.target.value);
                   }}
                   type="number"
                   step="1"
                   placeholder="Roll"
-                  min="1"
+                  min="0"
                   max="20"
                 />
               ) : <div style={{ marginRight: '.25em' }}>{rollResult}</div>}

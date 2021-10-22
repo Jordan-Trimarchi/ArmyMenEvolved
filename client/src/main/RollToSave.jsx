@@ -18,7 +18,7 @@ const RollToSave = () => {
   const [canRollToSave, setCanRollToSave] = useState(true);
 
   const unitName = playerUnit ? playerUnit.name : null;
-  let saveReq = (rollResult + targetUnitSaveAug);
+  let saveReq = (Number(rollResult) + targetUnitSaveAug);
 
   if ((unitName === 'Bazooka' && !usingSideArm) || usingGrenade) { saveReq = 12 + targetUnitSaveAug; }
   if (unitName === 'Mortar' && !usingSideArm) { saveReq = 13 + targetUnitSaveAug; }
