@@ -7,7 +7,7 @@ const unitStats = {
     Template: 3,
     'Unit Class': 'Infantry',
     'Call to Arms': 'Passive boost for units within template #3: -2 to Save Req for all types, -2 to Roll To Hit for infantry, -1 to RTH for heavy weapons(Bazooka, Mortar).',
-    Strategery: 'The Captain may use 2 actions to increase the action pool by 1 for every unit with template #3.',
+    Strategery: 'Use 2 actions to increase the action pool for this turn by the number of units with template #3.',
   },
   Sergeant: {
     name: 'Sergeant',
@@ -17,7 +17,7 @@ const unitStats = {
     Template: 2,
     'Unit Class': 'Infantry',
     Rally: 'Passive boost for units within template #2: -1 to SR for all types, -1 to RTH for infantry',
-    Melee: 'Sergeant performs a Melee attack with his bayonet. Range 0-5in, upon performing action, Sergeant is moved straight toward target to 1/2 inch away. Must roll a 6+ to hit. Target unit cannot save.',
+    Melee: 'Perform a Melee attack with bayonet. Range 0-5in. Upon performing action, Sergeant is moved straight toward target to 1/2 inch away. Must roll a 6+ to hit. Target unit cannot save.',
   },
   Flamer: {
     name: 'Flamer',

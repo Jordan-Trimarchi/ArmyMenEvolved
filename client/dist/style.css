@@ -5,7 +5,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  color: rgb(229, 230, 229);
+  color: rgb(255, 255, 255);
   font-family: 'Stick No Bills', sans-serif;
   text-shadow: black 2px 2px 2px;
   font-size: large;
@@ -33,7 +33,7 @@ button {
   margin-top: 1.33em;
   margin-bottom: 1.33em;
   background-color: black;
-  color: rgb(229, 230, 229);
+  color: rgb(255, 255, 255);
   border: none;
   outline: none;
   font-family: 'Stick No Bills', sans-serif;
@@ -81,7 +81,7 @@ select {
 
 select, input, button {
   background-color: rgb(65, 64, 64);
-  color: rgb(229, 230, 229);
+  color: rgb(255, 255, 255);
   border-color: rgb(131, 131, 131);
   border-width: .1em;
   outline: none;
