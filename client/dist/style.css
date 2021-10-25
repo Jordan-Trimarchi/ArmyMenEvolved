@@ -115,9 +115,9 @@ select, input, button {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border: solid;
+  border-bottom: solid;
   height: 9vh;
-  width: calc(100% - .4em);
+  width: 100%;
   top: 0;
   z-index: 3;
   position: fixed;
@@ -206,6 +206,7 @@ select, input, button {
   border-top: solid;
   margin-top: calc(10vh + 5em);
   border-color: rgb(184, 184, 184);
+  border-radius: .3em;
 }
 
 .row {
@@ -256,6 +257,7 @@ select, input, button {
   margin-top: calc(10vh + 5em);
   position: fixed;
   right: 0;
+  border-radius: .3em;
   border-color: rgb(184, 184, 184);
 }
 
