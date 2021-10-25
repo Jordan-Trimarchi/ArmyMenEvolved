@@ -204,7 +204,7 @@ select, input, button {
   border-right: solid;
   border-left: solid;
   border-top: solid;
-  margin-top: calc(10vh + 5em);
+  margin-top: calc(10vh + 4.7em);
   border-color: rgb(184, 184, 184);
   border-radius: .3em;
 }
@@ -254,7 +254,7 @@ select, input, button {
   border-right: solid;
   border-left: solid;
   border-top: solid;
-  margin-top: calc(10vh + 5em);
+  margin-top: calc(10vh + 4.7em);
   position: fixed;
   right: 0;
   border-radius: .3em;
@@ -264,7 +264,7 @@ select, input, button {
 .unit-selectors {
   display: flex;
   justify-content: space-around;
-  top: 9.2vh;
+  top: 8.9vh;
   width: 100%;
   position: fixed;
   z-index: 2;

@@ -21,7 +21,11 @@ const UnitSpecificControllers = () => {
 
   const handleSidearm = (event) => {
     if (event.target.checked) { setUsingSideArm(true); } else { setUsingSideArm(false); }
-    if (event.target.checked) { setCurrentITR(playerUnit['Sidearm Inches To Roll']); } else { setCurrentITR(playerUnit['Inches To Roll'] || playerUnit['Mortar Inches To Roll']); }
+    if (event.target.checked) {
+      setCurrentITR(playerUnit['Sidearm Inches To Roll']);
+    } else {
+      setCurrentITR(playerUnit['Inches To Roll'] || playerUnit['Mortar Inches To Roll'] || playerUnit['Sidearm Inches To Roll']);
+    }
   };
 
   const handleGrenade = (event) => {
