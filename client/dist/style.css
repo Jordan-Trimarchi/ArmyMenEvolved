@@ -20,7 +20,7 @@ body {
   }
 }
 
-body, .row, button, div, span, .info-point {
+body, .row, button, div, span, .info-point, img {
   opacity: 1;
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
