@@ -69,15 +69,15 @@ const GameBoard = () => {
         <img
           className="gamepiece"
           style={{ top: `${unitTop - 25}px`, left: `${unitLeft - 25}px` }}
-          alt="Flamer"
+          alt="standing Rifleman"
           src="Standing Rifleman.png"
         />
         <img
           className="gamepiece"
           style={{ top: `${targetTop - 25}px`, left: `${targetLeft - 25}px`, transform: `rotate(${eliminated ? '90deg' : '0deg'})` }}
           onClick={() => { attack(0.8); }}
-          alt="Flamer"
-          src="Standing Rifleman Black.png"
+          alt="Standing Rifleman black"
+          src="Standing Rifleman black.png"
         />
       </div>
     </div>
