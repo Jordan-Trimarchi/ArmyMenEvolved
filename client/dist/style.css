@@ -109,6 +109,14 @@ select, input, button {
   background-color: rgba(0, 0, 0, 0.75);
 }
 
+.gamepiece {
+  height: 3.5vw;
+  width: auto;
+  align-self: center;
+  transition: all 1s ease-in-out;
+  position: absolute;
+}
+
 .header {
   background-image: url('../scratchmetal.jpeg');
   display: flex;
