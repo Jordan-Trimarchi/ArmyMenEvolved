@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const GameBoard = () => {
   const [newGame, setNewGame] = useState(true);
@@ -17,7 +17,7 @@ const GameBoard = () => {
   if (newGame) { console.log('When "Move" appears in top left, click on the field to move. When "Attack" appears in the top left, click enemy unit to attack.'); }
 
   const attack = (itr, attacker) => {
-    console.log('==========================');
+    console.log('==============');
     if (attacker === 'player') {
       console.log('Attacking Computer.');
     } else {
@@ -29,7 +29,7 @@ const GameBoard = () => {
     const requiredRoll = Math.round(distance * itr);
     console.log('Roll required to hit:', requiredRoll);
     const attackRoll = Math.ceil(Math.random() * 20);
-    console.log('Attacker Roll:', attackRoll);
+    console.log('Attacker Roll(max 20):', attackRoll);
     if (attackRoll >= requiredRoll) {
       console.log('Hit.');
       const saveRoll = Math.ceil(Math.random() * 20);
@@ -49,14 +49,20 @@ const GameBoard = () => {
     return false;
   };
 
+  useEffect(() => {
+    if (attacking) {
+      setAttacking(false);
+      setTimeout(() => {
+        if (!attack(0.8, 'target')) {
+          setMoving(true);
+        }
+      }, 1000);
+    }
+  }, [targetLeft]);
+
   const computerTurn = () => {
-    setTargetTop(Math.floor(Math.random() * (document.documentElement.clientHeight - 80)));
+    setTargetTop(Math.floor(Math.random() * (document.documentElement.clientHeight)));
     setTargetLeft(Math.floor(Math.random() * document.documentElement.clientWidth));
-    setTimeout(() => {
-      if (!attack(0.8, 'target')) {
-        setMoving(true);
-      }
-    }, 1200);
   };
 
   return (
@@ -106,10 +112,9 @@ const GameBoard = () => {
         />
         <img
           className="gamepiece"
-          style={{ top: `${targetTop - 25}px`, left: `${targetLeft - 25}px`, transform: `rotate(${targetEliminated ? '90deg' : '0deg'})` }}
+          style={{ top: `${targetTop - 25}px`, left: `${targetLeft - 25}px`, zIndex: '10', transform: `rotate(${targetEliminated ? '90deg' : '0deg'})` }}
           onClick={() => {
             if (attacking) {
-              setAttacking(false);
               if (attack(0.8, 'player') === false) {
                 setTimeout(computerTurn, 1000);
               }
