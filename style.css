@@ -1,0 +1,281 @@
+body {
+  margin: 0;
+  background-color: rgb(18, 36, 21);
+  background-image: url('../darkfabric.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  font-family: 'Stick No Bills', sans-serif;
+  text-shadow: black 2px 2px 2px;
+  font-size: large;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body, .row, button, div, span, .info-point, img {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: .75s;
+  transition: .5s;
+}
+
+button {
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  border: none;
+  outline: none;
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: medium;
+}
+
+.fake-h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+h1 {
+  text-decoration: underline;
+  margin-left: .5em;
+}
+
+h2 {
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type=number] {
+  width: 5em;
+}
+
+select {
+  text-align: center;
+  width: 48.3vw;
+}
+
+select, input, button {
+  background-color: rgb(65, 64, 64);
+  color: rgb(255, 255, 255);
+  border-color: rgb(131, 131, 131);
+  border-width: .1em;
+  outline: none;
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: large;
+  border-radius: .25em;
+}
+
+::placeholder {
+  color: rgb(179, 179, 179);
+  font-size: large;
+}
+
+.app {
+  overflow: hidden;
+}
+
+.avatar {
+  height: auto;
+  width: 5vw;
+  transition: .2s;
+}
+
+.black-background {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.gamepiece {
+  height: 3.5vw;
+  width: auto;
+  align-self: center;
+  transition: all 1s ease-in-out;
+  position: absolute;
+}
+
+.header {
+  background-image: url('../scratchmetal.jpeg');
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid;
+  height: 9vh;
+  width: 100%;
+  top: 0;
+  z-index: 3;
+  position: fixed;
+  border-color: rgb(184, 184, 184);
+}
+
+.icon {
+  height: 3.5vw;
+  padding-left: .5vw;
+  padding-right: .5vw;
+  width: auto;
+  align-self: center;
+  transition: all .075s ease-in-out;
+}
+
+.icon:hover {
+  height: 4.5vw;
+  padding-right: 0;
+  padding-left: 0;
+  width: auto;
+  z-index: 4;
+}
+
+.icon:active {
+  height: 4.2vw;
+  padding-left: .15vw;
+  padding-right: .15vw;
+  width: auto;
+  align-self: center;
+}
+
+.icon-wide {
+  height: 1.33vw;
+  padding-left: .5vw;
+  padding-right: .5vw;
+  width: 4vw;
+  transition: all .15s ease-in-out;
+}
+
+.icon-wide:hover {
+  height: 1.66vw;
+  padding-right: 0;
+  padding-left: 0;
+  width: 5vw;
+}
+
+.icon-wide:active {
+  height: 1.5vw;
+  padding-left: .25vw;
+  padding-right: .25vw;
+  width: 4.5vw;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  height: 5em;
+}
+
+.icons-other {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.info {
+  font-size: 1.1em;
+}
+
+.info-point {
+  font-size: 1.1em;
+}
+
+.long-span {
+  text-decoration: underline;
+}
+
+.player-unit-view {
+  width: 48vw;
+  display: flex;
+  flex-direction: column;
+  border-right: solid;
+  border-left: solid;
+  border-top: solid;
+  margin-top: calc(10vh + 4.7em);
+  border-color: rgb(184, 184, 184);
+  border-radius: .3em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid;
+  flex-wrap: wrap;
+  padding-left: .5em;
+  padding-right: .5em;
+  align-items: center;
+  border-color: rgb(184, 184, 184);
+}
+
+.row-center-div {
+  justify-content: center;
+}
+
+.row-one-button {
+  justify-content: center;
+}
+
+.row-two-buttons {
+  justify-content: space-around;
+}
+
+.rules-back-button {
+  margin-right: 1em;
+}
+
+.split-view-container {
+  display: flex;
+  flex-direction: row;
+  width: 48vw;
+  justify-content: space-between;
+}
+
+.static-pane {
+  border-bottom: solid;
+}
+
+.target-unit-view {
+  width: 48vw;
+  display: flex;
+  flex-direction: column;
+  border-right: solid;
+  border-left: solid;
+  border-top: solid;
+  margin-top: calc(10vh + 4.7em);
+  position: fixed;
+  right: 0;
+  border-radius: .3em;
+  border-color: rgb(184, 184, 184);
+}
+
+.unit-selectors {
+  display: flex;
+  justify-content: space-around;
+  top: 8.9vh;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  padding-top: .2em;
+  height: 5em;
+}
